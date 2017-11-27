@@ -3,15 +3,14 @@ import {
     View,
     Text
 } from 'react-native';
+import styles from './Styles/Library.js';
 
-export default class Screen1 extends Component<{}> {
+export default class Library extends Component {
     render() {
         return (
             <View>
-                <Text>
-                    Screen1
-                </Text>
+                <Text> Library </Text>
             </View>
-        );
+        )
     }
 }

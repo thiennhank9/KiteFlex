@@ -3,15 +3,14 @@ import {
     View,
     Text
 } from 'react-native';
+import styles from './Styles/Home.js';
 
-export default class Screen2 extends Component<{}> {
+export default class Home extends Component {
     render() {
         return (
             <View>
-                <Text>
-                    Screen2
-                </Text>
+                <Text> Home </Text>
             </View>
-        );
+        )
     }
 }
