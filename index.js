@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './app/src/App.js';
+import App from './app/App.js';
 
 AppRegistry.registerComponent('KiteFlex', () => App);

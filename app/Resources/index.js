@@ -1,0 +1,9 @@
+const res = {
+    images: {
+
+    },
+
+    icons: {
+        
+    }
+}
