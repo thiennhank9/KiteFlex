@@ -14,7 +14,14 @@ const TabApp = TabNavigator({
     Library: {screen: Library},
     Profile: {screen: Profile}   
 }, {
-    tabBarPosition: 'bottom'
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+        showLabel: true,
+        showIcon: true,
+        labelStyle: {
+            fontSize: 10
+        }
+    }
 })
 
 export default TabApp;
