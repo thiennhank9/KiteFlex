@@ -4,12 +4,15 @@ import {
     Text
 } from 'react-native';
 import styles from './Styles/Home.js';
+import { SearchFilm } from '../Components/index.js';
+import {ScrollHome} from '../Containers/index.js';
 
 export default class Home extends Component {
     render() {
         return (
-            <View>
-                <Text> Home </Text>
+            <View style={styles.container}>
+                <SearchFilm />
+                <ScrollHome />
             </View>
         )
     }

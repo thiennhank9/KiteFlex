@@ -13,6 +13,8 @@ const TabApp = TabNavigator({
     HighLight: {screen: HighLight},
     Library: {screen: Library},
     Profile: {screen: Profile}   
+}, {
+    tabBarPosition: 'bottom'
 })
 
 export default TabApp;
