@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import PlayVideo from '../Components/PlayVideo.js';
 
-export default class RootScreen extends Component {
+export default class TestScreen extends Component {
     render() {
         return (
-            <View>
-                <Text> </Text>
-            </View>
+            <PlayVideo />
         )
     }
 }
