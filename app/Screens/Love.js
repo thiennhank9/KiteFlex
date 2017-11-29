@@ -4,7 +4,8 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import GridFilm from '../Containers/GridFilm.js';
+import styles from './Styles/Container.js';
 export default class Love extends Component {
     static navigationOptions = {
         tabBarLabel: 'Yêu thích',
@@ -17,10 +18,8 @@ export default class Love extends Component {
     }
     render() {
         return (
-            <View>
-                <Text>
-                    Yêu thích
-                </Text>
+            <View style={styles.container}>
+                <GridFilm />
             </View>
         )
     }

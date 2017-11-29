@@ -4,7 +4,8 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import GridFilm from '../Containers/GridFilm.js';
+import styles from './Styles/Container.js';
 export default class IMDb extends Component {
     static navigationOptions = {
         tabBarLabel: 'IMDb',
@@ -17,10 +18,8 @@ export default class IMDb extends Component {
     }
     render() {
         return (
-            <View>
-                <Text>
-                    IMDb
-                </Text>
+            <View style={styles.container}>
+                <GridFilm />
             </View>
         )
     }

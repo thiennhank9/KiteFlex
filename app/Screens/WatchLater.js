@@ -4,7 +4,8 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import GridFilm from '../Containers/GridFilm.js';
+import styles from './Styles/Container.js';
 export default class WatchLater extends Component {
     static navigationOptions = {
         tabBarLabel: 'Theo dõi',
@@ -17,10 +18,8 @@ export default class WatchLater extends Component {
     }
     render() {
         return (
-            <View>
-                <Text>
-                    WatchLater
-                </Text>
+            <View style={styles.container}>
+                <GridFilm />
             </View>
         )
     }

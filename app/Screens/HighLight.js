@@ -4,7 +4,8 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import GridFilm from '../Containers/GridFilm.js';
+import styles from './Styles/Container.js';
 export default class HighLight extends Component {
     static navigationOptions = {
         tabBarLabel: 'Nổi bật',
@@ -18,10 +19,8 @@ export default class HighLight extends Component {
 
     render() {
         return (
-            <View>
-                <Text>
-                    HighLight
-                </Text>
+            <View style={styles.container}>
+                <GridFilm />
             </View>
         )
     }

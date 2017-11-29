@@ -4,6 +4,8 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import GridFilm from '../Containers/GridFilm.js';
+import styles from './Styles/Container.js';
 
 export default class TVShow extends Component {
     static navigationOptions = {
@@ -18,10 +20,8 @@ export default class TVShow extends Component {
 
     render() {
         return (
-            <View>
-                <Text>
-                    TVShow
-                </Text>
+            <View style={styles.container}>
+                <GridFilm />
             </View>
         )
     }
