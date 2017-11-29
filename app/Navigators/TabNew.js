@@ -11,6 +11,7 @@ export default TabNew = TabNavigator({
     TVShow: { screen: TVShow },
     Cartoon: { screen: Cartoon }
 }, {
+    lazy: true,
     tabBarOptions: {
         lazy: true,
         showLabel: true,

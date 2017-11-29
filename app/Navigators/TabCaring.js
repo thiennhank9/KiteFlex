@@ -10,6 +10,7 @@ export default TabCaring = TabNavigator({
     MostWatch: { screen: MostWatch },
     IMDb: { screen: IMDb }
 }, {
+    lazy: true,
     tabBarOptions: {
         lazy: true,
         showLabel: true,

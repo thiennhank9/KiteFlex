@@ -11,6 +11,7 @@ export default TabLibrary = TabNavigator({
     Love: {screen: Love},
     WatchLater: {screen: WatchLater}
 }, {
+    lazy: true,
     tabBarOptions: {
         lazy: true,
         showLabel: true,
