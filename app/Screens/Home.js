@@ -7,7 +7,6 @@ import styles from './Styles/Home.js';
 import { SearchFilm } from '../Components/index.js';
 import { ScrollHome } from '../Containers/index.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TestScreen from './TestScreen.js';
 
 export default class Home extends Component {
     static navigationOptions = {
@@ -24,7 +23,6 @@ export default class Home extends Component {
             <View style={styles.container}>
                 <SearchFilm />
                 <ScrollHome />
-                {/* <TestScreen /> */}
             </View>
         )
     }

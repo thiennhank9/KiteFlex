@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import styles from './Styles/Movie.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import GridFilm from '../Containers/GridFilm.js';
 
 export default class Movie extends Component {
     static navigationOptions = {
@@ -19,9 +20,7 @@ export default class Movie extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>
-                    Movies
-                </Text>
+            <GridFilm />
             </View>
         )
     }

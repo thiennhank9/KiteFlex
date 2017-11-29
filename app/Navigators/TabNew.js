@@ -12,6 +12,7 @@ export default TabNew = TabNavigator({
     Cartoon: { screen: Cartoon }
 }, {
     lazy: true,
+    swipeEnabled: false,
     tabBarOptions: {
         lazy: true,
         showLabel: true,

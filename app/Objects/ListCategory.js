@@ -32,7 +32,7 @@ export default lsCategory = [
         category: 'game show truyền hình'
     },
     {
-        key: 8,
-        category: 'phim sắp chiếu'
+         key: 8,
+         category: 'phim sắp chiếu'
     }
 ]

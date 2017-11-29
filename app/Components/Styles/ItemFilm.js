@@ -1,15 +1,18 @@
 import {StyleSheet} from 'react-native';
+const Dimensions = require('Dimensions');
+
+const window = Dimensions.get('window');
 
 export default styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        width: 100,
-        margin: 5
+        width: window.width/3,
     },
     imageFilm: {
         borderRadius: 5,
-        width: 100,
-        margin: 2,
-        height: 160
+        width: window.width/3 - 10,
+        margin: 5,
+        height: 160,
+        backgroundColor: 'black'
     }
 })

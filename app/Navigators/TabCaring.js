@@ -11,6 +11,7 @@ export default TabCaring = TabNavigator({
     IMDb: { screen: IMDb }
 }, {
     lazy: true,
+    swipeEnabled: false,
     tabBarOptions: {
         lazy: true,
         showLabel: true,

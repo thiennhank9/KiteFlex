@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     TouchableOpacity,
     Image,
@@ -8,7 +8,7 @@ import {
 import styles from './Styles/ItemFilm.js';
 import res from '../Resources/index.js';
 
-export default class ItemFilm extends PureComponent {
+export default class ItemFilm extends Component {
     constructor(props) {
         super(props);
     }
@@ -22,11 +22,13 @@ export default class ItemFilm extends PureComponent {
             <TouchableOpacity
                 style={styles.container}
                 onPress={() => this.clickToSeeDetail()}>
-                <Image
+                {/* <Image
                     style={styles.imageFilm}
                     source={res.images.banner}
                     resizeMode='stretch'
-                />
+                /> */}
+                <View style={styles.imageFilm}>
+                </View>
                 <Text>
                     {this.props.name}
                 </Text>
