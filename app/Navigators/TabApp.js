@@ -2,7 +2,7 @@ import { TabNavigator } from 'react-navigation';
 import {
     Home,
     New,
-    HighLight,
+    Caring,
     Library,
     Profile
 } from '../Screens/index.js';
@@ -10,11 +10,13 @@ import {
 const TabApp = TabNavigator({
     Home: {screen: Home},
     New: {screen: New},
-    HighLight: {screen: HighLight},
+    Caring: {screen: Caring},
     Library: {screen: Library},
     Profile: {screen: Profile}   
 }, {
     tabBarPosition: 'bottom',
+    lazy: true,
+    swipeEnabled: false,
     tabBarOptions: {
         showLabel: true,
         showIcon: true,

@@ -3,16 +3,16 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from './Styles/New.js';
+import styles from './Styles/Caring.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TabNew from '../Navigators/TabNew.js';
+import TabCaring from '../Navigators/TabCaring.js';
 
-export default class New extends Component {
+export default class Caring extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Phim mới',
+        tabBarLabel: 'Quan tâm',
         tabBarIcon: () => (
             <Icon
-                name='movie'
+                name='view-list'
                 size={30}
             />
         )
@@ -20,9 +20,8 @@ export default class New extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TabNew />
+                <TabCaring />
             </View>
         )
     }
 }
-

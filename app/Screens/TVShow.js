@@ -3,26 +3,26 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from './Styles/New.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TabNew from '../Navigators/TabNew.js';
 
-export default class New extends Component {
+export default class TVShow extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Phim mới',
+        tabBarLabel: 'TV Show',
         tabBarIcon: () => (
             <Icon
-                name='movie'
+                name='cctv'
                 size={30}
             />
         )
     }
+
     render() {
         return (
-            <View style={styles.container}>
-                <TabNew />
+            <View>
+                <Text>
+                    TVShow
+                </Text>
             </View>
         )
     }
 }
-

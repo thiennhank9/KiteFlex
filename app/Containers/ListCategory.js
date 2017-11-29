@@ -8,6 +8,7 @@ import styles from './Styles/ListCategory.js';
 import lsCategory from '../Objects/ListCategory.js';
 import { HeaderCategory } from '../Components/index.js';
 import { ListFilmByCategory } from '../Containers/index.js';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 
 export default class ListCategory extends Component {
     constructor(props) {
@@ -18,6 +19,8 @@ export default class ListCategory extends Component {
     }
 
     renderItemCategory(item) {
+        console.log(item);
+        console.disableYellowBox = true;
         return (
             <View style={styles.container}>
                 <HeaderCategory
@@ -29,10 +32,11 @@ export default class ListCategory extends Component {
     }
     render() {
         return (
-            <FlatList
-                data={this.state.lsCategory}
-                renderItem={({ item }) => this.renderItemCategory(item)}
-            />
+            <View>
+                {this.state.lsCategory.map((item) => (
+                        this.renderItemCategory(item)
+                ))}
+            </View>
         )
     }
 }

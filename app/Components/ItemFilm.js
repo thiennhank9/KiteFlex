@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
     TouchableOpacity,
     Image,
@@ -8,7 +8,7 @@ import {
 import styles from './Styles/ItemFilm.js';
 import res from '../Resources/index.js';
 
-export default class ItemFilm extends Component {
+export default class ItemFilm extends PureComponent {
     constructor(props) {
         super(props);
     }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
     View,
     Text,
@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import styles from './Styles/HeaderCategory.js';
 
-export default class HeaderCategory extends Component {
+export default class HeaderCategory extends PureComponent {
 
     clickToExpand() {
         console.log("Clicked!")

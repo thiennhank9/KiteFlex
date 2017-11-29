@@ -3,24 +3,23 @@ import {
     View,
     Text
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class HighLight extends Component {
+export default class IMDb extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Nổi bật',
+        tabBarLabel: 'IMDb',
         tabBarIcon: () => (
             <Icon
-                name='diamond'
+                name='imdb'
                 size={30}
             />
         )
     }
-
     render() {
         return (
             <View>
                 <Text>
-                    HighLight
+                    IMDb
                 </Text>
             </View>
         )
