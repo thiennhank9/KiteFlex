@@ -3,26 +3,25 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from './Styles/New.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TabNew from '../Navigators/TabNew.js';
 
-export default class New extends Component {
+export default class Category extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Phim mới',
+        tabBarLabel: 'Danh mục',
         tabBarIcon: () => (
             <Icon
-                name='movie'
+                name='border-all'
                 size={30}
             />
         )
     }
     render() {
         return (
-            <View style={styles.container}>
-                <TabNew />
+            <View>
+                <Text>
+                    Category
+                </Text>
             </View>
         )
     }
 }
-

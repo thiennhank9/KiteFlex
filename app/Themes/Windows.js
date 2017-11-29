@@ -1,2 +1,9 @@
 const Dimensions = require('Dimensions');
-export default window = Dimensions.get('window');
+
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+
+export default window = {
+    height: height,
+    width: width
+}

@@ -3,16 +3,15 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from './Styles/New.js';
+import styles from './Styles/Movie.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TabNew from '../Navigators/TabNew.js';
 
-export default class New extends Component {
+export default class Movie extends Component {
     static navigationOptions = {
         tabBarLabel: 'Phim mới',
         tabBarIcon: () => (
             <Icon
-                name='movie'
+                name='movie-roll'
                 size={30}
             />
         )
@@ -20,9 +19,10 @@ export default class New extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TabNew />
+                <Text>
+                    Movies
+                </Text>
             </View>
         )
     }
 }
-

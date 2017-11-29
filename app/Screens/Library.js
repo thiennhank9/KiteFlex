@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import styles from './Styles/Library.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import TabLibrary from '../Navigators/TabLibrary.js';
 
 export default class Library extends Component {
     static navigationOptions = {
@@ -19,8 +20,8 @@ export default class Library extends Component {
 
     render() {
         return (
-            <View>
-                <Text> Library </Text>
+            <View style={styles.container}>
+                <TabLibrary />
             </View>
         )
     }
