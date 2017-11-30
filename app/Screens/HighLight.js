@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class HighLight extends Component {
     static navigationOptions = {
         tabBarLabel: 'Nổi bật',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='diamond'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

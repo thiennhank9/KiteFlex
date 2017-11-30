@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class IMDb extends Component {
     static navigationOptions = {
         tabBarLabel: 'IMDb',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='imdb'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

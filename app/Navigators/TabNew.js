@@ -13,12 +13,14 @@ export default TabNew = TabNavigator({
 }, {
     lazy: true,
     swipeEnabled: false,
+    tabBarPosition: 'top',
     tabBarOptions: {
         lazy: true,
-        showLabel: true,
+        activeTintColor: '#D73E15',
         showIcon: true,
-        labelStyle: {
-            fontSize: 10
-        }
+        style: {
+            backgroundColor: '#1A2127',
+            marginVertical: 7,
+        },
     }
 })

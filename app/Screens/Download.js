@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class Download extends Component {
     static navigationOptions = {
         tabBarLabel: 'Quản lý tải',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='cloud-download'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class Recent extends Component {
     static navigationOptions = {
         tabBarLabel: 'Mới xem',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='clock'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

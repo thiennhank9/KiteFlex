@@ -10,10 +10,11 @@ import TabCaring from '../Navigators/TabCaring.js';
 export default class Caring extends Component {
     static navigationOptions = {
         tabBarLabel: 'Quan tâm',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='view-list'
                 size={30}
+                style={[{ color: tintColor }]}
             />
         )
     }

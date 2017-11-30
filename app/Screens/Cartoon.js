@@ -10,10 +10,11 @@ import styles from './Styles/Container.js';
 export default class Cartoon extends Component {
     static navigationOptions = {
         tabBarLabel: 'Hoạt hình',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='leaf'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

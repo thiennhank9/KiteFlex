@@ -10,10 +10,11 @@ import styles from './Styles/Container.js';
 export default class TVShow extends Component {
     static navigationOptions = {
         tabBarLabel: 'TV Show',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='cctv'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

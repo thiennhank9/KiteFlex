@@ -13,12 +13,19 @@ export default TabLibrary = TabNavigator({
 }, {
     lazy: true,
     swipeEnabled: false,
+    tabBarPosition: 'top',
     tabBarOptions: {
         lazy: true,
         showLabel: true,
         showIcon: true,
+        activeTintColor: '#D73E15',
         labelStyle: {
-            fontSize: 10
-        }
+            fontSize: 10,
+            color: '#A3A6A9',
+        },
+        style: {
+            backgroundColor: '#1A2127',
+            marginVertical: 7,
+        },
     }
 })

@@ -37,7 +37,7 @@ export default lsIconCategory = [
     {
         key: 7,
         name: 'Family',
-        icon: 'home-heart'
+        icon: 'heart-box'
     },
     {
         key: 8,
@@ -62,7 +62,7 @@ export default lsIconCategory = [
     {
         key: 12,
         name: 'Romance',
-        icon: 'clover'
+        icon: 'heart-pulse'
     },
     {
         key: 13,

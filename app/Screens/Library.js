@@ -10,10 +10,11 @@ import TabLibrary from '../Navigators/TabLibrary.js';
 export default class Library extends Component {
     static navigationOptions = {
         tabBarLabel: 'Thư viện',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='book-open-page-variant'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

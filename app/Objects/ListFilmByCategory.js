@@ -3,7 +3,7 @@ export default lsFilmByCategory = [
     {
         key: 1,
         uri: uri,
-        name: 'Film 1asdsadsadasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        name: 'Film 1'
     },
     {
         key: 2,

@@ -19,10 +19,8 @@ export default class ListCategory extends Component {
     }
 
     renderItemCategory(item) {
-        console.log(item);
-        console.disableYellowBox = true;
         return (
-            <View style={styles.container}>
+            <View style={styles.container} key={item.key}>
                 <HeaderCategory
                     category={item.category}
                 />

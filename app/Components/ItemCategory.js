@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    TouchableOpacity
+    TouchableHighlight,
 } from 'react-native';
 import styles from './Styles/ItemCategory.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,17 +14,20 @@ export default class ItemCategory extends Component {
     }
     render() {
         return (
-            <TouchableOpacity
-                style={styles.container}
+            <TouchableHighlight
+                underlayColor={'rgba(150, 160, 200, 0.2)'}
                 onPress={() => this.clickToFindFilms()}>
-                <Icon
-                    name={this.props.icon}
-                    size={30}
-                />
-                <Text>
-                    {this.props.name}
-                </Text>
-            </TouchableOpacity>
+                <View style={styles.container}>
+                    <Icon
+                        name={this.props.icon}
+                        size={30}
+                        style={styles.item}
+                    />
+                    <Text style={styles.text}>
+                        {this.props.name}
+                    </Text>
+                </View>
+            </TouchableHighlight>
         )
     }
 }

@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class WatchLater extends Component {
     static navigationOptions = {
         tabBarLabel: 'Theo dõi',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='bell'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

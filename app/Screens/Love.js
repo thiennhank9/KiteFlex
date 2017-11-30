@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class Love extends Component {
     static navigationOptions = {
         tabBarLabel: 'Yêu thích',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='heart'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

@@ -10,17 +10,18 @@ import GridFilm from '../Containers/GridFilm.js';
 export default class Movie extends Component {
     static navigationOptions = {
         tabBarLabel: 'Phim mới',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='movie-roll'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }
     render() {
         return (
             <View style={styles.container}>
-            <GridFilm />
+                <GridFilm />
             </View>
         )
     }

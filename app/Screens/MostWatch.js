@@ -9,10 +9,11 @@ import styles from './Styles/Container.js';
 export default class MostWatch extends Component {
     static navigationOptions = {
         tabBarLabel: 'Xem nhiều',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='poll'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }

@@ -7,15 +7,15 @@ export default styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         width: window.width/3,
+        paddingHorizontal: 5,
+        marginBottom: 5,
     },
     imageFilm: {
         borderRadius: 5,
-        width: window.width/3 - 10,
-        margin: 5,
         height: 160,
         backgroundColor: 'black'
     },
     textTitleFilm: {
-        
+        marginVertical: 3,
     }
 })

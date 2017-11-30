@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { ItemCategory } from '../Components/index.js';
-import Styles from './Styles/ListCategoryByIcon';
+import styles from './Styles/ListCategoryByIcon';
 import lsIconCategory from '../Objects/ListIconCategory.js';
 
 export default class ListCategoryByIcon extends Component {

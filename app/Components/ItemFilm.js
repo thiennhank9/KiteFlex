@@ -27,11 +27,11 @@ export default class ItemFilm extends Component {
                     source={res.images.banner}
                     resizeMode='stretch'
                 /> */}
-                <View style={styles.imageFilm}>
-                </View>
+                <View style={styles.imageFilm} />
                 <Text
                     numberOfLines={2}
-                    ellipsizeMode='tail'>
+                    ellipsizeMode='tail'
+                    style={styles.textTitleFilm}>
                     {this.props.name}
                 </Text>
             </TouchableOpacity>

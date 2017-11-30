@@ -10,10 +10,11 @@ import styles from './Styles/Container.js';
 export default class Episode extends Component {
     static navigationOptions = {
         tabBarLabel: 'Phim bộ',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='television-classic'
                 size={30}
+                style={{ color: tintColor}}
             />
         )
     }

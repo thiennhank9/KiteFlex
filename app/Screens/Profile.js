@@ -31,10 +31,11 @@ const objSystem =
 export default class Profile extends Component {
     static navigationOptions = {
         tabBarLabel: 'Thêm',
-        tabBarIcon: () => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='menu'
                 size={30}
+                style={{ color: tintColor }}
             />
         )
     }
@@ -69,7 +70,7 @@ export default class Profile extends Component {
 
     renderTitleSetting(section) {
         return (
-            <Text>
+            <Text style={styles.text}>
                 {section.title}
             </Text>
         )
@@ -82,9 +83,11 @@ export default class Profile extends Component {
                 <Icon
                     name={item.icon}
                     size={30}
+                    style={styles.icon}
                 />
                 <Text
-                    numberOfLines={2}>
+                    numberOfLines={2}
+                    style={styles.text}>
                     {item.name}
                 </Text>
             </TouchableOpacity>
