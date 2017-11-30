@@ -7,20 +7,8 @@ export default class TestScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.aThird}>
-                </View>
+                <PlayVideo />
             </View>
         )
     }
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    aThird: {
-        width: window.width/3,
-        height: 100,
-        backgroundColor: 'black'
-    }
-})

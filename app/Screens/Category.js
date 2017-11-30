@@ -4,6 +4,7 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ListCategoryByIcon } from '../Containers/index.js';
 
 export default class Category extends Component {
     static navigationOptions = {
@@ -17,11 +18,7 @@ export default class Category extends Component {
     }
     render() {
         return (
-            <View>
-                <Text>
-                    Category
-                </Text>
-            </View>
+                <ListCategoryByIcon />
         )
     }
 }

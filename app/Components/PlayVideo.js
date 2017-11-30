@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import styles from './Styles/PlayVideo.js';
 import Video from 'react-native-video';
-const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
-
+//const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
+const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
 export default class PlayVideo extends Component {
 
   state = {
