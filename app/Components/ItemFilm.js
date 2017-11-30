@@ -29,7 +29,9 @@ export default class ItemFilm extends Component {
                 /> */}
                 <View style={styles.imageFilm}>
                 </View>
-                <Text>
+                <Text
+                    numberOfLines={2}
+                    ellipsizeMode='tail'>
                     {this.props.name}
                 </Text>
             </TouchableOpacity>

@@ -14,5 +14,8 @@ export default styles = StyleSheet.create({
         margin: 5,
         height: 160,
         backgroundColor: 'black'
+    },
+    textTitleFilm: {
+        
     }
 })

@@ -83,7 +83,8 @@ export default class Profile extends Component {
                     name={item.icon}
                     size={30}
                 />
-                <Text>
+                <Text
+                    numberOfLines={2}>
                     {item.name}
                 </Text>
             </TouchableOpacity>
