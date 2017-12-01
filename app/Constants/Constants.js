@@ -1,3 +1,3 @@
 export default consts = {
-    time_transefer: 2000
+    time_transfer: 2000
 }
