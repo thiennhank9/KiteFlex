@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 import styles from './Styles/Home.js';
 import { SearchFilm } from '../Components/index.js';
@@ -21,7 +22,8 @@ export default class Home extends Component {
     }
     render() {
         return (
-            <View style={styles.container}> 
+            <View style={styles.container}>
+                <StatusBar hidden />
                 <SearchFilm />
                 <ScrollHome />
             </View>

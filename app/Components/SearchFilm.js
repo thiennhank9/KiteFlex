@@ -6,7 +6,7 @@ export default class SearchFilm extends Component {
     render() {
         return (
             <SearchBar
-                lightTheme
+                darkTheme
                 round
                 placeholder='Type here...'
             />
