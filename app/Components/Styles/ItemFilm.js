@@ -47,6 +47,7 @@ export default styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '500',
         textAlign: 'center',
-        paddingHorizontal: 1
+        paddingHorizontal: 1,
+        backgroundColor: 'transparent',
     }
 })
