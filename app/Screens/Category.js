@@ -12,7 +12,7 @@ export default class Category extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='border-all'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

@@ -12,7 +12,7 @@ export default class IMDb extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='imdb'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

@@ -12,7 +12,7 @@ export default class Download extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='cloud-download'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

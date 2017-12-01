@@ -13,7 +13,7 @@ export default class TVShow extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='cctv'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

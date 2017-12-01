@@ -15,9 +15,16 @@ const labelStyle = Platform.select({
         marginBottom: 5,
     },
     android: {
-        fontSize: 2,
-        color: '#A3A6A9',
-        marginBottom: 2,
+    }
+})
+
+const tabBarStyle = Platform.select({
+    ios: {
+        backgroundColor: '#1A2127',
+        paddingTop: 3,
+    },
+    android: {
+        backgroundColor: '#1A2127',
     }
 })
 
@@ -32,15 +39,12 @@ const TabApp = TabNavigator({
     lazy: true,
     swipeEnabled: false,
     tabBarOptions: {
-        showLabel: true,
+        showLabel: (Platform.OS !== 'android'),
         showIcon: true,
         activeTintColor: '#D73E15',
         labelStyle,
-        style: {
-            backgroundColor: '#1A2127',
-            paddingTop: 3,
-        },
-    }
+        style: tabBarStyle,
+    },
 })
 
 export default TabApp;

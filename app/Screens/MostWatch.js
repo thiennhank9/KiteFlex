@@ -12,7 +12,7 @@ export default class MostWatch extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='poll'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

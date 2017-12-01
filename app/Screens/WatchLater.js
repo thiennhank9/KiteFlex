@@ -12,7 +12,7 @@ export default class WatchLater extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='bell'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

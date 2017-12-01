@@ -15,7 +15,7 @@ export default class HeaderCategory extends PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <Text>
+                <Text style={{color: 'red'}}>
                     {this.props.category}
                 </Text>
                 <TouchableOpacity

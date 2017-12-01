@@ -13,7 +13,7 @@ export default class Cartoon extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='leaf'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

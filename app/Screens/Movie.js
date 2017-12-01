@@ -13,7 +13,7 @@ export default class Movie extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='movie-roll'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

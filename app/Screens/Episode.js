@@ -13,7 +13,7 @@ export default class Episode extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='television-classic'
-                size={30}
+                size={24}
                 style={{ color: tintColor}}
             />
         )
