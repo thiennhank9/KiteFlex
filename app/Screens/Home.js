@@ -23,7 +23,7 @@ export default class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar hidden={true} />
+                <StatusBar hidden />
                 <SearchFilm />
                 <ScrollHome />
             </View>

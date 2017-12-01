@@ -17,7 +17,7 @@ export default class SliderFilm extends Component {
         this.setState({
             interval: setInterval(() => {
                 this.setState({ position: this.state.position === 2 ? 0 : this.state.position + 1 });
-            }, consts.time_transefer)
+            }, consts.time_transfer)
         });
     }
 
