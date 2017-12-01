@@ -4,8 +4,8 @@ export default styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         paddingVertical: 7,
-        borderBottomWidth: 0.3,
-        borderColor: '#A3A6A9',
+        borderBottomWidth: 1,
+        borderColor: 'rgba(166, 166, 166, 0.3)',
         alignItems: 'center',
     },
     item: {

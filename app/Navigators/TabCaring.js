@@ -1,8 +1,20 @@
 import { TabNavigator } from 'react-navigation';
+import { Platform} from 'react-native';
 import Category from '../Screens/Category.js';
 import HighLight from '../Screens/HighLight.js';
 import MostWatch from '../Screens/MostWatch.js';
 import IMDb from '../Screens/IMDb.js';
+
+const labelStyle = Platform.select({
+    ios: {
+        fontSize: 13,
+        color: '#A3A6A9',
+    },
+    android: {
+        fontSize: 10,
+        color: '#A3A6A9',
+    }
+});
 
 export default TabCaring = TabNavigator({
     Category: { screen: Category },
@@ -15,16 +27,13 @@ export default TabCaring = TabNavigator({
     tabBarPosition: 'top',
     tabBarOptions: {
         lazy: true,
-        showLabel: true,
-        showIcon: true,
         activeTintColor: '#D73E15',
-        labelStyle: {
-            fontSize: 10,
-            color: '#A3A6A9',
-        },
+        showIcon: true,
+        labelStyle,
         style: {
             backgroundColor: '#1A2127',
             marginVertical: 7,
+            height: 57,
         },
     }
     })

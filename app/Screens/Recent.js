@@ -12,7 +12,7 @@ export default class Recent extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='clock'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

@@ -12,7 +12,7 @@ export default class Love extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='heart'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

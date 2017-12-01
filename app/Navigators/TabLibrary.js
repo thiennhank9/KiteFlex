@@ -1,9 +1,21 @@
 import {TabNavigator} from 'react-navigation';
+import { Platform } from 'react-native';
 
 import Recent from '../Screens/Recent.js';
 import Download from '../Screens/Download.js';
 import Love from '../Screens/Love.js';
 import WatchLater from '../Screens/WatchLater.js';
+
+const labelStyle = Platform.select({
+    ios: {
+        fontSize: 13,
+        color: '#A3A6A9',
+    },
+    android: {
+        fontSize: 10,
+        color: '#A3A6A9',
+    }
+});
 
 export default TabLibrary = TabNavigator({
     Recent: {screen: Recent},
@@ -19,13 +31,11 @@ export default TabLibrary = TabNavigator({
         showLabel: true,
         showIcon: true,
         activeTintColor: '#D73E15',
-        labelStyle: {
-            fontSize: 10,
-            color: '#A3A6A9',
-        },
+        labelStyle,
         style: {
             backgroundColor: '#1A2127',
             marginVertical: 7,
+            height: 57,
         },
     }
 })

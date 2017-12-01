@@ -12,7 +12,7 @@ export default class HighLight extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='diamond'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )
