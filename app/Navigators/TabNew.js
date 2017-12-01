@@ -18,6 +18,10 @@ export default TabNew = TabNavigator({
         lazy: true,
         activeTintColor: '#D73E15',
         showIcon: true,
+        labelStyle: {
+            fontSize: 10,
+            color: '#A3A6A9',
+        },
         style: {
             backgroundColor: '#1A2127',
             marginVertical: 7,

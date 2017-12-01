@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 import styles from './Styles/Library.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +14,7 @@ export default class Library extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='book-open-page-variant'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )

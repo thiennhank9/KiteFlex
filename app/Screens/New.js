@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
+    StatusBar
 } from 'react-native';
 import styles from './Styles/New.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +14,7 @@ export default class New extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='movie'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )
