@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 import styles from './Styles/Home.js';
 import { SearchFilm } from '../Components/index.js';
@@ -14,14 +15,15 @@ export default class Home extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='star'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )
     }
     render() {
         return (
-            <View style={styles.container}> 
+            <View style={styles.container}>
+                <StatusBar hidden={true} />
                 <SearchFilm />
                 <ScrollHome />
             </View>

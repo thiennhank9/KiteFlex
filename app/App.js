@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import TabApp from './Navigators/TabApp.js';
 import store from './Redux/Store.js';
 import { Provider } from 'react-redux';

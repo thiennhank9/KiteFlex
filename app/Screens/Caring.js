@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 import styles from './Styles/Caring.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +14,7 @@ export default class Caring extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='view-list'
-                size={30}
+                size={24}
                 style={[{ color: tintColor }]}
             />
         )

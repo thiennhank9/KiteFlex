@@ -4,7 +4,8 @@ import {
     Text,
     TouchableOpacity,
     Image,
-    SectionList
+    SectionList,
+    StatusBar
 } from 'react-native';
 import styles from './Styles/Profile.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -34,7 +35,7 @@ export default class Profile extends Component {
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='menu'
-                size={30}
+                size={24}
                 style={{ color: tintColor }}
             />
         )
