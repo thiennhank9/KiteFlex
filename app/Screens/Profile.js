@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     View,
     Text,
@@ -10,6 +10,8 @@ import {
 import styles from './Styles/Profile.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import res from '../Resources/index.js';
+import {Button} from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 const objSystem =
     [
@@ -23,7 +25,7 @@ const objSystem =
                 icon: 'help-circle'
             }, {
                 name: 'Phản hồi',
-                icon: 'exclamation'
+                icon: 'alert-octagram'
             }
             ]
         }
@@ -32,52 +34,96 @@ const objSystem =
 export default class Profile extends Component {
     static navigationOptions = {
         tabBarLabel: 'Thêm',
-        tabBarIcon: ({ tintColor }) => (
+        tabBarIcon: ({tintColor}) => (
             <Icon
                 name='menu'
                 size={24}
-                style={{ color: tintColor }}
+                style={{color: tintColor}}
             />
         )
     }
+
     constructor(props) {
         super(props);
         this.state = {
-            ds: objSystem
+            ds: objSystem,
+            isRegistered: true
         }
     }
+
     clickToSignIn() {
         console.log('Clicked to sign in!')
     }
+
     clickToSetSetting() {
         console.log('Clicked to set settings!')
     }
+
     renderAvatar() {
         return (
-            <TouchableOpacity
-                style={styles.avatarContainer}
-                onPress={() => this.clickToSignIn()}>
-                <Image
-                    style={styles.avatar}
-                    source={res.avatar.blank_avatar}
-                    resizeMode='stretch'
-                />
-                <Text>
-                    Đăng nhập
-                </Text>
-            </TouchableOpacity>
+            <View>
+                <Image style={{height: 220}}
+                       source={{uri: 'https://wallpaperscraft.com/image/blur_background_pink_orange_light_73376_602x339.jpg'}}/>
+                <View
+                    style={styles.avatarContainer}
+                    onPress={() => this.clickToSignIn()}>
+                    <Image
+                        style={styles.avatar}
+                        source={res.avatar.blank_avatar}
+                        resizeMode='stretch'
+                    />
+                    {
+                        this.state.isRegistered ?
+                            <View style={{flexDirection: 'row', marginTop: 20}}>
+                                <Button
+                                    buttonStyle={{width: 120}}
+                                    rounded
+                                    backgroundColor={'#D73E15'}
+                                    icon={{name: 'account-circle'}}
+                                    title='Đăng nhập'/>
+                                <Button
+                                    buttonStyle={{width: 120}}
+                                    rounded
+                                    backgroundColor={'#D73E15'}
+                                    icon={{name: 'create'}}
+                                    title='Đăng ký'/>
+                            </View> :
+                            <View style={{marginTop: 20, alignItems: 'center'}}>
+                                <Text style={{color: 'white'}}>
+                                    Xin chào Alexander!
+                                </Text>
+                                <View style={{flexDirection: 'row', marginTop: 10}}>
+                                    <Button
+                                        buttonStyle={{width: 120}}
+                                        rounded
+                                        backgroundColor={'#D73E15'}
+                                        icon={{name: 'reply'}}
+                                        title='Đăng xuất'/>
+                                    <Button
+                                        buttonStyle={{width: 120}}
+                                        rounded
+                                        backgroundColor={'#D73E15'}
+                                        icon={{name: 'create'}}
+                                        title='Sửa Profile'/>
+                                </View>
+                            </View>
+                    }
+                </View>
+            </View>
         )
     }
 
     renderTitleSetting(section) {
         return (
-            <Text style={styles.text}>
+            <Text style={[styles.text, {color: '#D73E15', paddingLeft: 30, paddingTop: 5, paddingBottom: 5, fontSize: 18, backgroundColor: '#3f3f3f'}]}>
                 {section.title}
             </Text>
         )
     }
+
     renderItemSetting(item) {
         return (
+            <View>
             <TouchableOpacity
                 style={styles.itemContainer}
                 onPress={() => this.clickToSetSetting()}>
@@ -92,17 +138,21 @@ export default class Profile extends Component {
                     {item.name}
                 </Text>
             </TouchableOpacity>
+            <View style={{backgroundColor: '#3f3f3f', height: 1}}/>
+            </View>
         )
     }
+
     renderSectionSetting() {
         return (
             <SectionList
                 sections={this.state.ds}
-                renderItem={({ item }) => this.renderItemSetting(item)}
-                renderSectionHeader={({ section }) => this.renderTitleSetting(section)}
+                renderItem={({item}) => this.renderItemSetting(item)}
+                renderSectionHeader={({section}) => this.renderTitleSetting(section)}
             />
         )
     }
+
     render() {
 
         return (
