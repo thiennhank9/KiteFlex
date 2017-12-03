@@ -6,9 +6,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
 } from 'react-native';
 import styles from './Styles/PlayVideo.js';
 import Video from 'react-native-video';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 //const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
 const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
 export default class PlayVideo extends Component {
@@ -53,6 +55,24 @@ export default class PlayVideo extends Component {
     return 0;
   };
 
+  showingTextTime = (time) => {
+    time = time.toString();
+    const positionDots = time.indexOf('.');
+
+    const secondTime = time.slice(0, positionDots);
+    const minute = parseInt(secondTime / 60);
+    let second = (secondTime - minute * 60);
+    if (second < 10) second = `0${second}`;
+
+    return `${minute}:${second}`;
+  }
+
+  onSpeakerVolumeChange = () => {
+    const nextVolumn = this.state.volume ? 0 : 1;
+
+    this.setState({ volume: nextVolumn });
+  }
+
   renderRateControl(rate) {
     const isSelected = (this.state.rate === rate);
 
@@ -93,8 +113,13 @@ export default class PlayVideo extends Component {
     const flexCompleted = this.getCurrentTimePercentage() * 100;
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
 
+    const playPauseIcon = this.state.paused ? 'play-circle-outline' : 'pause-circle-outline';
+    const speakerIcon = this.state.volume ? 'volume-off' : 'volume-high';
+
     return (
       <View style={styles.container}>
+        <StatusBar hidden={true} />
+
         <TouchableOpacity
           style={styles.fullScreen}
           onPress={() => this.setState({ paused: !this.state.paused })}
@@ -116,8 +141,28 @@ export default class PlayVideo extends Component {
             onAudioBecomingNoisy={this.onAudioBecomingNoisy}
             onAudioFocusChanged={this.onAudioFocusChanged}
             repeat={false}
+            controls={true}
           />
         </TouchableOpacity>
+
+        <View style={styles.filmTitle}>
+          <View style={styles.headerTitle}>
+            <TouchableOpacity style={styles.iconBack}
+                              onPress={() => {}}>
+              <Icon
+                name='arrow-left'
+                size={24}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <Text style={styles.textTitle}>Nam thanh nu tu tap 1</Text>
+          </View>
+
+          {/* <View style={styles.anotherButton}>
+            <View style={{backgroundColor: 'green', width: 20}} />
+            <View style={{backgroundColor: 'green', width: 20}} />
+          </View> */}
+        </View>
 
         <View style={styles.controls}>
           <View style={styles.generalControls}>
@@ -143,9 +188,31 @@ export default class PlayVideo extends Component {
           </View>
 
           <View style={styles.trackingControls}>
+            <View style={styles.playControl}>
+              <TouchableOpacity style={styles.play}
+                                onPress={() => this.setState({ paused: !this.state.paused })}>
+                <Icon
+                  name={playPauseIcon}
+                  size={24}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.speaker}
+                                onPress={this.onSpeakerVolumeChange}>
+                <Icon 
+                  name={speakerIcon}
+                  size={24}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+            </View>
+
             <View style={styles.progress}>
+              <Text style = {[styles.textTime, styles.currentTime]}> { this.showingTextTime(this.state.currentTime) } </Text>
               <View style={[styles.innerProgressCompleted, { flex: flexCompleted }]} />
+              <View style={styles.handrails} />
               <View style={[styles.innerProgressRemaining, { flex: flexRemaining }]} />
+              <Text style={[styles.textTime, styles.remainingTime]}> { this.showingTextTime(this.state.duration - this.state.currentTime) } </Text>
             </View>
           </View>
         </View>

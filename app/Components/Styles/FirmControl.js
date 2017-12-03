@@ -1,46 +1,7 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-export default styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black',
-      },
-      fullScreen: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-      },
-      filmTitle: {
-        position: 'absolute',
-        flexDirection: 'row',
-        backgroundColor: '#D8D8D8',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: 35,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      },
-      headerTitle: {
-        flexDirection: 'row',
-        marginLeft: 5,
-        alignItems: 'center',
-      },
-      textTitle: {
-        marginHorizontal: 10,
-        color: 'black',
-        fontSize: 16,
-      },
-      anotherButton: {
-        backgroundColor: 'white',
-        width: 150,
-        height: 35,
-      },
-      controls: {
+const styles = StyleSheet.create({
+    controls: {
         backgroundColor: 'transparent',
         borderRadius: 5,
         position: 'absolute',
@@ -126,7 +87,4 @@ export default styles = StyleSheet.create({
         paddingRight: 2,
         lineHeight: 12,
       },
-      icon: {
-        color: 'black',
-      }
 })
