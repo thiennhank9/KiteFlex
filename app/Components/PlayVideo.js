@@ -11,8 +11,12 @@ import {
 import styles from './Styles/PlayVideo.js';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FirmControl from '../Components/FirmControl';
+import TitleControl from '../Components/TitleControl';
+
 //const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
 const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
+
 export default class PlayVideo extends Component {
 
   state = {
@@ -22,7 +26,8 @@ export default class PlayVideo extends Component {
     resizeMode: 'contain',
     duration: 0.0,
     currentTime: 0.0,
-    paused: true,
+    paused: false,
+    showFirmControl: false,
   };
 
   video: Video;
@@ -36,8 +41,8 @@ export default class PlayVideo extends Component {
   };
 
   onEnd = () => {
-    this.setState({ paused: true })
-    this.video.seek(0)
+    this.video.seek(0);
+    this.setState({ paused: true });
   };
 
   onAudioBecomingNoisy = () => {
@@ -109,7 +114,13 @@ export default class PlayVideo extends Component {
     )
   }
 
-  render() {
+  renderFirmTitle = () => {
+    return (
+      <TitleControl firmName='Chuyen tinh bac sy'/>
+    )
+  }
+
+  renderFirmControl = () => {
     const flexCompleted = this.getCurrentTimePercentage() * 100;
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
 
@@ -117,12 +128,29 @@ export default class PlayVideo extends Component {
     const speakerIcon = this.state.volume ? 'volume-off' : 'volume-high';
 
     return (
+      <FirmControl flexCompleted={flexCompleted}
+        flexRemaining={flexRemaining}
+        playPauseIcon={playPauseIcon}
+        speakerIcon={speakerIcon}
+        currentTime={this.state.currentTime}
+        duration={this.state.duration}
+        onPressPlay={() => this.setState({ paused: !this.state.paused })}
+        onSpeakerVolumeChange={this.onSpeakerVolumeChange} />
+    );
+  }
+
+  render() {
+    const titleControl = this.state.showFirmControl ? this.renderFirmTitle() : null;
+    const firmControl = this.state.showFirmControl ? this.renderFirmControl() : null;
+
+    return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
 
         <TouchableOpacity
           style={styles.fullScreen}
-          onPress={() => this.setState({ paused: !this.state.paused })}
+          activeOpacity={1}
+          onPress={() => this.setState({ showFirmControl: !this.state.showFirmControl })}
         >
           <Video
             ref={(ref: Video) => { this.video = ref }}
@@ -141,30 +169,14 @@ export default class PlayVideo extends Component {
             onAudioBecomingNoisy={this.onAudioBecomingNoisy}
             onAudioFocusChanged={this.onAudioFocusChanged}
             repeat={false}
-            controls={true}
+          controls={false}
           />
         </TouchableOpacity>
 
-        <View style={styles.filmTitle}>
-          <View style={styles.headerTitle}>
-            <TouchableOpacity style={styles.iconBack}
-                              onPress={() => {}}>
-              <Icon
-                name='arrow-left'
-                size={24}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <Text style={styles.textTitle}>Nam thanh nu tu tap 1</Text>
-          </View>
-
-          {/* <View style={styles.anotherButton}>
-            <View style={{backgroundColor: 'green', width: 20}} />
-            <View style={{backgroundColor: 'green', width: 20}} />
-          </View> */}
-        </View>
-
-        <View style={styles.controls}>
+        {titleControl}
+        {firmControl}
+        
+        {/* <View style={styles.controls}>
           <View style={styles.generalControls}>
             <View style={styles.rateControl}>
               {this.renderRateControl(0.25)}
@@ -215,7 +227,7 @@ export default class PlayVideo extends Component {
               <Text style={[styles.textTime, styles.remainingTime]}> { this.showingTextTime(this.state.duration - this.state.currentTime) } </Text>
             </View>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }

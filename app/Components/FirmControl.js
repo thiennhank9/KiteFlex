@@ -26,53 +26,13 @@ class FirmControl extends Component {
         this.props.onPressSpeaker();
     }
 
-    componentWillMount() {
-        this.animatedValue = new Animated.Value();
-      }
-    
-      componentDidMount() {
-        this.startSlideIn();
-      }
-      
-      onLayoutChange = (event) => {
-        const {layout: { height } } = event.nativeEvent;
-        if (this.state.height === -1000){
-          this.setState({ height });
-        }
-      }
-      getAnimation(value, autoHide) {
-        const { delay } = this.props;
-        return Animated.timing(
-          this.animatedValue,
-          {
-            toValue: value,
-            duration: 500,
-            easing: Easing.cubic,
-            delay: autoHide ? delay : 0,
-          }
-        );
-      }
-      startSlideIn () {
-        const { onOpen, autoHide } = this.props;
-    
-        this.animatedValue.setValue(0);
-        this.getAnimation(1)
-          .start(() => {
-            onOpen();
-            if (autoHide){
-              this.startSlideOut();
-            }
-          });
-      }
-      startSlideOut() {
-        const { autoHide, onClose } = this.props;
-    
-        this.animatedValue.setValue(1);
-        this.getAnimation(0, autoHide)
-          .start(() => onClose());
-      }
-
     render() {
+        const flexCompleted = this.props.flexCompleted;
+        const flexRemaining = this.props.flexRemaining;
+
+        const playPauseIcon = this.props.playPauseIcon;
+        const speakerIcon = this.props.speakerIcon;
+
         return (
             <View style={styles.controls}>
                 <View style={styles.trackingControls}>

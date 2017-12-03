@@ -87,4 +87,6 @@ const styles = StyleSheet.create({
         paddingRight: 2,
         lineHeight: 12,
       },
-})
+});
+
+export default styles;
