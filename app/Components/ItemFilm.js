@@ -8,6 +8,7 @@ import {
 import styles from './Styles/ItemFilm.js'
 import res from '../Resources/index.js'
 import LinearGradient from 'react-native-linear-gradient'
+import obj from '../Objects/ObjDetailFilm.js';
 
 export default class ItemFilm extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export default class ItemFilm extends Component {
             <TouchableOpacity
                 onPress={() => {
                     console.log('Pressed item film to navigate detail film')
-                    this.props.navigation.navigate('DetailFilm')
+                    this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
                 }
                 }
                 activeOpacity={0.8}>
