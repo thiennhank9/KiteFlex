@@ -72,10 +72,10 @@ export default class PlayVideo extends Component {
     return `${minute}:${second}`;
   }
 
-  onSpeakerVolumeChange = () => {
-    const nextVolumn = this.state.volume ? 0 : 1;
+  onPressSpeaker = () => {
+    const nextVolumn = this.state.muted ? false : true;
 
-    this.setState({ volume: nextVolumn });
+    this.setState({ muted: nextVolumn });
   }
 
   renderRateControl(rate) {
@@ -125,7 +125,7 @@ export default class PlayVideo extends Component {
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
 
     const playPauseIcon = this.state.paused ? 'play-circle-outline' : 'pause-circle-outline';
-    const speakerIcon = this.state.volume ? 'volume-off' : 'volume-high';
+    const speakerIcon = this.state.muted ? 'volume-high' : 'volume-off';
 
     return (
       <FirmControl flexCompleted={flexCompleted}
@@ -135,7 +135,7 @@ export default class PlayVideo extends Component {
         currentTime={this.state.currentTime}
         duration={this.state.duration}
         onPressPlay={() => this.setState({ paused: !this.state.paused })}
-        onSpeakerVolumeChange={this.onSpeakerVolumeChange} />
+        onPressSpeaker={this.onPressSpeaker} />
     );
   }
 
@@ -169,7 +169,7 @@ export default class PlayVideo extends Component {
             onAudioBecomingNoisy={this.onAudioBecomingNoisy}
             onAudioFocusChanged={this.onAudioFocusChanged}
             repeat={false}
-          controls={false}
+            controls={false}
           />
         </TouchableOpacity>
 

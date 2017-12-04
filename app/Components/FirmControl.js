@@ -60,7 +60,7 @@ class FirmControl extends Component {
                         <View style={[styles.innerProgressCompleted, { flex: flexCompleted }]} />
                         <View style={styles.handrails} />
                         <View style={[styles.innerProgressRemaining, { flex: flexRemaining }]} />
-                        <Text style={[styles.textTime, styles.remainingTime]}> { this.showingTextTime(this.props.duration - this.props.currentTime) } </Text>
+                        <Text style={[styles.textTime, styles.remainingTime]}> - { this.showingTextTime(this.props.duration - this.props.currentTime) } </Text>
                     </View>
                 </View>
             </View>
