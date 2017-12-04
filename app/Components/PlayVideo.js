@@ -169,7 +169,7 @@ export default class PlayVideo extends Component {
             onAudioBecomingNoisy={this.onAudioBecomingNoisy}
             onAudioFocusChanged={this.onAudioFocusChanged}
             repeat={false}
-          controls={false}
+            controls={false}
           />
         </TouchableOpacity>
 

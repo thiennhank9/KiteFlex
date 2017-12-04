@@ -4,13 +4,13 @@ const styles = StyleSheet.create({
     filmTitle: {
         position: 'absolute',
         flexDirection: 'row',
-        backgroundColor: '#D8D8D8',
         top: 0,
         left: 0,
         right: 0,
-        height: 35,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'space-between',
+        backgroundColor: 'rgba(30, 30, 30, 0.85)',
       },
       headerTitle: {
         flexDirection: 'row',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
       },
       textTitle: {
         marginHorizontal: 10,
-        color: 'black',
+        color: 'white',
         fontSize: 16,
       },
       anotherButton: {
@@ -27,6 +27,12 @@ const styles = StyleSheet.create({
         width: 150,
         height: 35,
       },
+      iconBack: {
+        backgroundColor: 'transparent',
+      },
+      icon: {
+        color: 'white',
+      }
 });
 
 export default styles;
