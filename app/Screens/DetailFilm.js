@@ -4,6 +4,7 @@ import styles from './Styles/DetailFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import obj from '../Objects/ObjDetailFilm.js';
 import ListFilmByCategory from '../Containers/ListFilmByCategory.js';
+import ListComments from '../Containers/ListComments.js';
 
 export default class DetailFilm extends Component {
     constructor(props) {
@@ -13,6 +14,24 @@ export default class DetailFilm extends Component {
             isShowedInfo: false
         }
     }
+
+    render() {
+        return (
+            <ScrollView style={styles.container}>
+                {this.renderHeader()}
+                {this.renderImageFilm()}
+                {this.renderTitle()}
+                {this.renderIMDb()}
+                {this.renderNumberComment()}
+                {this.renderStar1()}
+                {this.renderDetail()}
+                {this.renderToRankStar()}
+                {this.renderListSameCategoryFilm()}
+                <ListComments />
+            </ScrollView>
+        )
+    }
+
     renderHeader() {
         return (
             <View style={styles.header}>
@@ -240,22 +259,6 @@ export default class DetailFilm extends Component {
                     </Text>
                 <ListFilmByCategory />
             </View>
-        )
-    }
-    
-    render() {
-        return (
-            <ScrollView style={styles.container}>
-                {this.renderHeader()}
-                {this.renderImageFilm()}
-                {this.renderTitle()}
-                {this.renderIMDb()}
-                {this.renderNumberComment()}
-                {this.renderStar1()}
-                {this.renderDetail()}
-                {this.renderToRankStar()}
-                {this.renderListSameCategoryFilm()}
-            </ScrollView>
         )
     }
 }

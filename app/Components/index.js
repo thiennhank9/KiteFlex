@@ -5,6 +5,7 @@ import HeaderCategory from './HeaderCategory.js';
 import ItemFilm from './ItemFilm.js';
 import PlayVideo from './PlayVideo.js';
 import ItemCategory from './ItemCategory.js';
+import ItemComment from './ItemComment.js';
 
 export {
     SearchFilm,
@@ -13,5 +14,6 @@ export {
     HeaderCategory,
     ItemFilm,
     PlayVideo,
-    ItemCategory
+    ItemCategory,
+    ItemComment
 }
