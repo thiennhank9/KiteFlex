@@ -14,7 +14,6 @@ export default class FooterSupport extends Component {
         this.state = {
             lsButtonSuport: lsButtonSuport
         }
-        console.log(this.state.lsButtonSuport)
     }
 
     renderItemButtonSupport(item) {

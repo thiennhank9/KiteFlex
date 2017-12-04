@@ -5,8 +5,8 @@ import {
 
 import styles from './Styles/ListFilmByCategory.js';
 import lsFilmByCategory from '../Objects/ListFilmByCategory.js';
-import {ItemFilm} from '../Components/index.js';
-import {OptimizedFlatList} from 'react-native-optimized-flatlist';
+import { ItemFilm } from '../Components/index.js';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 
 export default class ListFilmByCategory extends Component {
     constructor(props) {
@@ -16,9 +16,10 @@ export default class ListFilmByCategory extends Component {
         }
     }
 
-    renderItemFilm(item){
-        return(
-            <ItemFilm 
+    renderItemFilm(item) {
+        return (
+            <ItemFilm
+                navigation={this.props.navigation}
                 uri={item.uri}
                 name={item.name}
             />

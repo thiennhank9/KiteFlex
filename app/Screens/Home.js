@@ -25,7 +25,7 @@ export default class Home extends Component {
             <View style={styles.container}>
                 <StatusBar hidden />
                 <SearchFilm />
-                <ScrollHome />
+                <ScrollHome navigation={this.props.navigation}/>
             </View>
         )
     }

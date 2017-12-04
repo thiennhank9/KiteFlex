@@ -10,7 +10,7 @@ export default class ScrollHome extends Component {
         return (
             <ScrollView style={styles.container}>
                 <SliderFilm />
-                <ListCategory />
+                <ListCategory navigation={this.props.navigation}/>
                 <FooterSupport />
             </ScrollView>
         )

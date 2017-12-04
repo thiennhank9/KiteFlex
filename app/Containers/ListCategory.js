@@ -24,7 +24,7 @@ export default class ListCategory extends Component {
                 <HeaderCategory
                     category={item.category}
                 />
-                <ListFilmByCategory />
+                <ListFilmByCategory navigation={this.props.navigation} />
             </View>
         )
     }

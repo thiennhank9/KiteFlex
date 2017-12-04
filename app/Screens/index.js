@@ -15,6 +15,7 @@ import Recent from './Recent.js';
 import Download from './Download.js';
 import Love from './Love.js';
 import WatchLater from './WatchLater.js';
+import DetailFilm from './DetailFilm.js';
 
 export {
     Home,
@@ -33,5 +34,6 @@ export {
     Recent,
     Download,
     Love,
-    WatchLater
+    WatchLater,
+    DetailFilm
 }
