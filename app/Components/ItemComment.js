@@ -13,7 +13,7 @@ export default class ItemComment extends Component {
         return (
             <View style={styles.statusContainer}>
                 <View>
-                    <Text>
+                    <Text style={{color: 'white'}}>
                         {this.props.last_day} ngày trước
                     </Text>
                 </View>
