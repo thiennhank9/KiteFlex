@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
   AppRegistry,
@@ -13,6 +13,7 @@ import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FirmControl from '../Components/FirmControl';
 import TitleControl from '../Components/TitleControl';
+import Orientation from 'react-native-orientation';
 
 //const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
 const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
@@ -30,6 +31,9 @@ export default class PlayVideo extends Component {
     showFirmControl: false,
   };
 
+  componentWillMount() {
+    Orientation.lockToLandscape();
+  }
   video: Video;
 
   onLoad = (data) => {
@@ -116,7 +120,7 @@ export default class PlayVideo extends Component {
 
   renderFirmTitle = () => {
     return (
-      <TitleControl firmName='Chuyen tinh bac sy'/>
+      <TitleControl firmName='Chuyen tinh bac sy' />
     )
   }
 
@@ -155,7 +159,7 @@ export default class PlayVideo extends Component {
           <Video
             ref={(ref: Video) => { this.video = ref }}
             /* For ExoPlayer */
-            source={{ uri: url_mp4, type: 'mpd' }} 
+            source={{ uri: url_mp4, type: 'mpd' }}
             //source={require('./broadchurch.mp4')}
             style={styles.fullScreen}
             rate={this.state.rate}
@@ -175,7 +179,7 @@ export default class PlayVideo extends Component {
 
         {titleControl}
         {firmControl}
-        
+
         {/* <View style={styles.controls}>
           <View style={styles.generalControls}>
             <View style={styles.rateControl}>

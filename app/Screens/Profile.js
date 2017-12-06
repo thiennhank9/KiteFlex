@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -10,8 +10,9 @@ import {
 import styles from './Styles/Profile.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import res from '../Resources/index.js';
-import {Button} from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
+import windows from '../Themes/Windows.js';
 
 const objSystem =
     [
@@ -34,11 +35,11 @@ const objSystem =
 export default class Profile extends Component {
     static navigationOptions = {
         tabBarLabel: 'Thêm',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='menu'
                 size={24}
-                style={{color: tintColor}}
+                style={{ color: tintColor }}
             />
         )
     }
@@ -62,8 +63,8 @@ export default class Profile extends Component {
     renderAvatar() {
         return (
             <View>
-                <Image style={{height: 220}}
-                       source={{uri: 'https://wallpaperscraft.com/image/blur_background_pink_orange_light_73376_602x339.jpg'}}/>
+                <Image style={{ height: 220 }}
+                    source={{ uri: 'https://wallpaperscraft.com/image/blur_background_pink_orange_light_73376_602x339.jpg' }} />
                 <View
                     style={styles.avatarContainer}
                     onPress={() => this.clickToSignIn()}>
@@ -74,37 +75,37 @@ export default class Profile extends Component {
                     />
                     {
                         this.state.isRegistered ?
-                            <View style={{flexDirection: 'row', marginTop: 20}}>
+                            <View style={{ flexDirection: 'row', width:windows.width - 40,justifyContent: 'space-between', marginTop: 20 }}>
                                 <Button
-                                    buttonStyle={{width: 120}}
+                                    buttonStyle={{ width: 120 }}
                                     rounded
                                     backgroundColor={'#D73E15'}
-                                    icon={{name: 'account-circle'}}
-                                    title='Đăng nhập'/>
+                                    icon={{ name: 'account-circle' }}
+                                    title='Đăng nhập' />
                                 <Button
-                                    buttonStyle={{width: 120}}
+                                    buttonStyle={{ width: 120 }}
                                     rounded
                                     backgroundColor={'#D73E15'}
-                                    icon={{name: 'create'}}
-                                    title='Đăng ký'/>
+                                    icon={{ name: 'create' }}
+                                    title='Đăng ký' />
                             </View> :
-                            <View style={{marginTop: 20, alignItems: 'center'}}>
-                                <Text style={{color: 'white'}}>
+                            <View style={{ marginTop: 20, alignItems: 'center' }}>
+                                <Text style={{ color: 'white' }}>
                                     Xin chào Alexander!
                                 </Text>
-                                <View style={{flexDirection: 'row', marginTop: 10}}>
+                                <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                     <Button
-                                        buttonStyle={{width: 120}}
+                                        buttonStyle={{ width: 120 }}
                                         rounded
                                         backgroundColor={'#D73E15'}
-                                        icon={{name: 'reply'}}
-                                        title='Đăng xuất'/>
+                                        icon={{ name: 'reply' }}
+                                        title='Đăng xuất' />
                                     <Button
-                                        buttonStyle={{width: 120}}
+                                        buttonStyle={{ width: 120 }}
                                         rounded
                                         backgroundColor={'#D73E15'}
-                                        icon={{name: 'create'}}
-                                        title='Sửa Profile'/>
+                                        icon={{ name: 'create' }}
+                                        title='Sửa Profile' />
                                 </View>
                             </View>
                     }
@@ -115,7 +116,7 @@ export default class Profile extends Component {
 
     renderTitleSetting(section) {
         return (
-            <Text style={[styles.text, {color: '#D73E15', paddingLeft: 30, paddingTop: 5, paddingBottom: 5, fontSize: 18, backgroundColor: '#3f3f3f'}]}>
+            <Text style={[styles.text, { color: '#D73E15', paddingLeft: 30, paddingTop: 5, paddingBottom: 5, fontSize: 18, backgroundColor: '#3f3f3f' }]}>
                 {section.title}
             </Text>
         )
@@ -124,21 +125,21 @@ export default class Profile extends Component {
     renderItemSetting(item) {
         return (
             <View>
-            <TouchableOpacity
-                style={styles.itemContainer}
-                onPress={() => this.clickToSetSetting()}>
-                <Icon
-                    name={item.icon}
-                    size={30}
-                    style={styles.icon}
-                />
-                <Text
-                    numberOfLines={2}
-                    style={styles.text}>
-                    {item.name}
-                </Text>
-            </TouchableOpacity>
-            <View style={{backgroundColor: '#3f3f3f', height: 1}}/>
+                <TouchableOpacity
+                    style={styles.itemContainer}
+                    onPress={() => this.clickToSetSetting()}>
+                    <Icon
+                        name={item.icon}
+                        size={30}
+                        style={styles.icon}
+                    />
+                    <Text
+                        numberOfLines={2}
+                        style={styles.text}>
+                        {item.name}
+                    </Text>
+                </TouchableOpacity>
+                <View style={{ backgroundColor: '#3f3f3f', height: 1 }} />
             </View>
         )
     }
@@ -147,8 +148,8 @@ export default class Profile extends Component {
         return (
             <SectionList
                 sections={this.state.ds}
-                renderItem={({item}) => this.renderItemSetting(item)}
-                renderSectionHeader={({section}) => this.renderTitleSetting(section)}
+                renderItem={({ item }) => this.renderItemSetting(item)}
+                renderSectionHeader={({ section }) => this.renderTitleSetting(section)}
             />
         )
     }
