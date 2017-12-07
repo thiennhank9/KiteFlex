@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {View} from 'react-native';
 import ImageSlider from 'react-native-image-slider';
-
+import styles from './Styles/SliderFilm.js';
 import consts from '../Constants/Constants.js';
 
 export default class SliderFilm extends Component {
@@ -28,15 +29,17 @@ export default class SliderFilm extends Component {
 
     render() {
         return (
-            <ImageSlider
-                images={[
-                    'https://www.planwallpaper.com/static/images/9-credit-1.jpg',
-                    'https://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg',
-                    'https://www.planwallpaper.com/static/images/Child-Girl-with-Sunflowers-Images.jpg'
-                ]}
-                position={this.state.position}
-                onPositionChanged={position => this.setState({ position })}
-            />
+            <View style={styles.container}>
+                <ImageSlider
+                    images={[
+                        'https://www.planwallpaper.com/static/images/9-credit-1.jpg',
+                        'https://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg',
+                        'https://www.planwallpaper.com/static/images/Child-Girl-with-Sunflowers-Images.jpg'
+                    ]}
+                    position={this.state.position}
+                    onPositionChanged={position => this.setState({ position })}
+                />
+            </View>
         )
     }
 }
