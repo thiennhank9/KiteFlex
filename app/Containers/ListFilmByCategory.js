@@ -29,6 +29,7 @@ export default class ListFilmByCategory extends Component {
     render() {
         return (
             <OptimizedFlatList
+                //style={{ backgroundColor: 'white' }}
                 horizontal
                 data={this.state.lsFilmByCategory}
                 renderItem={({ item }) => this.renderItemFilm(item)}

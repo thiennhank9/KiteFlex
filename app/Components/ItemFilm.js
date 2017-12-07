@@ -24,7 +24,8 @@ export default class ItemFilm extends Component {
             <TouchableOpacity
                 onPress={() => {
                     console.log('Pressed item film to navigate detail film')
-                    this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
+                    //this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
+                    this.props.navigation.navigate('FilmDetail', { objDetailFilm: obj })
                 }
                 }
                 activeOpacity={0.8}>
@@ -34,7 +35,7 @@ export default class ItemFilm extends Component {
                     <LinearGradient
                         style={styles.cardTitleContainer}
                         colors={['rgba(0, 0, 0, 0)', 'rgba(30, 30, 30, 1)']}>
-                        <Text style={styles.cardTitle} numberOfLines={2}>Frozen</Text>
+                        <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>Frozenasjdsajkdhjsakhdksajhdksajdhsakdhsakdhksajhdkjsahdkjsahdksajhdkjsahd</Text>
                     </LinearGradient>
                 </View>
             </TouchableOpacity>

@@ -33,7 +33,7 @@ export default class FooterSupport extends Component {
                     {this.renderItemButtonSupport(lsButtonSuport[1])}
                     {this.renderItemButtonSupport(lsButtonSuport[2])}
                 </View>
-                <Text>
+                <Text style={styles.textGrey}>
                     - Hỗ trợ và góp ý -
                 </Text>
             </View>

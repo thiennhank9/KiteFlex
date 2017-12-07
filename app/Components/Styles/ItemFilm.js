@@ -1,7 +1,5 @@
-import {StyleSheet} from 'react-native';
-const Dimensions = require('Dimensions');
-
-const window = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
+import windows from '../../Themes/Windows.js';
 
 export default styles = StyleSheet.create({
     container: {
@@ -18,16 +16,18 @@ export default styles = StyleSheet.create({
         marginVertical: 3,
     },
     cardContainer: {
-        height: 200,
-        width: window.width / 3,
+        height: 210,
+        width: windows.width/3,
         backgroundColor: 'black',
         flexDirection: 'column',
-        margin: 5,
+        //margin: 5,
         borderRadius: 8
     },
     cardImage: {
-        width: window.width / 3,
-        height: 200,
+        // width: window.width / 3,
+        margin: 4,
+        borderRadius: 4,
+        height: 160,
         // borderTopLeftRadius: 4,
         // borderTopRightRadius: 4
     },
@@ -43,9 +43,10 @@ export default styles = StyleSheet.create({
     },
     cardTitle: {
         marginTop: 10,
-        color: 'white',
-        fontSize: 13,
-        fontWeight: '500',
+        color: 'whitesmoke',
+        fontSize: 15,
+        margin: 5,
+        //fontWeight: '500',
         textAlign: 'center',
         paddingHorizontal: 1,
         backgroundColor: 'transparent',

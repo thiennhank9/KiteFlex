@@ -10,16 +10,18 @@ export default class ButtonSupport extends Component {
 
     render() {
         return (
-                <View style={styles.container}>
+            <View style={styles.container}>
+                <View style={styles.iconContainer}>
                     <Icon
                         name={this.props.icon_name}
-                        size={25}
+                        size={20}
                     />
-                    <Text>
-                        {this.props.text_name}
-                    </Text>
                 </View>
-                
+                <Text style={styles.textWhite}>
+                    {this.props.text_name}
+                </Text>
+            </View>
+
         )
     }
 }

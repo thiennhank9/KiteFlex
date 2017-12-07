@@ -6,6 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import styles from './Styles/HeaderCategory.js';
+import { toTitleCase, jsUcfirst } from '../Utils/Utils.js';
 
 export default class HeaderCategory extends PureComponent {
 
@@ -15,8 +16,8 @@ export default class HeaderCategory extends PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={{color: 'red'}}>
-                    {this.props.category}
+                <Text style={styles.titleCategory}>
+                    {jsUcfirst(this.props.category)}
                 </Text>
                 <TouchableOpacity
                     style={styles.buttonText}
