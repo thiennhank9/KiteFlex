@@ -15,5 +15,6 @@ export default styles = StyleSheet.create({
     textGrey: {
         color: 'grey',
         fontSize: 15,
+        fontWeight: 'bold'
     }
 })

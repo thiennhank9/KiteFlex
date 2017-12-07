@@ -24,6 +24,7 @@ export default styles = StyleSheet.create({
     textAdd: {
         color: 'white',
         fontSize: 14,
+        fontWeight: 'bold',
         textAlign: 'center'
     }
 });

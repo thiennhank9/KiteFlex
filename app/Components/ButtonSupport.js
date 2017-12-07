@@ -11,12 +11,13 @@ export default class ButtonSupport extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.iconContainer}>
+                {/* <View style={styles.iconContainer}> */}
                     <Icon
                         name={this.props.icon_name}
                         size={20}
+                        color='white'
                     />
-                </View>
+                {/* </View> */}
                 <Text style={styles.textWhite}>
                     {this.props.text_name}
                 </Text>

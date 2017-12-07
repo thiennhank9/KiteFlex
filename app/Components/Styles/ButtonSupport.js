@@ -8,8 +8,9 @@ export default styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
+        //backgroundColor: 'slategray',
         borderWidth: 1,
-        borderColor: 'grey'
+        borderColor: 'slategray'
     },
     iconContainer: {
         margin: 3,
