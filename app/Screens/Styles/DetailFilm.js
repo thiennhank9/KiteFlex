@@ -6,38 +6,30 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    container: {
-        backgroundColor: 'black'
-    },
     headerContainer: {
         height: 50,
-        backgroundColor: 'black',
+        backgroundColor: '#111111',
     },
     textMajor: {
-        fontSize: 16,
-        color: 'white'
+        fontSize: 14,
+        color: 'white',
+        fontWeight: 'bold'
     },
     textInfo: {
-        fontSize: 16,
+        fontSize: 14,
         color: 'grey'
     },
     textNumberComment: {
         marginLeft: 10,
         marginTop: 2,
-        color: 'red',
-        fontSize: 15,
-        fontWeight: 'bold'
+        color: 'white',
+        fontSize: 13,
     },
     containerBackAndSearch: {
         margin: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'darkgray'
     },
     imageFilmContainer: {
         width: windows.width,
@@ -46,15 +38,9 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'blue'
     },
-    imageFilm: {
-        width: windows.width,
-        height: windows.height / 3,
-        position: 'absolute',
-        zIndex: 1
-    },
     textTitle: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         margin: 10
     },
@@ -78,27 +64,24 @@ export default styles = StyleSheet.create({
         borderRadius: 2,
         borderColor: 'grey',
         borderWidth: 1,
-        color: 'yellow',
-        fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 13,
         textAlign: 'center'
     },
     textMark: {
         color: 'red',
         marginLeft: 10,
-        fontSize: 16,
+        fontSize: 13,
         textAlign: 'center',
-        fontWeight: 'bold'
     },
     textHD: {
         padding: 3,
         color: 'white',
         borderRadius: 2,
-        fontSize: 14,
+        fontSize: 10,
         borderColor: 'red',
         borderWidth: 1,
         textAlign: 'center',
-        fontWeight: 'bold',
+        
     },
     textVN: {
         color: 'white',
@@ -106,30 +89,22 @@ export default styles = StyleSheet.create({
         borderColor: 'red',
         borderWidth: 1,
         marginLeft: 10,
-        fontSize: 14,
+        fontSize: 10,
         padding: 3,
         textAlign: 'center',
-        fontWeight: 'bold',
+        
     },
     textNumberMarkStar: {
-        color: 'red'
-    },
-    textMajor: {
-        color: 'white'
-    },
-    textInfo: {
-        color: 'grey'
-    },
-    textSeeMore: {
-        color: 'red'
-    },
-    rankStartContainer: {
-        flexDirection: 'column',
-        alignItems: 'center'
+        color: 'red',
+        marginLeft: 7
     },
     textSeeMore: {
         fontSize: 16,
         color: 'lightcoral'
+    },
+    rankStartContainer: {
+        flexDirection: 'column',
+        alignItems: 'center'
     },
     iconSearch: {
         borderRadius: 10,
@@ -141,14 +116,11 @@ export default styles = StyleSheet.create({
     },
     textDetail: {
         color: 'gainsboro',
-        fontSize: 16,
-        fontFamily: 'Cochin',
-        textAlign: 'justify'
+        fontSize: 14,
     },
     titleCategory: {
         color: 'palegoldenrod',
-        fontSize: 19,
-        fontWeight: 'bold',
+        fontSize: 19,       
         margin: 10
     },
 })

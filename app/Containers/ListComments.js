@@ -3,6 +3,7 @@ import { FlatList, View, Text, TextInput } from 'react-native';
 import ItemComment from '../Components/ItemComment.js';
 import obj from '../Objects/ObjLsComment.js';
 import styles from './Styles/ListComments.js';
+
 export default class ListComments extends Component {
     constructor(props) {
         super(props);
@@ -10,6 +11,7 @@ export default class ListComments extends Component {
             obj: obj
         }
     }
+
     renderItemComment(item) {
         return (
             <View style={{ flexDirection: 'column' }}>
@@ -27,14 +29,14 @@ export default class ListComments extends Component {
     }
     render() {
         return (
-            <View style={{ backgroundColor: 'slategray' }}>
+            <View style={{ backgroundColor: '#1C1C1C' }}>
                 <View style={{ margin: 10 }}>
                     <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
                         Nhận xét ({this.state.obj.length})
                     </Text>
                     <TextInput
                         placeholder="Nhập bình luận đây nè các đồng dâm"
-                        placeholderTextColor='black'
+                        placeholderTextColor='#828282'
                         style={styles.input}
                         underlineColorAndroid='rgba(0,0,0,0)'
                     />

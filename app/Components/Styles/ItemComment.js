@@ -4,10 +4,7 @@ export default styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 10,
         marginTop: 10,
-        borderWidth: 3,
-        borderColor: 'black'
     },
     ava: {
         width: 55,

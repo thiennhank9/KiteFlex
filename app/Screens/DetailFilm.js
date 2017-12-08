@@ -17,9 +17,9 @@ export default class DetailFilm extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1 , backgroundColor: 'black'}}>
+            <View style={{ flex: 1, backgroundColor: '#111111' }}>
                 <StatusBar hidden />
-                <ScrollView style={{backgroundColor: 'black'}}>
+                <ScrollView style={{ backgroundColor: '#111111' }}>
                     {this.renderHeader()}
                     {this.renderImageFilm()}
                     {this.renderTitle()}
@@ -69,11 +69,6 @@ export default class DetailFilm extends Component {
                     size={60}
                     color='red'
                 />
-                {/* <Image
-                    source={{ uri: 'http://runt-of-the-web.com/wordpress/wp-content/uploads/2014/08/frozen.jpg' }}
-                    style={styles.imageFilm}
-                    //resizeMode='stretch'
-                /> */}
             </View>
         )
     }
@@ -121,8 +116,8 @@ export default class DetailFilm extends Component {
                 </Text>
                 <Icon
                     name='arrow-down'
-                    size={20}
-                    color='red'
+                    size={15}
+                    color='white'
                 />
             </View>
         )
@@ -140,21 +135,25 @@ export default class DetailFilm extends Component {
                     name='star-outline'
                     size={size}
                     color='yellow'
+                    style={{ marginLeft: 10 }}
                 />
                 <Icon
                     name='star-outline'
                     size={size}
                     color='yellow'
+                    style={{ marginLeft: 10 }}
                 />
                 <Icon
                     name='star-outline'
                     size={size}
                     color='yellow'
+                    style={{ marginLeft: 10 }}
                 />
                 <Icon
                     name='star-outline'
                     size={size}
                     color='yellow'
+                    style={{ marginLeft: 10 }}
                 />
                 {isShowedNumber && this.renderTextNumberMarkStar()}
 
@@ -165,29 +164,31 @@ export default class DetailFilm extends Component {
         return (
             <Text style={styles.textNumberMarkStar}>
                 ({this.state.obj.numberMarkStar})
-                </Text>
+            </Text>
         )
     }
     //The first star
     renderStar1() {
         return (
             <View style={styles.star1Container}>
-                {this.renderListStar(25, true)}
+                {this.renderListStar(20, true)}
                 <View style={styles.hori}>
                     <Icon
                         name='bell-off'
                         size={25}
-                        color='darkorange'
+                        color='white'
                     />
                     <Icon
                         name='bookmark-plus'
                         size={25}
-                        color='darkorange'
+                        color='white'
+                        style={{marginLeft: 10}}
                     />
                     <Icon
                         name='download'
                         size={25}
-                        color='darkorange'
+                        color='white'
+                        style={{marginLeft: 10}}
                     />
                 </View>
             </View>
@@ -220,7 +221,7 @@ export default class DetailFilm extends Component {
                 </TouchableOpacity>
             )
         return (
-            <View>
+            <View style={{marginTop: 5}}>
                 {this.renderInfo('Đạo diễn :', this.state.obj.directors)}
                 {this.renderInfo('Kịch bản :', this.state.obj.directors)}
                 {this.renderInfo('Ngày phát hành :', this.state.obj.directors)}
@@ -246,22 +247,31 @@ export default class DetailFilm extends Component {
 
     renderToRankStar() {
         return (
-            <View style={styles.rankStartContainer}>
-                <Text style={styles.textNumberComment}>
-                    Xếp hạng phim này
+            <View>
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
+                <View style={styles.rankStartContainer}>
+
+                    <Text style={styles.textNumberComment}>
+                        Xếp hạng phim này
                 </Text>
-                {this.renderListStar(40, false)}
+                    {this.renderListStar(30, false)}
+                </View>
             </View>
         )
     }
 
     renderListSameCategoryFilm() {
         return (
-            <View>
+            <View style={{ flexDirection: 'column' }}>
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
                 <Text style={styles.titleCategory}>
                     Phim tương tự
                 </Text>
                 <ListFilmByCategory />
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
             </View>
         )
     }
