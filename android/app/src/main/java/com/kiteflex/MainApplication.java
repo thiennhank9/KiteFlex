@@ -3,6 +3,7 @@ package com.kiteflex;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.wenkesj.voice.VoicePackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.brentvatne.react.ReactVideoPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VoicePackage(),
             new OrientationPackage(),
             new LinearGradientPackage(),
             new ReactVideoPackage(),
