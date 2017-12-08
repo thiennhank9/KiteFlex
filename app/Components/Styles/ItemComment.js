@@ -3,15 +3,20 @@ import { StyleSheet } from 'react-native';
 export default styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 10,
+        marginTop: 10,
+        borderWidth: 3,
+        borderColor: 'black'
     },
     ava: {
-        width: 40,
-        height: 40
+        width: 55,
+        height: 55
     },
     txtContainer: {
         flexDirection: 'column',
         flex: 1,
+        marginLeft: 5
         //backgroundColor: 'black'
     },
     statusContainer: {

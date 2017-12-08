@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, Text, Vibration } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, Text, Vibration, StatusBar, WebView } from 'react-native';
 import styles from './Styles/DetailFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import obj from '../Objects/ObjDetailFilm.js';
@@ -17,37 +17,46 @@ export default class DetailFilm extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
-                {this.renderHeader()}
-                {this.renderImageFilm()}
-                {this.renderTitle()}
-                {this.renderIMDb()}
-                {this.renderNumberComment()}
-                {this.renderStar1()}
-                {this.renderDetail()}
-                {this.renderToRankStar()}
-                {this.renderListSameCategoryFilm()}
-                <ListComments />
-            </ScrollView>
+            <View style={{ flex: 1 , backgroundColor: 'black'}}>
+                <StatusBar hidden />
+                <ScrollView style={{backgroundColor: 'black'}}>
+                    {this.renderHeader()}
+                    {this.renderImageFilm()}
+                    {this.renderTitle()}
+                    {this.renderIMDb()}
+                    {this.renderNumberComment()}
+                    {this.renderStar1()}
+                    {this.renderDetail()}
+                    {this.renderToRankStar()}
+                    {this.renderListSameCategoryFilm()}
+                    <ListComments />
+                </ScrollView>
+            </View>
         )
     }
 
     renderHeader() {
         return (
-            <View style={styles.header}>
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('TabApp')}>
-                    <Icon
-                        name='keyboard-backspace'
-                        size={30}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Icon
-                        name='magnify'
-                        size={30}
-                    />
-                </TouchableOpacity>
+            <View style={styles.headerContainer}>
+                <View style={styles.containerBackAndSearch}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('TabApp')}>
+                        <Icon
+                            name='keyboard-backspace'
+                            size={40}
+                            color='red'
+
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Icon
+                            name='magnify'
+                            size={40}
+                            color='white'
+                            style={styles.iconSearch}
+                        />
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -58,6 +67,7 @@ export default class DetailFilm extends Component {
                 <Icon
                     name='play-circle-outline'
                     size={60}
+                    color='red'
                 />
                 {/* <Image
                     source={{ uri: 'http://runt-of-the-web.com/wordpress/wp-content/uploads/2014/08/frozen.jpg' }}
@@ -106,84 +116,78 @@ export default class DetailFilm extends Component {
     renderNumberComment() {
         return (
             <View style={styles.hori}>
-                <Text>
+                <Text style={styles.textNumberComment}>
                     Nhận xét ({this.state.obj.numberComments})
                 </Text>
                 <Icon
                     name='arrow-down'
                     size={20}
+                    color='red'
                 />
             </View>
         )
     }
 
-    renderListStar() {
+    renderListStar(size, isShowedNumber) {
         return (
             <View style={styles.hori}>
                 <Icon
                     name='star-outline'
-                    size={15}
+                    size={size}
+                    color='yellow'
                 />
                 <Icon
                     name='star-outline'
-                    size={15}
+                    size={size}
+                    color='yellow'
                 />
                 <Icon
                     name='star-outline'
-                    size={15}
+                    size={size}
+                    color='yellow'
                 />
                 <Icon
                     name='star-outline'
-                    size={15}
+                    size={size}
+                    color='yellow'
                 />
                 <Icon
                     name='star-outline'
-                    size={15}
+                    size={size}
+                    color='yellow'
                 />
+                {isShowedNumber && this.renderTextNumberMarkStar()}
+
             </View>
+        )
+    }
+    renderTextNumberMarkStar() {
+        return (
+            <Text style={styles.textNumberMarkStar}>
+                ({this.state.obj.numberMarkStar})
+                </Text>
         )
     }
     //The first star
     renderStar1() {
         return (
-            <View style={styles.IMDbContainer}>
-                <View style={styles.hori}>
-                    <Icon
-                        name='star-outline'
-                        size={15}
-                    />
-                    <Icon
-                        name='star-outline'
-                        size={15}
-                    />
-                    <Icon
-                        name='star-outline'
-                        size={15}
-                    />
-                    <Icon
-                        name='star-outline'
-                        size={15}
-                    />
-                    <Icon
-                        name='star-outline'
-                        size={15}
-                    />
-                    <Text style={styles.numberMarkStar}>
-                        ({this.state.obj.numberMarkStar})
-                    </Text>
-                </View>
+            <View style={styles.star1Container}>
+                {this.renderListStar(25, true)}
                 <View style={styles.hori}>
                     <Icon
                         name='bell-off'
-                        size={20}
+                        size={25}
+                        color='darkorange'
                     />
                     <Icon
                         name='bookmark-plus'
-                        size={20}
+                        size={25}
+                        color='darkorange'
                     />
                     <Icon
                         name='download'
-                        size={20}
+                        size={25}
+                        color='darkorange'
                     />
                 </View>
             </View>
@@ -215,7 +219,6 @@ export default class DetailFilm extends Component {
                     </Text>
                 </TouchableOpacity>
             )
-
         return (
             <View>
                 {this.renderInfo('Đạo diễn :', this.state.obj.directors)}
@@ -231,8 +234,9 @@ export default class DetailFilm extends Component {
 
     renderDetail() {
         return (
-            <View>
-                <Text>
+            <View style={styles.detailContainer}>
+                {/* How to make text align android */}
+                <Text style={styles.textDetail}>
                     {this.state.obj.detail}
                 </Text>
                 {this.renderListInfo()}
@@ -243,10 +247,10 @@ export default class DetailFilm extends Component {
     renderToRankStar() {
         return (
             <View style={styles.rankStartContainer}>
-                <Text>
+                <Text style={styles.textNumberComment}>
                     Xếp hạng phim này
                 </Text>
-                {this.renderListStar()}
+                {this.renderListStar(40, false)}
             </View>
         )
     }
@@ -254,9 +258,9 @@ export default class DetailFilm extends Component {
     renderListSameCategoryFilm() {
         return (
             <View>
-                <Text>
+                <Text style={styles.titleCategory}>
                     Phim tương tự
-                    </Text>
+                </Text>
                 <ListFilmByCategory />
             </View>
         )

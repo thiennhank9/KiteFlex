@@ -8,7 +8,7 @@ export default class TestScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <PlayVideo />
+                <DetailFilm />
             </View>
         )
     }

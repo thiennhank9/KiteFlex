@@ -1,15 +1,38 @@
 import { StyleSheet } from 'react-native';
 import windows from '../../Themes/Windows.js';
+
 export default styles = StyleSheet.create({
     hori: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     },
-    header: {
+    container: {
+        backgroundColor: 'black'
+    },
+    headerContainer: {
+        height: 50,
+        backgroundColor: 'black',
+    },
+    textMajor: {
+        fontSize: 16,
+        color: 'white'
+    },
+    textInfo: {
+        fontSize: 16,
+        color: 'grey'
+    },
+    textNumberComment: {
+        marginLeft: 10,
+        marginTop: 2,
+        color: 'red',
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    containerBackAndSearch: {
+        margin: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: 'darkgray',
-        height: 40,
     },
     container: {
         flex: 1,
@@ -31,33 +54,62 @@ export default styles = StyleSheet.create({
     },
     textTitle: {
         color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+        margin: 10
+    },
+    star1Container: {
+        marginLeft: 5,
+        marginRight: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     IMDbContainer: {
+        marginLeft: 10,
+        marginRight: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     textIMDb: {
+        padding: 3,
         color: 'grey',
         borderRadius: 2,
         borderColor: 'grey',
-        borderWidth: 0.5
+        borderWidth: 1,
+        color: 'yellow',
+        fontWeight: 'bold',
+        fontSize: 16,
+        textAlign: 'center'
     },
     textMark: {
         color: 'red',
-        marginLeft: 10
+        marginLeft: 10,
+        fontSize: 16,
+        textAlign: 'center',
+        fontWeight: 'bold'
     },
     textHD: {
+        padding: 3,
         color: 'white',
         borderRadius: 2,
+        fontSize: 14,
         borderColor: 'red',
-        borderWidth: 0.5
+        borderWidth: 1,
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
     textVN: {
         color: 'white',
         borderRadius: 2,
         borderColor: 'red',
-        borderWidth: 0.5,
-        marginLeft: 10
+        borderWidth: 1,
+        marginLeft: 10,
+        fontSize: 14,
+        padding: 3,
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
     textNumberMarkStar: {
         color: 'red'
@@ -74,5 +126,29 @@ export default styles = StyleSheet.create({
     rankStartContainer: {
         flexDirection: 'column',
         alignItems: 'center'
-    }
+    },
+    textSeeMore: {
+        fontSize: 16,
+        color: 'lightcoral'
+    },
+    iconSearch: {
+        borderRadius: 10,
+        backgroundColor: 'tomato',
+        marginRight: 5
+    },
+    detailContainer: {
+        margin: 10
+    },
+    textDetail: {
+        color: 'gainsboro',
+        fontSize: 16,
+        fontFamily: 'Cochin',
+        textAlign: 'justify'
+    },
+    titleCategory: {
+        color: 'palegoldenrod',
+        fontSize: 19,
+        fontWeight: 'bold',
+        margin: 10
+    },
 })
