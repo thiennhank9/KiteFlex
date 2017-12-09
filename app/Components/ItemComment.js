@@ -16,7 +16,7 @@ export default class ItemComment extends Component {
             return (
                 <Icon
                     name='thumb-up-outline'
-                    size={23}
+                    size={18}
                     color='dodgerblue'
                     style={{ marginRight: 10 }}
                 />
@@ -26,7 +26,7 @@ export default class ItemComment extends Component {
             return (
                 <Icon
                     name='thumb-up-outline'
-                    size={23}
+                    size={18}
                     style={{ marginRight: 10 }}
                     color='white'
                 />
@@ -37,7 +37,7 @@ export default class ItemComment extends Component {
             <View style={styles.statusContainer}>
                 <View>
                     <Text
-                        style={{ color: 'darkded', fontSize: 14, fontStyle: 'italic' }}
+                        style={{ color: '#A0522D', fontSize: 11, fontStyle: 'italic' }}
                         numberOfLines={4}
                         ellipsizeMode='tail'
                     >
@@ -51,7 +51,7 @@ export default class ItemComment extends Component {
                     </TouchableOpacity>
                     <Icon
                         name='comment-outline'
-                        size={23}
+                        size={18}
                         color='dodgerblue'
                     />
                 </View>
@@ -66,10 +66,10 @@ export default class ItemComment extends Component {
                     source={this.props.avatar}
                 />
                 <View style={styles.txtContainer}>
-                    <Text style={{ color: 'black', fontSize: 20 }}>
+                    <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>
                         {this.props.name_user}
                     </Text>
-                    <Text style={{ color: 'white', fontSize: 15, marginTop: 2 }}>
+                    <Text style={{ color: '#B5B5B5', fontSize: 13, marginTop: 2 }}>
                         {this.props.comment}
                     </Text>
                     {this.renderStatus()}
