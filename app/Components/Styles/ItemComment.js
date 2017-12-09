@@ -6,7 +6,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         marginTop: 10,
-        borderWidth: 3,
+        // borderWidth: 1,
         borderColor: 'black'
     },
     ava: {
@@ -16,7 +16,11 @@ export default styles = StyleSheet.create({
     txtContainer: {
         flexDirection: 'column',
         flex: 1,
-        marginLeft: 5
+        padding: 5,
+        borderRadius: 10,
+        marginLeft: 5,
+        borderWidth: 1,
+        borderColor: 'black'
         //backgroundColor: 'black'
     },
     statusContainer: {
