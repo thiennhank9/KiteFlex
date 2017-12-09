@@ -40,12 +40,12 @@ export default class SearchFilm extends Component {
     render() {
         return (
             <View style={styles.containerHeader}>
-                <View style={styles.containerSearchBar}>
+                <View style={[ styles.containerSearchBar, styles.borderSearchBar ]}>
                     {/* Container search and close and voice */}
                     <View style={styles.containerInput}>
                         <TextInput
                             value={this.state.textSearch}
-                            style={styles.inputSearch}
+                            style={[ styles.inputSearch, styles.customInputSearch ]}
                             placeholder='Tìm kiếm Nhân đẹp trai'
                             placeholderTextColor='whitesmoke'
                             underlineColorAndroid='rgba(0,0,0,0)'
@@ -59,17 +59,15 @@ export default class SearchFilm extends Component {
                             onPress={() => this.recog()}>
                             <Icon
                                 name='microphone'
-                                size={30}
-                                color='white'
+                                style={[ styles.icon, styles.customIconMicrophone ]}
                             />
                         </TouchableOpacity>
                     </View>
                     {/* Button search */}
-                    <View style={styles.containerIcon}>
+                    <View style={[ styles.containerIcon, styles.CustomContainerIcon ]}>
                         <Icon
                             name='magnify'
-                            size={30}
-                            color='white'
+                            style={styles.icon}
                         />
                     </View>
                 </View>

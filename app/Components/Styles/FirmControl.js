@@ -87,6 +87,9 @@ const styles = StyleSheet.create({
         paddingRight: 2,
         lineHeight: 12,
       },
+      icon: {
+        color: 'black',
+      },
 });
 
 export default styles;
