@@ -35,8 +35,8 @@ export default class ListComments extends Component {
                         Nhận xét ({this.state.obj.length})
                     </Text>
                     <TextInput
-                        placeholder="Nhập bình luận đây nè các đồng dâm"
-                        placeholderTextColor='#828282'
+                        placeholder="Bình luận"
+                        placeholderTextColor='black'
                         style={styles.input}
                         underlineColorAndroid='rgba(0,0,0,0)'
                     />
