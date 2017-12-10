@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './Styles/ItemComment.js';
 
-export default class ItemComment extends Component {
+export default class ItemComment extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {

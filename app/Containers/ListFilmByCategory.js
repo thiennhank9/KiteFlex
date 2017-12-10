@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FlatList } from 'react-native';
 import styles from './Styles/ListFilmByCategory.js';
 import lsFilmByCategory from '../Objects/ListFilmByCategory.js';
 import { ItemFilm } from '../Components/index.js';
@@ -22,10 +23,13 @@ export default class ListFilmByCategory extends Component {
         )
     }
 
+    _keyExtractor = (item, index) => index;
+
     render() {
         return (
             <OptimizedFlatList
                 //style={{ backgroundColor: 'white' }}
+                keyExtractor={this._keyExtractor}
                 horizontal
                 data={this.state.lsFilmByCategory}
                 renderItem={this.renderItemFilm.bind(this)}
