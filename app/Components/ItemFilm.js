@@ -61,7 +61,9 @@ export default class ItemFilm extends Component {
                 {/* Container image and title */}
                 <View style={styles.cardContainer}>
                     {/* Container image */}
-                    <Image source={{ uri: 'http://runt-of-the-web.com/wordpress/wp-content/uploads/2014/08/frozen.jpg' }} style={styles.cardImage} />
+                    <View style={styles.cardImage}>
+                        </View>
+                    {/* <Image source={{ uri: 'http://runt-of-the-web.com/wordpress/wp-content/uploads/2014/08/frozen.jpg' }} style={styles.cardImage} /> */}
                     {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
                     {this.renderEpisodeOrIMDb()}
                     {/* Text title film with gradient */}
