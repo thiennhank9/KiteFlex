@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react';
 import {
     TouchableOpacity,
     Image,
@@ -10,7 +10,7 @@ import res from '../Resources/index.js'
 import LinearGradient from 'react-native-linear-gradient'
 import obj from '../Objects/ObjDetailFilm.js';
 
-export default class ItemFilm extends Component {
+export default class ItemFilm extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -27,11 +27,11 @@ export default class ItemFilm extends Component {
                 <View style={styles.containerTextAndIcon}>
                     <Text style={{ color: 'yellow', fontWeight: 'bold' }}>
                         IMDb
-                </Text>
+                    </Text>
                     <View style={styles.IMDb}>
                         <Text style={styles.textIMDb}>
                             9.5
-                    </Text>
+                        </Text>
                     </View>
                 </View>
                 {/* Circle number of episode */}
@@ -42,7 +42,7 @@ export default class ItemFilm extends Component {
                     <View style={styles.episodeNumber}>
                         <Text style={styles.textEp}>
                             10
-                    </Text>
+                        </Text>
                     </View>
                 </View>
             </View>
@@ -61,9 +61,9 @@ export default class ItemFilm extends Component {
                 {/* Container image and title */}
                 <View style={styles.cardContainer}>
                     {/* Container image */}
-                    <Image source={{ uri: 'https://upload.wikimedia.org/wikipedia/en/2/2f/One_Piece_DVD_17.png' }} style={styles.cardImage} />
+                    <Image source={{ uri: 'http://runt-of-the-web.com/wordpress/wp-content/uploads/2014/08/frozen.jpg' }} style={styles.cardImage} />
                     {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
-                    {this.renderEpisodeOrIMDb()}
+                    {/* {this.renderEpisodeOrIMDb()} */}
                     {/* Text title film with gradient */}
                     <LinearGradient
                         style={styles.cardTitleContainer}

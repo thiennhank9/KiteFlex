@@ -1,14 +1,21 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import windows from '../../Themes/Windows.js';
+
+const icon = Platform.select({
+    ios: {
+        fontSize: 32,
+        color: 'red',
+    },
+    android: {
+        fontSize: 40,
+        color: 'red',
+    }
+})
 
 export default styles = StyleSheet.create({
     hori: {
         flexDirection: 'row',
         alignItems: 'center'
-    },
-    headerContainer: {
-        height: 50,
-        backgroundColor: '#111111',
     },
     textMajor: {
         fontSize: 14,
@@ -26,7 +33,10 @@ export default styles = StyleSheet.create({
         fontSize: 13,
     },
     containerBackAndSearch: {
-        margin: 5,
+        paddingVertical: 5,
+        paddingHorizontal: 12,
+        height: 50,
+        backgroundColor: '#111111',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -107,9 +117,10 @@ export default styles = StyleSheet.create({
         alignItems: 'center'
     },
     iconSearch: {
-        borderRadius: 10,
+        borderRadius: 6,
+        padding: 4,
         backgroundColor: 'tomato',
-        marginRight: 5
+        alignItems: 'center',
     },
     detailContainer: {
         margin: 10
@@ -123,4 +134,6 @@ export default styles = StyleSheet.create({
         fontSize: 19,       
         margin: 10
     },
+    icon,
+
 })
