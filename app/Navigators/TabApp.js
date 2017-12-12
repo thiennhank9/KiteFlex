@@ -2,10 +2,10 @@ import { TabNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
 import {
     Home,
-    // New,
-    // Caring,
-    // Library,
-    // Profile
+    New,
+    Caring,
+    Library,
+    Profile
 } from '../Screens/index.js';
 
 const labelStyle = Platform.select({
@@ -35,10 +35,10 @@ const tabBarStyle = Platform.select({
 
 const TabApp = TabNavigator({
     Home: {screen: Home},
-    // New: {screen: New},
-    // Caring: {screen: Caring},
-    // Library: {screen: Library},
-    // Profile: {screen: Profile}   
+    New: {screen: New},
+    Caring: {screen: Caring},
+    Library: {screen: Library},
+    Profile: {screen: Profile}   
 }, {
     tabBarPosition: 'bottom',
     lazy: true,

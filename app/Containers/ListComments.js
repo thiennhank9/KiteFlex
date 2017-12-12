@@ -44,7 +44,7 @@ export default class ListComments extends Component {
                         style={styles.input}
                         underlineColorAndroid='rgba(0,0,0,0)'
                     />
-                    <OptimizedFlatList
+                    <FlatList
                         keyExtractor={this._keyExtractor}
                         style={{ marginTop: 10 }}
                         data={this.state.obj}
