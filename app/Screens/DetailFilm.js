@@ -40,7 +40,7 @@ export default class DetailFilm extends Component {
             <View style={styles.headerContainer}>
                 <View style={styles.containerBackAndSearch}>
                     <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('TabApp')}>
+                        onPress={() => this.props.navigation.goBack()}>
                         <Icon
                             name='keyboard-backspace'
                             size={40}
