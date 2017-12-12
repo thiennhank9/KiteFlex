@@ -27,12 +27,19 @@ export default class GridFilm extends Component {
 
     render() {
         return (
-            <OptimizedFlatList
-                numColumns={3}
-                style={styles.container}
-                data={this.state.ds}
-                renderItem={({ item }) => this.renderItemFilm(item)}
-            />
+            <View>
+            </View>
         )
     }
+
+    // render() {
+    //     return (
+    //         <OptimizedFlatList
+    //             numColumns={3}
+    //             style={styles.container}
+    //             data={this.state.ds}
+    //             renderItem={({ item }) => this.renderItemFilm(item)}
+    //         />
+    //     )
+    // }
 }

@@ -1,4 +1,55 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+
+const icon = Platform.select({
+    ios: {
+        fontSize: 24,
+        color: 'white',
+    },
+    android: {
+        fontSize: 32,
+        color: 'white',
+    }
+});
+
+
+const borderSearchBar = Platform.select({
+    ios: {
+        borderRadius: 5,
+    },
+    android: {
+
+    }
+});
+
+
+const CustomContainerIcon = Platform.select({
+    ios: {
+        marginLeft: 8,
+        borderRadius: 7,
+    },
+    android: {
+
+    }
+});
+
+const customIconMicrophone = Platform.select({
+    ios: {
+        opacity: 0.8,
+    },
+    android: {
+        opacity: 0.8,
+    }
+});
+
+const customInputSearch = Platform.select({
+    ios: {
+        opacity: 0.7,
+        fontSize: 18,
+    },
+    android: {
+        opacity: 0.7,
+    }
+});
 
 export default styles = StyleSheet.create({
     containerHeader: {
@@ -27,8 +78,8 @@ export default styles = StyleSheet.create({
         height: 40,
         marginLeft: 10,
         fontSize: 18,
-        marginTop: 7,
-        color: 'white'
+        color: 'white',
+        alignSelf: 'center',
     },
     containerIcon: {
         width: 40,
@@ -40,6 +91,10 @@ export default styles = StyleSheet.create({
     },
     clearButton: {
         borderRadius: 10,
-        
-    }
+    },
+    icon,
+    borderSearchBar,
+    CustomContainerIcon,
+    customIconMicrophone,
+    customInputSearch,
 });

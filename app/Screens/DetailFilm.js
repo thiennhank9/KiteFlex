@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, Text, Vibration, StatusBar, WebView } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar } from 'react-native';
 import styles from './Styles/DetailFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icons from 'react-native-vector-icons/Ionicons';
 import obj from '../Objects/ObjDetailFilm.js';
 import ListFilmByCategory from '../Containers/ListFilmByCategory.js';
 import ListComments from '../Containers/ListComments.js';
@@ -37,26 +38,20 @@ export default class DetailFilm extends Component {
 
     renderHeader() {
         return (
-            <View style={styles.headerContainer}>
-                <View style={styles.containerBackAndSearch}>
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.goBack()}>
-                        <Icon
-                            name='keyboard-backspace'
-                            size={40}
-                            color='red'
-
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Icon
-                            name='magnify'
-                            size={40}
-                            color='white'
-                            style={styles.iconSearch}
-                        />
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.containerBackAndSearch}>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.goBack()}>
+                    <Icons
+                        name='ios-arrow-back'
+                        style={styles.icon}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.iconSearch}>
+                    <Icon
+                        name='magnify'
+                        style={[ styles.icon, {color: 'white'} ]}
+                    />
+                </TouchableOpacity>
             </View>
         )
     }
@@ -209,17 +204,16 @@ export default class DetailFilm extends Component {
     }
 
     renderListInfo() {
-        if (!this.state.isShowedInfo)
+        // if (!this.state.isShowedInfo)
             return (
                 <TouchableOpacity
-                    onPress={() => this.setState({
-                        isShowedInfo: true
-                    })}>
+                    onPress={() => {this.setState({ isShowedInfo: true })}}>
                     <Text style={styles.textSeeMore}>
                         Xem thêm
                     </Text>
                 </TouchableOpacity>
             )
+
         return (
             <View style={{marginTop: 5}}>
                 {this.renderInfo('Đạo diễn :', this.state.obj.directors)}

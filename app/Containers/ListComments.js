@@ -3,6 +3,7 @@ import { FlatList, View, Text, TextInput } from 'react-native';
 import ItemComment from '../Components/ItemComment.js';
 import obj from '../Objects/ObjLsComment.js';
 import styles from './Styles/ListComments.js';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist'
 
 export default class ListComments extends Component {
     constructor(props) {
@@ -11,6 +12,8 @@ export default class ListComments extends Component {
             obj: obj
         }
     }
+
+    _keyExtractor = (item, index) => index;
 
     renderItemComment(item) {
         return (
@@ -27,6 +30,7 @@ export default class ListComments extends Component {
             </View>
         )
     }
+
     render() {
         return (
             <View style={{ backgroundColor: '#1C1C1C' }}>
@@ -35,12 +39,13 @@ export default class ListComments extends Component {
                         Nhận xét ({this.state.obj.length})
                     </Text>
                     <TextInput
-                        placeholder="Nhập bình luận đây nè các đồng dâm"
-                        placeholderTextColor='#828282'
+                        placeholder="Bình luận"
+                        placeholderTextColor='black'
                         style={styles.input}
                         underlineColorAndroid='rgba(0,0,0,0)'
                     />
-                    <FlatList
+                    <OptimizedFlatList
+                        keyExtractor={this._keyExtractor}
                         style={{ marginTop: 10 }}
                         data={this.state.obj}
                         renderItem={({ item }) => this.renderItemComment(item)}
