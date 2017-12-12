@@ -1,4 +1,4 @@
-import { Easing, Animated } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import TabApp from './TabApp.js';
 import {DetailFilm, FilmDetails} from '../Screens/index.js';

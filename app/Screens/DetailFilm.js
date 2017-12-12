@@ -204,17 +204,16 @@ export default class DetailFilm extends Component {
     }
 
     renderListInfo() {
-        if (!this.state.isShowedInfo)
+        // if (!this.state.isShowedInfo)
             return (
                 <TouchableOpacity
-                    onPress={() => this.setState({
-                        isShowedInfo: true
-                    })}>
+                    onPress={() => {this.setState({ isShowedInfo: true })}}>
                     <Text style={styles.textSeeMore}>
                         Xem thêm
                     </Text>
                 </TouchableOpacity>
             )
+
         return (
             <View style={{marginTop: 5}}>
                 {this.renderInfo('Đạo diễn :', this.state.obj.directors)}
