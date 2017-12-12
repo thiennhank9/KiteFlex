@@ -40,7 +40,7 @@ export default class DetailFilm extends Component {
         return (
             <View style={styles.containerBackAndSearch}>
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('TabApp')}>
+                    onPress={() => this.props.navigation.goBack()}>
                     <Icons
                         name='ios-arrow-back'
                         style={styles.icon}

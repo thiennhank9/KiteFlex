@@ -6,6 +6,7 @@ const icon = Platform.select({
         color: 'white',
     },
     android: {
+        fontSize: 32,
         color: 'white',
     }
 });
@@ -34,10 +35,9 @@ const CustomContainerIcon = Platform.select({
 const customIconMicrophone = Platform.select({
     ios: {
         opacity: 0.8,
-        fontSize: 24,
     },
     android: {
-        
+        opacity: 0.8,
     }
 });
 
@@ -47,7 +47,7 @@ const customInputSearch = Platform.select({
         fontSize: 18,
     },
     android: {
-        
+        opacity: 0.7,
     }
 });
 
