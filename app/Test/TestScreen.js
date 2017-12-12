@@ -7,8 +7,8 @@ import FilmDetails from '../Screens/FilmDetails.js';
 export default class TestScreen extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <DetailFilm />
+            <View style={{flex: 1}}>
+                <PlayVideo />
             </View>
         )
     }

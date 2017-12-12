@@ -16,8 +16,8 @@ import TitleControl from '../Components/TitleControl';
 import Orientation from 'react-native-orientation';
 
 //const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
-const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
-
+//const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
+const url_mp4= 'http://ic-1b4afd00-12f1d2-1bjdobr21.s.loris.llnwd.net/hien/12_2017/9_12/Brawl.in.Cell.Block.99.2017.1080p.HDrip.x264.SUB.mp4'
 export default class PlayVideo extends Component {
 
   state = {
