@@ -27,7 +27,7 @@ export default class ListFilmByCategory extends Component {
 
     render() {
         return (
-            <OptimizedFlatList
+            <FlatList
                 //style={{ backgroundColor: 'white' }}
                 keyExtractor={this._keyExtractor}
                 horizontal
