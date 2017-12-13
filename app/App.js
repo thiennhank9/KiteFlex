@@ -11,7 +11,7 @@ console.disableYellowBox = true;
 
 export default class App extends Component {
     render() {
-        const screens = isTest ? <TestAsyncStorage /> : <StackMainApp />
+        const screens = isTest ? <TestScreen /> : <StackMainApp />
         return (
             <Provider store={store}>
                 {screens}
