@@ -49,7 +49,8 @@ export default class DetailFilm extends Component {
                 <TouchableOpacity style={styles.iconSearch}>
                     <Icon
                         name='magnify'
-                        style={[ styles.icon, {color: 'white'} ]}
+                        size={35}
+                        color='white'
                     />
                 </TouchableOpacity>
             </View>

@@ -118,7 +118,7 @@ export default styles = StyleSheet.create({
     },
     iconSearch: {
         borderRadius: 6,
-        padding: 4,
+        //margin: 10,
         backgroundColor: 'tomato',
         alignItems: 'center',
     },
@@ -134,6 +134,5 @@ export default styles = StyleSheet.create({
         fontSize: 19,       
         margin: 10
     },
-    icon,
-
+    icon
 })

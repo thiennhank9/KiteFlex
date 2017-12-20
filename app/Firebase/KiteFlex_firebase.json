@@ -1,0 +1,61 @@
+{
+  "films": {
+    "movies": {
+      "us": [
+        {
+          "id": "mv_us_000001",
+          "status": "hd",
+          "title": {
+            "en": "First film",
+            "vn": "Phim thứ nhất"
+          },
+          "desciption": {
+            "en": "Film's description",
+            "vn": "Thông tin bộ phim"
+          },
+          "tags": "action, school, ecchi",
+          "info": {
+            "uri": "http://ic-1b4afd00-12f1d2-1bjdobr21.s.loris.llnwd.net/hien/12_2017/9_12/Brawl.in.Cell.Block.99.2017.1080p.HDrip.x264.SUB.mp4",
+            "IMDb": "9.5",
+            "directors": "Nhân đẹp trai, Nhân bá đạo",
+            "script": "Kịch bản",
+            "release": "2017",
+            "time": "42 min",
+            "country": "USA",
+            "language": "English",
+            "actors": "hot girl, hot boy"
+          }
+        }
+      ],
+      "kr": [
+
+      ],
+      "cn": [
+
+      ],
+      "vn": [
+
+      ]
+    },
+    "series": [
+
+    ],
+    "cartoons": [
+
+    ],
+    "shows": [
+
+    ],
+    "comming_soon": [
+
+    ]
+  },
+  "users": [
+    {
+      "uuid": "V1OKSgtdtEbR9RqsugFC85EYLLP2",
+      "email": "thiennhank9@gmail.com",
+      "name": "Nguyễn Thiện Nhân",
+      "sex": "male"
+    }
+  ]
+}

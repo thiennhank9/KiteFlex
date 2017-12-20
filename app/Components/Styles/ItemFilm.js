@@ -89,6 +89,7 @@ export default styles = StyleSheet.create({
     containerTextAndIcon: {
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight: 8,
     }
 })
