@@ -25,7 +25,7 @@ export default class ItemFilm extends PureComponent {
             <View style={styles.episodeContainer}>
                 {/* Text box of IMDb */}
                 <View style={styles.containerTextAndIcon}>
-                    <Text style={{ color: 'yellow', fontWeight: 'bold' }}>
+                    <Text style={{ color: 'gold', fontWeight: 'bold', fontSize: 12 }}>
                         IMDb
                     </Text>
                     <View style={styles.IMDb}>
@@ -36,12 +36,12 @@ export default class ItemFilm extends PureComponent {
                 </View>
                 {/* Circle number of episode */}
                 <View style={styles.containerTextAndIcon}>
-                    <Text style={{ color: 'black', fontWeight: 'bold' }}>
+                    <Text style={{ color: 'darkblue', fontWeight: 'bold', fontSize: 12 }}>
                         Tập
                     </Text>
                     <View style={styles.episodeNumber}>
                         <Text style={styles.textEp}>
-                            10
+                            999
                         </Text>
                     </View>
                 </View>

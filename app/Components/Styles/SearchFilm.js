@@ -14,7 +14,7 @@ const icon = Platform.select({
 
 const borderSearchBar = Platform.select({
     ios: {
-        borderRadius: 5,
+        //borderRadius: 5,
     },
     android: {
 
@@ -64,12 +64,12 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         height: 40,
         borderRadius: 10,
-        backgroundColor: 'darkslategray',
-        margin: 1,
+        backgroundColor: 'black',
+        //margin: 1,
     },
     containerInput: {
         flexDirection: 'row',
-        flex: 9/10,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -78,7 +78,7 @@ export default styles = StyleSheet.create({
         height: 40,
         marginLeft: 10,
         fontSize: 18,
-        color: 'white',
+        color: 'gold',
         alignSelf: 'center',
     },
     containerIcon: {

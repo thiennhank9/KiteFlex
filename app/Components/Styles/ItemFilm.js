@@ -21,11 +21,11 @@ export default styles = StyleSheet.create({
         backgroundColor: 'black',
         flexDirection: 'column',
         //margin: 5,
-        borderRadius: 8
+        //borderRadius: 8
     },
     cardImage: {
         // width: window.width / 3,
-        margin: 4,
+        margin: 1,
         borderRadius: 4,
         height: 160,
         // borderTopLeftRadius: 4,
@@ -52,30 +52,32 @@ export default styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     episodeContainer: {
-        width: windows.width / 3 - 16,
+        width: windows.width / 3,
         height: 30,
         position: 'absolute',
-        marginTop: 12,
-        marginLeft: 8,
+        marginTop: 3,
+        marginLeft: 2,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     IMDb: {
-        width: 40,
-        height: 30,
+        width: 30,
+        height: 20,
         backgroundColor: 'maroon',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5
+        borderRadius: 5,
+        //flexDirection: 'row'
     },
     textIMDb: {
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 13
     },
     episodeNumber: {
-        width: 30,
-        height: 30,
-        borderRadius: 15,
+        width: 25,
+        height: 25,
+        borderRadius: 12.5,
         backgroundColor: 'gold',
         borderWidth: 1,
         borderColor: 'darkviolet',
@@ -84,7 +86,8 @@ export default styles = StyleSheet.create({
         textAlign: 'center'
     },
     textEp: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 12
     },
     containerTextAndIcon: {
         flexDirection: 'column',

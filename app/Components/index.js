@@ -6,6 +6,7 @@ import ItemFilm from './ItemFilm.js';
 import PlayVideo from './PlayVideo.js';
 import ItemCategory from './ItemCategory.js';
 import ItemComment from './ItemComment.js';
+import StatusBarApp from './StatusBarApp.js';
 
 export {
     SearchFilm,
@@ -15,5 +16,6 @@ export {
     ItemFilm,
     PlayVideo,
     ItemCategory,
-    ItemComment
+    ItemComment,
+    StatusBarApp
 }

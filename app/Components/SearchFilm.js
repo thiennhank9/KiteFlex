@@ -30,6 +30,7 @@ export default class SearchFilm extends Component {
                     <Icon
                         name='close-circle'
                         size={20}
+                        color='slategray'
                     />
                 </TouchableOpacity>
             )
@@ -37,17 +38,29 @@ export default class SearchFilm extends Component {
             return null;
     }
 
+    renderMicIcon() {
+        return (
+            <TouchableOpacity
+                onPress={() => this.recog()}>
+                <Icon
+                    name='microphone'
+                    style={[styles.icon, styles.customIconMicrophone]}
+                />
+            </TouchableOpacity>
+        )
+    }
     render() {
         return (
             <View style={styles.containerHeader}>
-                <View style={[ styles.containerSearchBar, styles.borderSearchBar ]}>
+                <View style={[styles.containerSearchBar, styles.borderSearchBar]}>
                     {/* Container search and close and voice */}
                     <View style={styles.containerInput}>
+                        {this.renderMicIcon()}
                         <TextInput
                             value={this.state.textSearch}
-                            style={[ styles.inputSearch, styles.customInputSearch ]}
+                            style={[styles.inputSearch, styles.customInputSearch]}
                             placeholder='Tìm kiếm Nhân đẹp trai'
-                            placeholderTextColor='whitesmoke'
+                            placeholderTextColor='gold'
                             underlineColorAndroid='rgba(0,0,0,0)'
                             //clearButtonMode='while-editing' // only on IOS mode
                             blurOnSubmit={true}
@@ -55,21 +68,15 @@ export default class SearchFilm extends Component {
                         />
                         {this.renderClearButton()}
                         {/* Button voice recog */}
-                        <TouchableOpacity
-                            onPress={() => this.recog()}>
-                            <Icon
-                                name='microphone'
-                                style={[ styles.icon, styles.customIconMicrophone ]}
-                            />
-                        </TouchableOpacity>
+
                     </View>
                     {/* Button search */}
-                    <View style={[ styles.containerIcon, styles.CustomContainerIcon ]}>
+                    <TouchableOpacity style={[styles.containerIcon, styles.CustomContainerIcon]}>
                         <Icon
                             name='magnify'
                             style={styles.icon}
                         />
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         )

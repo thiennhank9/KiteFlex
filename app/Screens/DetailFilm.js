@@ -6,6 +6,7 @@ import Icons from 'react-native-vector-icons/Ionicons';
 import obj from '../Objects/ObjDetailFilm.js';
 import ListFilmByCategory from '../Containers/ListFilmByCategory.js';
 import ListComments from '../Containers/ListComments.js';
+import StatusBarApp from '../Components/StatusBarApp.js';
 
 export default class DetailFilm extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class DetailFilm extends Component {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#111111' }}>
-                <StatusBar hidden />
+                <StatusBarApp />
                 <ScrollView style={{ backgroundColor: '#111111' }}>
                     {this.renderHeader()}
                     {this.renderImageFilm()}
@@ -178,13 +179,13 @@ export default class DetailFilm extends Component {
                         name='bookmark-plus'
                         size={25}
                         color='white'
-                        style={{marginLeft: 10}}
+                        style={{ marginLeft: 10 }}
                     />
                     <Icon
                         name='download'
                         size={25}
                         color='white'
-                        style={{marginLeft: 10}}
+                        style={{ marginLeft: 10 }}
                     />
                 </View>
             </View>
@@ -208,7 +209,7 @@ export default class DetailFilm extends Component {
         if (!this.state.isShowedInfo)
             return (
                 <TouchableOpacity
-                    onPress={() => {this.setState({ isShowedInfo: true })}}>
+                    onPress={() => { this.setState({ isShowedInfo: true }) }}>
                     <Text style={styles.textSeeMore}>
                         Xem thêm
                     </Text>
@@ -216,7 +217,7 @@ export default class DetailFilm extends Component {
             )
 
         return (
-            <View style={{marginTop: 5}}>
+            <View style={{ marginTop: 5 }}>
                 {this.renderInfo('Đạo diễn :', this.state.obj.directors)}
                 {this.renderInfo('Kịch bản :', this.state.obj.directors)}
                 {this.renderInfo('Ngày phát hành :', this.state.obj.directors)}
