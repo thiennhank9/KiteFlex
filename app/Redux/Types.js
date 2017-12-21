@@ -1,3 +1,3 @@
 export default types = {
-    EXAMPLE_TYPE: 'EXAMPLE_TYPE'
+    ADD_LIST_TOP_POPULARITY: 'ADD_LIST_TOP_POPULARITY'
 }
