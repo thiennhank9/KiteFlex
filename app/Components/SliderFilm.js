@@ -25,8 +25,7 @@ export default class SliderFilm extends Component {
             .then(responseJson => {
                 let results = responseJson.results;
                 let list_images = [];
-                
-
+            
                 //get the list images from json
                 results.forEach(element => {
                    

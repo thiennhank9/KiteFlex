@@ -17,6 +17,7 @@ import Love from './Love.js';
 import WatchLater from './WatchLater.js';
 import DetailFilm from './DetailFilm.js';
 import FilmDetails from './FilmDetails'
+import Loading from './Loading.js';
 
 export {
     Home,
@@ -37,5 +38,6 @@ export {
     Love,
     WatchLater,
     DetailFilm,
-    FilmDetails
+    FilmDetails,
+    Loading
 }

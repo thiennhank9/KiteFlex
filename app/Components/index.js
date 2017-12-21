@@ -7,6 +7,8 @@ import PlayVideo from './PlayVideo.js';
 import ItemCategory from './ItemCategory.js';
 import ItemComment from './ItemComment.js';
 import StatusBarApp from './StatusBarApp.js';
+import CustomIndicators from './CustomIndicators.js';
+import LoginIndicator from './LoginIndicator.js';
 
 export {
     SearchFilm,
@@ -17,5 +19,7 @@ export {
     PlayVideo,
     ItemCategory,
     ItemComment,
-    StatusBarApp
+    StatusBarApp,
+    CustomIndicators,
+    LoginIndicator
 }
