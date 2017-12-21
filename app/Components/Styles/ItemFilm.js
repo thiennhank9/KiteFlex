@@ -82,8 +82,7 @@ export default styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'darkviolet',
         justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center'
+        alignItems: 'center'
     },
     textEp: {
         fontWeight: 'bold',

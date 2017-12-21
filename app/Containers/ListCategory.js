@@ -32,7 +32,7 @@ export default class ListCategory extends Component {
         return (
             <View>
                 {this.state.lsCategory.map((item) => (
-                        this.renderItemCategory(item)
+                    this.renderItemCategory(item)
                 ))}
             </View>
         )

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {View} from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import ImageSlider from 'react-native-image-slider';
 import styles from './Styles/SliderFilm.js';
 import consts from '../Constants/Constants.js';
+
+const url_request = 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=1';
 
 export default class SliderFilm extends Component {
     constructor(props) {
@@ -10,36 +12,76 @@ export default class SliderFilm extends Component {
 
         this.state = {
             position: 1,
-            interval: null
-        }
+            interval: null,
+            list_images: []
+        };
+
+    }
+
+    getListImagesFilmPopularity() {
+        return fetch(url_request)
+            .then(response => response.json())
+            .then(responseJson => {
+                let results = responseJson.results;
+                let list_images = [];
+                let url_base_image = 'https://image.tmdb.org/t/p/w500';
+
+                //get the list images from json
+                results.forEach(element => {
+                    //push the url of image
+                    list_images.push(url_base_image + element.backdrop_path);
+                });
+
+                //set state list image
+                this.setState({
+                    list_images: list_images
+                })
+
+                console.log(this.state.list_images);
+                console.log(this.state.list_images.length)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 
     componentWillMount() {
-        this.setState({
-            interval: setInterval(() => {
-                this.setState({ position: this.state.position === 2 ? 0 : this.state.position + 1 });
-            }, consts.time_transfer)
-        });
+            this.setState({
+                interval: setInterval(() => {
+                    this.setState({ position: this.state.position === this.state.list_images.length - 1 ? 0 : this.state.position + 1 });
+                }, consts.time_transfer)
+            });
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.interval);
+            clearInterval(this.state.interval);
     }
 
+    componentDidMount() {
+        //make sure to run just once
+        if (this.state.list_images.length == 0)
+            this.getListImagesFilmPopularity();
+    }
 
-    render() {
+    renderIndicateWhileFetching() {
         return (
-            <View style={styles.container}>
-                <ImageSlider
-                    images={[
-                        'https://www.planwallpaper.com/static/images/9-credit-1.jpg',
-                        'https://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg',
-                        'https://www.planwallpaper.com/static/images/Child-Girl-with-Sunflowers-Images.jpg'
-                    ]}
-                    position={this.state.position}
-                    onPositionChanged={position => this.setState({ position })}
-                />
+            <View style={{ flex: 1, paddingTop: 20 }}>
+                <ActivityIndicator />
             </View>
         )
+    }
+    render() {
+        if (this.state.list_images.length == 0)
+            return this.renderIndicateWhileFetching();
+        else
+            return (
+                <View style={styles.container}>
+                    <ImageSlider
+                        images={this.state.list_images}
+                        position={this.state.position}
+                        onPositionChanged={position => this.setState({ position })}
+                    />
+                </View>
+            )
     }
 }
