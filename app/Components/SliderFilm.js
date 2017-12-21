@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import ImageSlider from 'react-native-image-slider';
+import ImageSlider from '../Libs/ImageSlider';
 import styles from './Styles/SliderFilm.js';
 import consts from '../Constants/Constants.js';
 
@@ -29,7 +29,12 @@ export default class SliderFilm extends Component {
                 //get the list images from json
                 results.forEach(element => {
                     //push the url of image
-                    list_images.push(url_base_image + element.backdrop_path);
+                    let objElement = {
+                        uri: url_base_image + element.backdrop_path,
+                        title: element.title
+                    }
+
+                    list_images.push(objElement);
                 });
 
                 //set state list image
