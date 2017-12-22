@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Orientation from 'react-native-orientation';
 import StatusBarApp from '../Components/StatusBarApp.js';
 
+
 export default class Home extends Component {
     static navigationOptions = {
         tabBarLabel: 'Khám phá',
@@ -24,6 +25,7 @@ export default class Home extends Component {
     }
 
     render() {
+        
         return (
             <View style={styles.container}>
                 <StatusBarApp />

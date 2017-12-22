@@ -10,14 +10,12 @@ export default styles = StyleSheet.create({
     },
     containerIndicator: {
         flexDirection: 'column',
-        //backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center', 
         height: 100
     },
     textLoading: {
         fontSize: 20,
-        //fontWeight: 'bold',
         color: 'chocolate'
     }
 })
