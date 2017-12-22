@@ -55,7 +55,7 @@ export default class Loading extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBarApp />
+                <StatusBarApp color='chocolate'/>
                 <View style={styles.containerIndicator}>
                     <PulseIndicator
                         size={100}

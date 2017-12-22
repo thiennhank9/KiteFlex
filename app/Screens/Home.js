@@ -27,7 +27,7 @@ export default class Home extends Component {
         
         return (
             <View style={styles.container}>
-                <StatusBarApp />
+                <StatusBarApp color='darkslategray'/>
                 <SearchFilm />
                 <ScrollHome navigation={this.props.navigation} />
             </View>
