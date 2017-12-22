@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     textTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        backgroundColor: 'transparent',
     },
     container: {
         flexDirection: 'row',
