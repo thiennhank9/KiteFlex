@@ -4,12 +4,21 @@ const image_aspect_ratio = 281 / 500;
 export default styles = StyleSheet.create({
     titleContainer: {
         position: 'absolute',
-        marginTop: Dimensions.get('window').width * (image_aspect_ratio) * 3 / 4,
+        flexDirection: 'column',
+        marginTop: Dimensions.get('window').width * (image_aspect_ratio) * 3 / 4 - 20,
+        marginLeft: 20
     },
     textTitle: {
-        fontSize: 17,
+        fontSize: 20,
         fontWeight: 'bold',
-        color: 'darkorange',
+        color: 'white',
+        backgroundColor: 'transparent',
+    },
+    numberVote: {
+        fontSize: 15,
+        marginLeft: 10,
+        fontWeight: 'bold',
+        color: 'red',
         backgroundColor: 'transparent',
     },
     container: {

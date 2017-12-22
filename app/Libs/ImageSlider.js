@@ -12,6 +12,7 @@ import {
     Dimensions
 } from 'react-native';
 import styles from './Styles/ImageSlider.js';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const reactNativePackage = require('react-native/package.json');
 const splitVersion = reactNativePackage.version.split('.');
@@ -136,7 +137,9 @@ export default class ImageSlider extends Component {
                     const imageObject = typeof image === 'string' ? { uri: image.uri } : image;
                     const imageComponent =
                         //This is the component render each item IMAGE
-                        <View key={image.key}>
+                        <View
+                            style={{ flexDirection: 'column' }}
+                            key={image.key}>
                             <Image
                                 key={image.key}
                                 source={imageObject}
@@ -144,6 +147,16 @@ export default class ImageSlider extends Component {
                             />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.textTitle}> {image.title} </Text>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Icon
+                                        name='star'
+                                        size={20}
+                                        color='yellow'
+                                    />
+                                    <Text style={styles.numberVote}>
+                                        {image.vote_average}
+                                    </Text>
+                                </View>
                             </View>
                         </View>
                     if (this.props.onPress) {
