@@ -14,7 +14,7 @@ export default class App extends Component {
     render() {
         const screens = isTest ? <TestScreen /> : <StackMainApp />
         return (
-            <Provider store={store}>
+            <Provider store={store}>     
                 {screens}
             </Provider>
         );
