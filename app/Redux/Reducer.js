@@ -2,14 +2,14 @@ import initialState from './InitialState.js';
 import types from './Types.js';
 
 export default reducer = (state = initialState, action) => {
-    const {ex_state} = state;
+    const {list_top_popularity} = state;
     const {type, payload} = action;
     
     switch(type) {
-        case types.EXAMPLE_TYPE: {
+        case types.ADD_LIST_TOP_POPULARITY: {
             return {
                 ...state,
-                ex_state: ex_state + ' dispatched!'
+                list_top_popularity: payload
             }
         }
 
