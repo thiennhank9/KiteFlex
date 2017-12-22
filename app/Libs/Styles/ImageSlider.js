@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
     titleContainer: {
         position: 'absolute',
         flexDirection: 'column',
-        marginTop: Dimensions.get('window').width * (image_aspect_ratio) * 3 / 4 - 20,
+        marginTop: Dimensions.get('window').width * (image_aspect_ratio) * 3 / 4 - 40,
         marginLeft: 20
     },
     textTitle: {
@@ -14,9 +14,15 @@ export default styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
     },
+    textOverview: {
+        fontSize: 12,
+        color: 'white',
+        width: Dimensions.get('window').width - 70,
+        backgroundColor: 'transparent',
+    },
     numberVote: {
         fontSize: 15,
-        marginLeft: 10,
+        marginLeft: 2,
         fontWeight: 'bold',
         color: 'red',
         backgroundColor: 'transparent',

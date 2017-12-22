@@ -24,7 +24,7 @@ export default class HeaderCategory extends PureComponent {
                     onPress={() => this.clickToExpand()}
                 >
                     <Text style={styles.textAdd}>
-                        Thêm
+                        More
                     </Text>
                 </TouchableOpacity>
             </View>

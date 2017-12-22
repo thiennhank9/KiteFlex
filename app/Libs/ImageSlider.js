@@ -137,7 +137,8 @@ export default class ImageSlider extends Component {
                     const imageObject = typeof image === 'string' ? { uri: image.uri } : image;
                     const imageComponent =
                         //This is the component render each item IMAGE
-                        <View
+                        <TouchableOpacity
+                            onPress={() => console.log('Pressed image with index: ' + image.key.toString() + ', title: ' + image.title.toString())}
                             style={{ flexDirection: 'column' }}
                             key={image.key}>
                             <Image
@@ -146,7 +147,6 @@ export default class ImageSlider extends Component {
                                 style={{ height, width }}
                             />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.textTitle}> {image.title} </Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Icon
                                         name='star'
@@ -157,8 +157,16 @@ export default class ImageSlider extends Component {
                                         {image.vote_average}
                                     </Text>
                                 </View>
+                                <Text style={styles.textTitle}> {image.title} </Text>
+                                <Text
+                                    style={styles.textOverview}
+                                    numberOfLines={2}
+                                    ellipsizeMode='tail'>
+                                    {image.overview}
+                                </Text>
+
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     if (this.props.onPress) {
                         return (
                             <TouchableOpacity

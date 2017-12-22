@@ -31,7 +31,8 @@ export default class Loading extends Component {
                         key: index,
                         uri: api.url_get_image(element.backdrop_path),
                         title: element.title,
-                        vote_average: element.vote_average
+                        vote_average: element.vote_average,
+                        overview: element.overview
                     }
 
                     //push the image's object
