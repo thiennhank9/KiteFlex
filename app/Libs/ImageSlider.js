@@ -171,9 +171,9 @@ export default class ImageSlider extends Component {
                     const imageObject = typeof image === 'string' ? { uri: image.uri } : image;
                     const imageComponent =
                         //This is the component render each item IMAGE
-                        <View>
+                        <View key={image.key}>
                             <Image
-                                key={index}
+                                key={image.key}
                                 source={imageObject}
                                 style={{ height, width }}
                             />
