@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StatusBar
 } from 'react-native';
 import styles from './Styles/Home.js';
 import { SearchFilm } from '../Components/index.js';

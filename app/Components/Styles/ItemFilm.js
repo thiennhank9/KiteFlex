@@ -72,7 +72,7 @@ export default styles = StyleSheet.create({
     textIMDb: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 13
+        fontSize: 13,
     },
     episodeNumber: {
         width: 25,
@@ -86,12 +86,13 @@ export default styles = StyleSheet.create({
     },
     textEp: {
         fontWeight: 'bold',
-        fontSize: 12
+        fontSize: 12,
     },
     containerTextAndIcon: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 8,
+        backgroundColor: 'transparent',
     }
 })

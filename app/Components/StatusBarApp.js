@@ -7,6 +7,7 @@ export default class StatusBarApp extends Component {
             <StatusBar
                 backgroundColor="black"
                 barStyle="light-content"
+                hidden={true}
             />
         )
     }
