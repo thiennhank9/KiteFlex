@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ScrollOptimized from '../Screens/ScrollOptimized.js';
-
+import Login from '../Screens/Login';
 export default class TestScreen extends Component {
     render() {
         return (
-            <ScrollOptimized />
+            <View style={{ flex: 1 }}>
+                <Login />
+            </View>
         )
     }
 }
