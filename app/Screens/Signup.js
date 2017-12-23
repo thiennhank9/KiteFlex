@@ -15,7 +15,8 @@ export default class LaunchScreen extends Component {
             press: false,
             isLoading: false,
             email: null,
-            password: null
+            password: null,
+            confirmPassword: null
         };
         this.showPass = this.showPass.bind(this);
 
@@ -32,7 +33,7 @@ export default class LaunchScreen extends Component {
     }
 
     _onPress() {
-        this.onSignin()
+        this.onSignup()
         if (this.state.isLoading) return;
 
         this.setState({isLoading: true});
@@ -68,13 +69,13 @@ export default class LaunchScreen extends Component {
         ).start();
     }
 
-    onSignin () {
+    onSignup () {
         console.log('onSignin', this.state.email + '/' + this.state.password)
-        firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(() => console.log('Success'))
             .catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
+                var errorCode = error.code;
+                var errorMessage = error.message;
                 Alert.alert(
                     'Something went wrong!',
                     errorMessage,
@@ -83,8 +84,8 @@ export default class LaunchScreen extends Component {
                     ],
                     { cancelable: false }
                 )
-            console.log(error.message)
-        })
+                console.log(error.message)
+            })
     }
 
     render() {
@@ -131,6 +132,20 @@ export default class LaunchScreen extends Component {
                                    value={this.state.password}
                         />
                     </View>
+                    <View style={{marginTop: 20}}/>
+                    <View style={styles.inputWrapper}>
+                        <Icons name='ios-lock'
+                               style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40}}
+                        />
+                        <TextInput style={styles.input}
+                                   placeholder='Confirm Password'
+                                   placeholderTextColor='white'
+                                   underlineColorAndroid='transparent'
+                                   secureTextEntry
+                                   onChangeText={text => this.setState({confirmPassword: text})}
+                                   value={this.state.confirmPassword}
+                        />
+                    </View>
                     <View style={styles.container}>
                         <Animated.View style={{width: changeWidth}}>
                             <TouchableOpacity style={styles.button}
@@ -139,7 +154,7 @@ export default class LaunchScreen extends Component {
                                 {this.state.isLoading ?
                                     <Image source={{uri: 'https://i.stack.imgur.com/181Qp.gif'}} style={styles.image}/>
                                     :
-                                    <Text style={styles.text}>LOGIN</Text>
+                                    <Text style={styles.text}>SIGN UP</Text>
                                 }
                             </TouchableOpacity>
                         </Animated.View>
@@ -176,7 +191,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        marginTop: 80,
+        marginTop: 50,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
