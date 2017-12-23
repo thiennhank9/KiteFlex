@@ -31,11 +31,20 @@ export default class ListFilmByCategory extends Component {
                 //only get 7 elements from json
                 for (let i = 0; i < 7; i++) {
                     let element = results[i];
+
+                    let title_image = '';
+                    console.log(element.title)
+                    console.log(element.name)
+                    if (element.title != undefined)
+                        title_image = element.title;
+                    else
+                        title_image = element.name;
+
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,
                         uri: api.url_get_image(element.poster_path),
-                        title: element.title,
+                        title: title_image,
                         id_movie: element.id
                     }
                     list_images.push(objElement);
