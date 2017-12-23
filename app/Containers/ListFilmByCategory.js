@@ -36,6 +36,7 @@ export default class ListFilmByCategory extends Component {
                         key: i,
                         uri: api.url_get_image(element.poster_path),
                         title: element.title,
+                        id_movie: element.id
                     }
                     list_images.push(objElement);
                 }
@@ -68,8 +69,6 @@ export default class ListFilmByCategory extends Component {
             <ItemFilm
                 navigation={this.props.navigation}
                 item={item}
-                uri={item.uri}
-                name={item.title}
             />
         )
     }

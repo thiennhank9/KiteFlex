@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import styles from './Styles/ImageSlider.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import actionCreators from '../Redux/ActionsCreator.js';
 
 const reactNativePackage = require('react-native/package.json');
 const splitVersion = reactNativePackage.version.split('.');
@@ -135,10 +136,18 @@ export default class ImageSlider extends Component {
                 style={[styles.container, this.props.style, { height: height }]}>
                 {this.props.images.map((image, index) => {
                     const imageObject = typeof image === 'string' ? { uri: image.uri } : image;
+
+                    let id_movie = image.id_movie; //navigate to DetailFilm with id_movie
+
                     const imageComponent =
                         //This is the component render each item IMAGE
                         <TouchableOpacity
-                            onPress={() => console.log('Pressed image with index: ' + image.key.toString() + ', title: ' + image.title.toString())}
+                            onPress={() => {
+                                store.dispatch(actionCreators.send_id_movie(id_movie))
+                                console.log('ImageSlider - ID_Movie clicked is ' + id_movie)
+                                this.props.navigation.navigate('DetailFilm')
+                            }
+                            }
                             style={{ flexDirection: 'column' }}
                             key={image.key}>
                             <Image
@@ -168,7 +177,6 @@ export default class ImageSlider extends Component {
                                     ellipsizeMode='tail'>
                                     {image.overview}
                                 </Text>
-
                             </View>
                         </TouchableOpacity>
                     if (this.props.onPress) {

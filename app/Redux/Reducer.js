@@ -2,7 +2,10 @@ import initialState from './InitialState.js';
 import types from './Types.js';
 
 export default reducer = (state = initialState, action) => {
-    const {list_top_popularity} = state;
+    const {
+        list_top_popularity,
+        id_movie
+    } = state;
     const {type, payload} = action;
     
     switch(type) {
@@ -13,6 +16,12 @@ export default reducer = (state = initialState, action) => {
             }
         }
 
+        case types.SEND_ID_MOVIE: {
+            return {
+                ...state,
+                id_movie: payload
+            }
+        }
         return state;
     }
 }

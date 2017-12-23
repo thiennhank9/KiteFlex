@@ -17,6 +17,10 @@ export default class DetailFilm extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log('Current DetailFilm - ID_Movie is ' + store.getState().id_movie)
+    }
+
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#111111' }}>
