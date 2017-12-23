@@ -37,7 +37,7 @@ export default class LaunchScreen extends Component {
             this.buttonAnimated,
             {
                 toValue: 1,
-                duration: 200,
+                duration: 1000,
                 easing: Easing.linear
             }
         ).start();
@@ -51,7 +51,7 @@ export default class LaunchScreen extends Component {
             this.setState({isLoading: false});
             this.buttonAnimated.setValue(0);
             this.growAnimated.setValue(0);
-        }, 2300);
+        }, 6000);
     }
 
     _onGrow() {
@@ -59,7 +59,7 @@ export default class LaunchScreen extends Component {
             this.growAnimated,
             {
                 toValue: 1,
-                duration: 200,
+                duration: 1000,
                 easing: Easing.linear
             }
         ).start();
@@ -79,6 +79,7 @@ export default class LaunchScreen extends Component {
             <View>
                 <StatusBar translucent={true} backgroundColor='transparent' barStyle='light-content'/>
                 <Image style={styles.wallpaper} source={{uri: 'https://i.pinimg.com/736x/25/49/28/2549288722de52f12d4747a538e5ae06--iphone-backgrounds-cute-backgrounds-wallpapers.jpg'}} resizeMode='cover'/>
+                <Animated.View style={[styles.circle, {transform: [{scale: changeScale}]}]}/>
                 <ScrollView>
                     <Image style={styles.logo} source={{uri: 'http://static.appstore.vn/a/uploads/thumbnails/022017/aphim-xem-phim-hd-online_icon.png'}}/>
                     <View style={{marginTop: 150}}/>
@@ -101,27 +102,20 @@ export default class LaunchScreen extends Component {
                                    placeholderTextColor='white'
                                    underlineColorAndroid='transparent' />
                     </View>
-                    {/*<TouchableOpacity
-                        activeOpacity={0.7}
-                        style={styles.btnEye}
-                        onPress={this.showPass}>
-                        <Image source={Images.icEye} style={styles.iconEye}/>
-                    </TouchableOpacity>*/}
+                    <View style={styles.container}>
+                        <Animated.View style={{width: changeWidth}}>
+                            <TouchableOpacity style={styles.button}
+                                              onPress={this._onPress}
+                                              activeOpacity={1}>
+                                {this.state.isLoading ?
+                                    <Image source={{uri: 'https://i.stack.imgur.com/181Qp.gif'}} style={styles.image}/>
+                                    :
+                                    <Text style={styles.text}>LOGIN</Text>
+                                }
+                            </TouchableOpacity>
+                        </Animated.View>
+                    </View>
                 </ScrollView>
-                <View style={styles.container}>
-                    <Animated.View style={{width: changeWidth}}>
-                        <TouchableOpacity style={styles.button}
-                                          onPress={this._onPress}
-                                          activeOpacity={1}>
-                            {this.state.isLoading ?
-                                <Image source={{uri: 'https://i.stack.imgur.com/181Qp.gif'}} style={styles.image}/>
-                                :
-                                <Text style={styles.text}>LOGIN</Text>
-                            }
-                        </TouchableOpacity>
-                        <Animated.View style={[styles.circle, {transform: [{scale: changeScale}]}]}/>
-                    </Animated.View>
-                </View>
             </View>
         )
     }
@@ -136,7 +130,9 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignSelf: 'center',
-        marginTop: 70
+        marginTop: 70,
+        width: 80,
+        height: 80
     },
     btnEye: {
         position: 'absolute',
@@ -151,7 +147,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        marginTop: 20,
+        marginTop: 80,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
@@ -179,8 +175,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     image: {
-        width: 24,
-        height: 24,
+        width: 120,
+        height: 120,
     },
     input: {
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
