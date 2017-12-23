@@ -7,6 +7,7 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import api from '../APIs/TMDb_Config.js';
 import FetchingIndicator from '../Components/FetchingIndicator.js';
 import objHash from '../Objects/HashCategoryAndUrl.js';
+import API from '../APIs/TMDb_Config';
 
 export default class ListFilmByCategory extends Component {
     constructor(props) {
@@ -56,6 +57,10 @@ export default class ListFilmByCategory extends Component {
 
         //find url by each category
         let url = objHash[this.props.category]
+
+        //Use for detail firm, find list movies with id genre
+        if (this.props.genre_id)
+            url = API.url_request_genre_movies(this.props.genre_id);
 
         //check if the category is not in the list
         if (url !== undefined)
