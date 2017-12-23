@@ -49,6 +49,6 @@ export default lsCategory = [
     },
     {
         key: 12,
-        category: 'Tow TV Shows'
+        category: 'Top TV Shows'
     }
 ]

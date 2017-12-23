@@ -20,11 +20,28 @@ export default styles = StyleSheet.create({
         width: Dimensions.get('window').width - 70,
         backgroundColor: 'transparent',
     },
+    containerIcon: {
+        width: 22,
+        height: 22,
+        borderRadius: 11,
+        backgroundColor: 'yellow',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    containerMarkNumber: {
+        width: 40,
+        height: 22,
+        borderRadius: 4,
+        backgroundColor: 'brown',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10
+    },
     numberVote: {
         fontSize: 15,
         marginLeft: 2,
         fontWeight: 'bold',
-        color: 'red',
+        color: 'darkorange',
         backgroundColor: 'transparent',
     },
     container: {

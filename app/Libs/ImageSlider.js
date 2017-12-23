@@ -148,14 +148,18 @@ export default class ImageSlider extends Component {
                             />
                             <View style={styles.titleContainer}>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Icon
-                                        name='star'
-                                        size={20}
-                                        color='yellow'
-                                    />
-                                    <Text style={styles.numberVote}>
-                                        {image.vote_average}
-                                    </Text>
+                                    <View style={styles.containerIcon}>
+                                        <Icon
+                                            name='star'
+                                            size={20}
+                                            color='red'
+                                        />
+                                    </View>
+                                    <View style={styles.containerMarkNumber}>
+                                        <Text style={styles.numberVote}>
+                                            {image.vote_average}
+                                        </Text>
+                                    </View>
                                 </View>
                                 <Text style={styles.textTitle}> {image.title} </Text>
                                 <Text

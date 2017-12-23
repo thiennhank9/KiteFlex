@@ -6,6 +6,7 @@ import { ItemFilm } from '../Components/index.js';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import api from '../APIs/TMDb_Config.js';
 import FetchingIndicator from '../Components/FetchingIndicator.js';
+import objHash from '../Objects/HashCategoryAndUrl.js';
 
 export default class ListFilmByCategory extends Component {
     constructor(props) {
@@ -20,26 +21,24 @@ export default class ListFilmByCategory extends Component {
         this.getListFilmByCategory()
     }
 
-    getSuggestion() {
-        return fetch(api.url_request_suggestions)
+    getListFilmFromUrl(url) {
+        return fetch(url)
             .then(response => response.json())
             .then(responseJson => {
                 let results = responseJson.results;
                 let list_images = [];
 
-                //get the list images from json
-                results.forEach((element, index) => {
-
+                //only get 7 elements from json
+                for (let i = 0; i < 7; i++) {
+                    let element = results[i];
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
-                        key: index,
+                        key: i,
                         uri: api.url_get_image(element.poster_path),
                         title: element.title,
                     }
-
-                    //push the image's object
                     list_images.push(objElement);
-                });
+                }
 
                 this.setState({
                     lsFilmByCategory: list_images,
@@ -47,17 +46,21 @@ export default class ListFilmByCategory extends Component {
                 })
             })
             .catch((error) => {
+                //need to handle error
                 console.error(error)
             })
     }
 
     getListFilmByCategory() {
-        switch (this.props.category) {
-            case 'Suggestions':
-                this.getSuggestion();
-                break;
-            default:
-        }
+
+        //find url by each category
+        let url = objHash[this.props.category]
+
+        //check if the category is not in the list
+        if (url !== undefined)
+
+            //get list film and change state to render
+            this.getListFilmFromUrl(url)
     }
 
     renderItemFilm(item) {
