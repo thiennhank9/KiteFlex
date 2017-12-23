@@ -13,7 +13,7 @@ import StatusBarApp from '../Components/StatusBarApp.js';
 
 export default class Home extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Khám phá',
+        tabBarLabel: 'Discover',
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='star'
