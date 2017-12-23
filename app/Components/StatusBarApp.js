@@ -5,7 +5,7 @@ export default class StatusBarApp extends Component {
     render() {
         return (
             <StatusBar
-                backgroundColor="black"
+                backgroundColor={this.props.color}
                 barStyle="light-content"
             />
         )

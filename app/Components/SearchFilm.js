@@ -59,8 +59,8 @@ export default class SearchFilm extends Component {
                         <TextInput
                             value={this.state.textSearch}
                             style={[styles.inputSearch, styles.customInputSearch]}
-                            placeholder='Tìm kiếm Nhân đẹp trai'
-                            placeholderTextColor='gold'
+                            placeholder='Search for a movie, tv show, person...'
+                            placeholderTextColor='gray'
                             underlineColorAndroid='rgba(0,0,0,0)'
                             //clearButtonMode='while-editing' // only on IOS mode
                             blurOnSubmit={true}

@@ -34,7 +34,7 @@ const objSystem =
 
 export default class Profile extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Thêm',
+        tabBarLabel: 'Account',
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='menu'

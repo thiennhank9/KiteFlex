@@ -11,6 +11,9 @@ import {
     TouchableOpacity,
     Dimensions
 } from 'react-native';
+import styles from './Styles/ImageSlider.js';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import actionCreators from '../Redux/ActionsCreator.js';
 
 const reactNativePackage = require('react-native/package.json');
 const splitVersion = reactNativePackage.version.split('.');
@@ -18,44 +21,7 @@ const majorVersion = +splitVersion[0];
 const minorVersion = +splitVersion[1];
 
 //Aspect ratio
-const image_aspect_ratio = 281/500;
-
-const styles = StyleSheet.create({
-    titleContainer: {
-        position: 'absolute',
-        marginTop: Dimensions.get('window').width * (image_aspect_ratio) * 3/4 ,
-    },
-    textTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-    },
-    container: {
-        flexDirection: 'row',
-        backgroundColor: '#222'
-    },
-    buttons: {
-        height: 15,
-        marginTop: -15,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    button: {
-        margin: 3,
-        width: 8,
-        height: 8,
-        borderRadius: 8 / 2,
-        backgroundColor: '#ccc',
-        opacity: 0.9
-    },
-    buttonSelected: {
-        opacity: 1,
-        backgroundColor: '#fff',
-    }
-});
+const image_aspect_ratio = 281 / 500;
 
 export default class ImageSlider extends Component {
     constructor(props) {
@@ -170,18 +136,49 @@ export default class ImageSlider extends Component {
                 style={[styles.container, this.props.style, { height: height }]}>
                 {this.props.images.map((image, index) => {
                     const imageObject = typeof image === 'string' ? { uri: image.uri } : image;
+
+                    let id_movie = image.id_movie; //navigate to DetailFilm with id_movie
+
                     const imageComponent =
                         //This is the component render each item IMAGE
-                        <View key={image.key}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                store.dispatch(actionCreators.send_id_movie(id_movie))
+                                console.log('ImageSlider - ID_Movie clicked is ' + id_movie)
+                                this.props.navigation.navigate('DetailFilm')
+                            }
+                            }
+                            style={{ flexDirection: 'column' }}
+                            key={image.key}>
                             <Image
                                 key={image.key}
                                 source={imageObject}
                                 style={{ height, width }}
                             />
                             <View style={styles.titleContainer}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={styles.containerIcon}>
+                                        <Icon
+                                            name='star'
+                                            size={20}
+                                            color='red'
+                                        />
+                                    </View>
+                                    <View style={styles.containerMarkNumber}>
+                                        <Text style={styles.numberVote}>
+                                            {image.vote_average}
+                                        </Text>
+                                    </View>
+                                </View>
                                 <Text style={styles.textTitle}> {image.title} </Text>
+                                <Text
+                                    style={styles.textOverview}
+                                    numberOfLines={2}
+                                    ellipsizeMode='tail'>
+                                    {image.overview}
+                                </Text>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     if (this.props.onPress) {
                         return (
                             <TouchableOpacity

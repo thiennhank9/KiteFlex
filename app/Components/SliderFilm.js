@@ -15,15 +15,15 @@ export default class SliderFilm extends Component {
     }
 
     componentWillMount() {
-            this.setState({
-                interval: setInterval(() => {
-                    this.setState({ position: this.state.position === this.state.list_images.length - 1 ? 0 : this.state.position + 1 });
-                }, consts.time_transfer)
-            });
+        this.setState({
+            interval: setInterval(() => {
+                this.setState({ position: this.state.position === this.state.list_images.length - 1 ? 0 : this.state.position + 1 });
+            }, consts.time_transfer)
+        });
     }
 
     componentWillUnmount() {
-            clearInterval(this.state.interval);
+        clearInterval(this.state.interval);
     }
 
     componentDidMount() {
@@ -46,6 +46,7 @@ export default class SliderFilm extends Component {
             return (
                 <View style={styles.container}>
                     <ImageSlider
+                        navigation={this.props.navigation}
                         images={this.state.list_images}
                         position={this.state.position}
                         onPositionChanged={position => this.setState({ position })}

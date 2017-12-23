@@ -1,38 +1,54 @@
 export default lsCategory = [
     {
         key: 0,
-        category: 'phim lẻ mới nhất'
+        category: 'Suggestions'
     },
     {
         key: 1,
-        category: 'phim bộ mới nhất'
+        category: 'Lastest Movies'
     },
     {
         key: 2,
-        category: 'phim đề cử'
+        category: 'Lastest TV Series'
     },
     {
         key: 3,
-        category: 'phim hàn quốc chọn lọc'
+        category: 'Top Popular Movies'
     },
     {
         key: 4,
-        category: 'phim trung quốc chọn lọc'
+        category: 'Top Popular TV Series'
     },
     {
         key: 5,
-        category: 'phim âu mỹ chọn lọc'
+        category: 'Comming Soon - Trailers'
     },
     {
         key: 6,
-        category: 'hoạt hình đặc sắc'
+        category: 'Cinema'
     },
     {
         key: 7,
-        category: 'game show truyền hình'
+        category: 'Cartoons'
     },
     {
          key: 8,
-         category: 'phim sắp chiếu'
+         category: 'Top Korean'
+    },
+    {
+        key: 9,
+        category: 'Top Chinese'
+    },
+    {
+        key: 10,
+        category: 'Top Viet Nam'
+    },
+    {
+        key: 11,
+        category: 'Top Japanese'
+    },
+    {
+        key: 12,
+        category: 'Top TV Shows'
     }
 ]

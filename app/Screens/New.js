@@ -10,7 +10,7 @@ import TabNew from '../Navigators/TabNew.js';
 
 export default class New extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Phim mới',
+        tabBarLabel: 'Lastest',
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='movie'

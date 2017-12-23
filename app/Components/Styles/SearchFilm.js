@@ -77,8 +77,9 @@ export default styles = StyleSheet.create({
         flex: 9.8/10,
         height: 40,
         marginLeft: 10,
-        fontSize: 18,
-        color: 'gold',
+        fontSize: 17,
+        color: 'gray',
+        fontStyle: 'italic',
         alignSelf: 'center',
     },
     containerIcon: {
