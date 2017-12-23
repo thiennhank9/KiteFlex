@@ -9,21 +9,18 @@ api_config = {
 api_urls = {
     url_main: 'https://api.themoviedb.org/3',
     url_base_image: 'https://image.tmdb.org/t/p/w500',
+    url_poster: 'https://image.tmdb.org/t/p/w160'
 }
 
 export default api = {
-    
+
     //Don't care about these path, just for test ~~
     url_get_image: (path) => {
         return api_urls.url_base_image + path
     },
-    url_request_lastest: 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=1&primary_release_year=2018&year=2018',
-    url_request_theatres: (day) => {
-        return 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&include_adult=false&include_video=false&page=1&primary_release_date.gte=2018-11-23&primary_release_date.lte=2019-1-10'
+    url_get_poster: (path) => {
+        return api_urls.url_poster + path
     },
-    url_request_top_tvshows: 'https://api.themoviedb.org/3/discover/tv?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false',
-    url_request_top_cartoons: 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&certification_country=US&certification.lte=G&sort_by=popularity.desc',
-    url_request_coming_soon: 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=release_date.desc&include_adult=true&include_video=false&page=1',
 
     //In Loading screen
     url_request_top_popularity: 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1',
