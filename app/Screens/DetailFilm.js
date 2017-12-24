@@ -44,6 +44,19 @@ export default class DetailFilm extends Component {
         return data.results[0].key;
     }
 
+    // This's for test with rating function
+    async postRating(url, valueRating) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify({
+                value: valueRating
+            }),
+        });
+    }
+
     async onClickFavorite() {
         if (!this.state.saved) {
             await AsyncStorage.setItem(`@FilmFavorite:${this.state.movie.id}`, JSON.stringify(this.state.movie));
