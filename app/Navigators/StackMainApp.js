@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import TabApp from './TabApp.js';
 import { DetailFilm } from '../Screens/index.js';
 import Loading from '../Screens/Loading.js';
+import Login from '../Screens/Login'
 
 export default StackMainApp = StackNavigator({
   Loading: {
@@ -10,6 +11,7 @@ export default StackMainApp = StackNavigator({
   },
   TabApp: { screen: TabApp },
   DetailFilm: { screen: DetailFilm },
+    Login: { screen: Login }
 }, {
     headerMode: 'none',
     transitionConfig: () => ({

@@ -12,5 +12,11 @@ export default actionCreators = {
             type: types.SEND_ID_MOVIE,
             payload: id_movie
         }
+    },
+    send_uuid: (uuid) => {
+        return {
+            type: types.SEND_UUID,
+            payload: uuid
+        }
     }
 }

@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import {StatusBar, Text, Image, View, StyleSheet, Dimensions, TouchableOpacity, Animated, Easing, ScrollView, TextInput, Alert} from 'react-native'
 import Icons from 'react-native-vector-icons/Ionicons'
 import {firebaseApp} from "../Components/FirebaseConfig"
-
+import actionCreators from '../Redux/ActionsCreator.js';
+import {resetAction} from '../Navigators/NavigationActions.js';
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 const MARGIN = 40;
+
 
 export default class LaunchScreen extends Component {
     constructor(props) {
@@ -71,7 +73,15 @@ export default class LaunchScreen extends Component {
     onSignin () {
         console.log('onSignin', this.state.email + '/' + this.state.password)
         firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => console.log('Success'))
+            .then(() => {
+                firebaseApp.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        store.dispatch(actionCreators.send_uuid(user.uid))
+                        console.log(store.getState().uuid)
+                        this.props.navigation.dispatch(resetAction)
+                    }
+                })
+            })
             .catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;

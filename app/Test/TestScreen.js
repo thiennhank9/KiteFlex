@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Login from '../Screens/Login';
+import Signup from '../Screens/Signup'
 export default class TestScreen extends Component {
     render() {
         return (

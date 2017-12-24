@@ -13,6 +13,8 @@ import res from '../Resources/index.js';
 import { Button } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import windows from '../Themes/Windows.js';
+import {firebaseApp} from "../Components/FirebaseConfig"
+import {resetAction} from "../Navigators/NavigationActions";
 
 const objSystem =
     [
@@ -48,7 +50,7 @@ export default class Profile extends Component {
         super(props);
         this.state = {
             ds: objSystem,
-            isRegistered: true
+            isRegistered: store.getState().uuid !== null
         }
     }
 
@@ -74,9 +76,12 @@ export default class Profile extends Component {
                         resizeMode='stretch'
                     />
                     {
-                        this.state.isRegistered ?
+                        !this.state.isRegistered ?
                             <View style={{ flexDirection: 'row', width:windows.width - 40,justifyContent: 'space-between', marginTop: 20 }}>
                                 <Button
+                                    onPress={() => {
+                                        this.props.navigation.navigate('Login')
+                                    }}
                                     buttonStyle={{ width: 120 }}
                                     rounded
                                     backgroundColor={'#D73E15'}
@@ -95,6 +100,10 @@ export default class Profile extends Component {
                                 </Text>
                                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                     <Button
+                                        onPress={() => {
+                                            firebaseApp.auth().signOut()
+                                            this.props.navigation.dispatch(resetAction)
+                                        }}
                                         buttonStyle={{ width: 120 }}
                                         rounded
                                         backgroundColor={'#D73E15'}
