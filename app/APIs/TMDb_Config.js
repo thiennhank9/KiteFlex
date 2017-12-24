@@ -21,7 +21,10 @@ export default api = {
         return 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&include_adult=false&include_video=false&page=1&primary_release_date.gte=2018-11-23&primary_release_date.lte=2019-1-10'
     },
     url_request_detail_movie: (id_movie) => {
-        return `https://api.themoviedb.org/3/movie/${id_movie}?api_key=${api_config.key}&language=en-US`;
+        return `https://api.themoviedb.org/3/movie/${id_movie}?api_key=${api_config.key}&language=en-US&append_to_response=credits`;
+    },
+    url_request_video_demo: (id_movie) => {
+        return `https://api.themoviedb.org/3/movie/${id_movie}/videos?api_key=${api_config.key}&language=en-US`;
     },
     url_request_detail_people: (id_people) => {
         return `https://api.themoviedb.org/3/person/${id_people}?api_key=${api_config.key}&language=en-US`

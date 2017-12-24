@@ -10,6 +10,7 @@ import StatusBarApp from '../Components/StatusBarApp.js';
 import FetchingIndicator from '../Components/FetchingIndicator';
 import Rating from '../Components/Rating';
 import API from '../APIs/TMDb_Config';
+import YouTube from 'react-native-youtube';
 
 export default class DetailFilm extends Component {
     constructor(props) {
@@ -19,7 +20,13 @@ export default class DetailFilm extends Component {
             isShowedInfo: false,
             isLoading: true,
             movie: {},
-            reviews: [],
+            error: '',
+            isReady: false,
+            status: '',
+            quality: '',
+            review_play: false,
+            video_preview_id: 'No Video',
+
         }
     }
 
@@ -29,20 +36,18 @@ export default class DetailFilm extends Component {
         return data;
     }
 
-    async getReviews(url) {
-        console.log(url);
+    async getIDVideo(url) {
         let response = await fetch(url);
         let data = await response.json();
-        return data.results;
+        return data.results[0].key;
     }
 
     componentDidMount() {
         const id_movie = store.getState().id_movie;
         (async () => {
             let movie = await this.getData(API.url_request_detail_movie(id_movie));
-            let reviews = await this.getReviews(API.url_request_reviews_movie(id_movie));
-            console.log(reviews);
-            this.setState({ isLoading: false, movie, reviews });
+            let video_preview_id = await this.getIDVideo(API.url_request_video_demo(id_movie));
+            this.setState({ isLoading: false, movie, video_preview_id });
         })();
     }
 
@@ -93,14 +98,25 @@ export default class DetailFilm extends Component {
     }
 
     renderImageFilm() {
+        if (this.state.video_preview_id === 'No Video') 
+            return null;
         return (
             <View style={styles.imageFilmContainer}>
-                <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
-                    style={styles.imageBackground} />
-                <Icon
-                    name='play-circle-outline'
-                    size={60}
-                    color='red'
+                {/* <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
+                    style={styles.imageBackground} />*/}
+                <YouTube
+                    apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
+                    videoId={this.state.video_preview_id}   // The YouTube video ID
+                    play={false}             // control playback of video with true/false
+                    fullscreen={false}       // control whether the video should play in fullscreen or inline
+                    loop={false}             // control whether the video should loop when ended
+
+                    onReady={e => this.setState({ isReady: true })}
+                    onChangeState={e => this.setState({ status: e.state })}
+                    onChangeQuality={e => this.setState({ quality: e.quality })}
+                    onError={e => this.setState({ error: e.error })}
+
+                    style={[{ alignSelf: 'stretch' }, styles.imageBackground ]}
                 />
             </View>
         )
@@ -113,7 +129,7 @@ export default class DetailFilm extends Component {
                 numberOfLines={3}
                 ellipsizeMode='tail'
             >
-                {this.state.movie.original_title}
+                {this.state.movie.title}
             </Text>
         )
     }
@@ -198,7 +214,7 @@ export default class DetailFilm extends Component {
     renderTextNumberMarkStar() {
         return (
             <Text style={styles.textNumberMarkStar}>
-                ({this.state.obj.numberMarkStar})
+                ({this.state.movie.vote_count})
             </Text>
         )
     }
@@ -250,6 +266,37 @@ export default class DetailFilm extends Component {
     }
 
     renderListInfo() {
+        console.log(this.state.movie.id);
+        let Countries = (this.state.movie.production_countries.length !== 0) ? this.state.movie.production_countries[0].name : 'N/A';
+        let Languages = (this.state.movie.spoken_languages.length !== 0) ? this.state.movie.spoken_languages[0].name : 'N/A';
+        
+        let Director = [];
+        let Writer = [];
+        let DienVien = [];
+
+        let string_Director = '';
+        let string_Writer = '';
+        let stirng_DienVien = '';
+
+        this.state.movie.credits.crew.map((item, index) => {
+            if (item.hasOwnProperty('job')) {
+                if (item.job === 'Director'){
+                    Director.push(item);
+                    string_Director += item.name + ',' ;
+                } else if (item.job === 'Writer'){
+                    Writer.push(item);
+                    string_Writer += item.name + ', ';
+                } else{
+
+                }
+            }
+        });
+
+        for (let index = 0; index < 3; index++) {
+            DienVien.push(this.state.movie.credits.cast[index]);
+            stirng_DienVien += this.state.movie.credits.cast[index].name + ', ';
+        }
+
         if (!this.state.isShowedInfo)
             return (
                 <TouchableOpacity
@@ -262,13 +309,13 @@ export default class DetailFilm extends Component {
 
        return (
             <View style={{ marginTop: 5 }}>
-                {this.renderInfo('Đạo diễn :', this.state.obj.directors)}
-                {this.renderInfo('Kịch bản :', this.state.obj.directors)}
+                {this.renderInfo('Director :', string_Director)}
+                {this.renderInfo('Writer :', string_Writer)}
                 {this.renderInfo('Release Date :', this.state.movie.release_date)}
                 {this.renderInfo('Amount :', this.state.movie.runtime)}
-                {this.renderInfo('Countries :', this.state.movie.production_countries[0].name)}
-                {this.renderInfo('Languages :', this.state.movie.spoken_languages[0].name)}
-                {this.renderInfo('Diễn viên :', this.state.obj.directors)}
+                {this.renderInfo('Countries :', Countries)}
+                {this.renderInfo('Languages :', Languages)}
+                {this.renderInfo('Diễn viên :', stirng_DienVien)}
             </View>
         )
     }
