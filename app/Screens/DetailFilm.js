@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar, AsyncStorage } from 'react-native';
 import styles from './Styles/DetailFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -39,7 +39,39 @@ export default class DetailFilm extends Component {
     async getIDVideo(url) {
         let response = await fetch(url);
         let data = await response.json();
+        if (data.results.length === 0)
+            return '3I8XHnow0BA';
         return data.results[0].key;
+    }
+
+    async onClickFavorite() {
+        if (!this.state.saved) {
+            await AsyncStorage.setItem(`@FilmFavorite:${this.state.movie.id}`, JSON.stringify(this.state.movie));
+            console.log('run save Favorite Film');
+        }
+    }
+
+    async onClickWathcLate() {
+        if (!this.state.saved) {
+            await AsyncStorage.setItem(`@FilmWatchLate:${this.state.movie.id}`, JSON.stringify(this.state.movie));
+            console.log('run save WatchLate Film');
+        }
+    }
+
+    // just for testing with favorite function and more...
+    async cripping() {
+        let favoriteFilm = [];
+        let result = await AsyncStorage.getAllKeys();
+        result.forEach(async (key, index) => {
+            if (key.search(/@FilmFavorite/i) !== -1)
+            {
+                let value = await AsyncStorage.getItem(key);
+                let prased = JSON.parse(value);
+                favoriteFilm[index] = {};
+                favoriteFilm[index] = prased;
+                console.log(favoriteFilm[index]);
+            }
+        });
     }
 
     componentDidMount() {
@@ -114,7 +146,7 @@ export default class DetailFilm extends Component {
                     onReady={e => this.setState({ isReady: true })}
                     onChangeState={e => this.setState({ status: e.state })}
                     onChangeQuality={e => this.setState({ quality: e.quality })}
-                    onError={e => this.setState({ error: e.error })}
+                    onError={e => {this.setState({ error: e.error }); console.log(e.error);}}
 
                     style={[{ alignSelf: 'stretch' }, styles.imageBackground ]}
                 />
@@ -224,14 +256,14 @@ export default class DetailFilm extends Component {
             <View style={styles.star1Container}>
                 {this.renderListStar(20, true)}
                 <View style={styles.hori}>
-                    <TouchableOpacity onPress={() => {console.log('touched bell, merry chirstmas')}}>
+                    <TouchableOpacity onPress={ this.cripping.bind(this) }>
                         <Icon
                             name='bell-off'
                             size={25}
                             color='white'
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {console.log('touched bookmark')}}>
+                    <TouchableOpacity onPress={ this.onClickFavorite.bind(this) }>
                         <Icon
                             name='bookmark-plus'
                             size={25}
@@ -239,7 +271,7 @@ export default class DetailFilm extends Component {
                             style={{ marginLeft: 10 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {console.log('touched download')}}>
+                    <TouchableOpacity onPress={ this.onClickWathcLate.bind(this) }>
                         <Icon
                             name='download'
                             size={25}
