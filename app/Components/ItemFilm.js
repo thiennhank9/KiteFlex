@@ -66,18 +66,19 @@ export default class ItemFilm extends PureComponent {
                 {/* Container image and title */}
                 <View style={styles.cardContainer}>
                     {/* Container image */}
-                    <View style={styles.cardImage}>
-                        <Image source={{ uri: poster}} style={styles.cardImage} />
+                        <Image 
+                        resizeMode='stretch'
+                        source={{ uri: poster}} 
+                        style={styles.cardImage} />
                         {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
                         {/* {this.renderEpisodeOrIMDb()} */}
-                    </View>
-
+                        <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>{title}</Text>
                     {/* Text title film with gradient */}
-                    <LinearGradient
+                    {/* <LinearGradient
                         style={styles.cardTitleContainer}
                         colors={['rgba(0, 0, 0, 0)', 'rgba(30, 30, 30, 1)']}>
-                        <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>{title}</Text>
-                    </LinearGradient>
+                        
+                    </LinearGradient> */}
                 </View>
             </TouchableOpacity>
         )

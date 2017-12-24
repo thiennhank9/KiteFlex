@@ -16,37 +16,28 @@ export default styles = StyleSheet.create({
         marginVertical: 3,
     },
     cardContainer: {
-        height: 210,
+        height: 202,
         width: windows.width / 3,
         backgroundColor: 'black',
-        flexDirection: 'column',
-        //margin: 5,
-        //borderRadius: 8
+        flexDirection: 'column'
     },
     cardImage: {
-        // width: window.width / 3,
-        margin: 1,
-        borderRadius: 4,
+        width: 114,
         height: 160,
-        // borderTopLeftRadius: 4,
-        // borderTopRightRadius: 4
+        margin: 4,
+        borderRadius: 4,
     },
     cardTitleContainer: {
         position: 'absolute',
         bottom: 0,
-        height: 55,
+        height: 30,
         width: '100%',
         justifyContent: 'center',
-        // backgroundColor: 'white',
-        // borderBottomLeftRadius: 4,
-        // borderBottomRightRadius: 4
     },
     cardTitle: {
-        marginTop: 10,
         color: 'whitesmoke',
-        fontSize: 15,
-        margin: 5,
-        //fontWeight: '500',
+        fontSize: 13,
+        margin: 1,
         textAlign: 'center',
         paddingHorizontal: 1,
         backgroundColor: 'transparent',
@@ -67,7 +58,6 @@ export default styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-        //flexDirection: 'row'
     },
     textIMDb: {
         color: 'white',

@@ -1,5 +1,5 @@
 api_config = {
-    key: '0f866d616e28d66616b042c3c43a39d4',
+    key: '  ',
     version: '3',
     width_image: 'w500',
     url_no_version: 'https://api.themoviedb.org/',
@@ -9,11 +9,10 @@ api_config = {
 api_urls = {
     url_main: 'https://api.themoviedb.org/3',
     url_base_image: 'https://image.tmdb.org/t/p/w500',
-    url_poster: 'https://image.tmdb.org/t/p/w160'
+    url_poster: 'https://image.tmdb.org/t/p/w130'
 }
 
 export default api = {
-
     //Don't care about these path, just for test ~~
     url_get_image: (path) => {
         return api_urls.url_base_image + path
