@@ -1,3 +1,6 @@
+import windows from '../Themes/Windows.js';
+let width = windows.width/3 - 8;
+
 api_config = {
     key: '  ',
     version: '3',

@@ -22,7 +22,6 @@ export default styles = StyleSheet.create({
         flexDirection: 'column'
     },
     cardImage: {
-        width: 114,
         height: 160,
         margin: 4,
         borderRadius: 4,
