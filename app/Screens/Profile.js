@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import windows from '../Themes/Windows.js';
 import {firebaseApp} from "../Components/FirebaseConfig"
 import {resetAction} from "../Navigators/NavigationActions";
+import actionCreators from "../Redux/ActionsCreator";
 
 const objSystem =
     [
@@ -102,6 +103,7 @@ export default class Profile extends Component {
                                     <Button
                                         onPress={() => {
                                             firebaseApp.auth().signOut()
+                                            store.dispatch(actionCreators.send_uuid(null))
                                             this.props.navigation.dispatch(resetAction)
                                         }}
                                         buttonStyle={{ width: 120 }}
