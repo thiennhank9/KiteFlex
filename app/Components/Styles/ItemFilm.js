@@ -24,7 +24,7 @@ export default styles = StyleSheet.create({
     cardImage: {
         height: 160,
         margin: 4,
-        borderRadius: 4,
+        borderRadius: 1.5,
     },
     cardTitleContainer: {
         position: 'absolute',
