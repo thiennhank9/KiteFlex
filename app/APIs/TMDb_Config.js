@@ -1,8 +1,8 @@
 import windows from '../Themes/Windows.js';
-let width = windows.width/3 - 8;
+let width = windows.width / 3 - 8;
 
 api_config = {
-    key: '  ',
+    key: '0f866d616e28d66616b042c3c43a39d4',
     version: '3',
     width_image: 'w500',
     url_no_version: 'https://api.themoviedb.org/',
@@ -41,6 +41,12 @@ export default api = {
     get_today: 'https://api.themoviedb.org/3/tv/airing_today?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',
 
     //--People
-    get_popular_people: 'https://api.themoviedb.org/3/person/popular?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1'
+    get_popular_people: 'https://api.themoviedb.org/3/person/popular?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',
 
+    //In Screen Detail Film
+    //---Similar Movies
+    get_similar_movie: (id_movie) => {
+        return
+        'https://api.themoviedb.org/3/movie/' + id_movie + '/similar?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1'
+    }
 }
