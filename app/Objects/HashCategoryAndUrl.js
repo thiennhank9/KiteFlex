@@ -14,5 +14,7 @@ export default objHash = {
     'Airing today TV shows': api.get_today,
 
     //People
-    'Popular people': api.get_popular_people
+    'Popular people': api.get_popular_people,
+    'Suggestions': api.url_request_suggestions,
+    'Cinema': api.url_request_theatres('day'),
 }

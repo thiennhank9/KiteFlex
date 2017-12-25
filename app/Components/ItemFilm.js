@@ -57,7 +57,6 @@ export default class ItemFilm extends PureComponent {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    console.log('ItemFilm - ID_Movie clicked is ' + id_movie)
                     store.dispatch(actionCreators.send_id_movie(id_movie))
                     //this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
                     this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })

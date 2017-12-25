@@ -36,13 +36,12 @@ export default class ListComments extends Component {
             <View style={{ backgroundColor: '#1C1C1C' }}>
                 <View style={{ margin: 10 }}>
                     <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
-                        Nhận xét ({this.state.obj.length})
+                        Comments ({this.state.obj.length})
                     </Text>
                     <TextInput
-                        placeholder="Bình luận"
+                        placeholder="Comment in here..."
                         placeholderTextColor='black'
                         style={styles.input}
-                        underlineColorAndroid='rgba(0,0,0,0)'
                     />
                     <FlatList
                         keyExtractor={this._keyExtractor}

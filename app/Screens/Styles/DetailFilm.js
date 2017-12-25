@@ -28,9 +28,10 @@ export default styles = StyleSheet.create({
     },
     textNumberComment: {
         marginLeft: 10,
+        marginBottom: 5,
         marginTop: 2,
         color: 'white',
-        fontSize: 13,
+        fontSize: 16,
     },
     containerBackAndSearch: {
         paddingVertical: 5,
@@ -46,7 +47,15 @@ export default styles = StyleSheet.create({
         height: windows.height / 3,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue'
+        backgroundColor: 'transparent',
+        position: 'relative',
+    },
+    imageBackground: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
     },
     textTitle: {
         color: 'white',

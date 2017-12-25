@@ -28,7 +28,7 @@ export default class ItemComment extends PureComponent {
                     name='thumb-up-outline'
                     size={18}
                     style={{ marginRight: 10 }}
-                    color='white'
+                    color='rgba(202,44,44,0.8)'
                 />
             )
     }
@@ -37,11 +37,11 @@ export default class ItemComment extends PureComponent {
             <View style={styles.statusContainer}>
                 <View>
                     <Text
-                        style={{ color: '#A0522D', fontSize: 11, fontStyle: 'italic' }}
+                        style={{ color: '#3B3B3B', marginTop: 3, fontSize: 11, fontStyle: 'italic' }}
                         numberOfLines={4}
                         ellipsizeMode='tail'
                     >
-                        {this.props.last_day} ngày trước
+                        {this.props.last_day} days ago
                     </Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
@@ -52,7 +52,7 @@ export default class ItemComment extends PureComponent {
                     <Icon
                         name='comment-outline'
                         size={18}
-                        color='dodgerblue'
+                        color='#CA2C2C'
                     />
                 </View>
             </View>
@@ -66,10 +66,10 @@ export default class ItemComment extends PureComponent {
                     source={this.props.avatar}
                 />
                 <View style={styles.txtContainer}>
-                    <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>
+                    <Text style={{ color: '#CA2C2C', fontSize: 14, fontWeight: 'bold' }}>
                         {this.props.name_user}
                     </Text>
-                    <Text style={{ color: '#B5B5B5', fontSize: 13, marginTop: 2 }}>
+                    <Text style={{ color: '#000000', fontSize: 13, marginTop: 2 }}>
                         {this.props.comment}
                     </Text>
                     {this.renderStatus()}
