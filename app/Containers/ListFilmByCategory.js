@@ -7,6 +7,7 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import api from '../APIs/TMDb_Config.js';
 import FetchingIndicator from '../Components/FetchingIndicator.js';
 import objHash from '../Objects/HashCategoryAndUrl.js';
+import API from '../APIs/TMDb_Config';
 
 export default class ListFilmByCategory extends Component {
     constructor(props) {
@@ -31,11 +32,20 @@ export default class ListFilmByCategory extends Component {
                 //only get 7 elements from json
                 for (let i = 0; i < 7; i++) {
                     let element = results[i];
+
+                    let title_image = '';
+                    console.log(element.title)
+                    console.log(element.name)
+                    if (element.title != undefined)
+                        title_image = element.title;
+                    else
+                        title_image = element.name;
+
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,
-                        uri: api.url_get_image(element.poster_path),
-                        title: element.title,
+                        uri: api.url_get_poster(element.poster_path),
+                        title: title_image,
                         id_movie: element.id
                     }
                     list_images.push(objElement);
@@ -56,6 +66,10 @@ export default class ListFilmByCategory extends Component {
 
         //find url by each category
         let url = objHash[this.props.category]
+
+        //Use for detail firm, find list movies with id genre
+        if (this.props.genre_id)
+            url = API.url_request_genre_movies(this.props.genre_id);
 
         //check if the category is not in the list
         if (url !== undefined)

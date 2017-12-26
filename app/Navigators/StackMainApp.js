@@ -11,7 +11,7 @@ export default StackMainApp = StackNavigator({
   },
   TabApp: { screen: TabApp },
   DetailFilm: { screen: DetailFilm },
-    Login: { screen: Login }
+  Login: { screen: Login }
 }, {
     headerMode: 'none',
     transitionConfig: () => ({

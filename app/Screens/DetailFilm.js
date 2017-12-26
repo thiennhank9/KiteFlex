@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar, AsyncStorage } from 'react-native';
 import styles from './Styles/DetailFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -7,38 +7,118 @@ import obj from '../Objects/ObjDetailFilm.js';
 import ListFilmByCategory from '../Containers/ListFilmByCategory.js';
 import ListComments from '../Containers/ListComments.js';
 import StatusBarApp from '../Components/StatusBarApp.js';
+import FetchingIndicator from '../Components/FetchingIndicator';
+import Rating from '../Components/Rating';
+import API from '../APIs/TMDb_Config';
+import YouTube from 'react-native-youtube';
 
 export default class DetailFilm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             obj: obj,
-            isShowedInfo: false
+            isShowedInfo: false,
+            isLoading: true,
+            movie: {},
+            error: '',
+            isReady: false,
+            status: '',
+            quality: '',
+            review_play: false,
+            video_preview_id: 'No Video',
+
         }
     }
 
+    async getData(url) {
+        let response = await fetch(url);
+        let data = await response.json();
+        return data;
+    }
+
+    async getIDVideo(url) {
+        let response = await fetch(url);
+        let data = await response.json();
+        if (data.results.length === 0)
+            return '3I8XHnow0BA';
+        return data.results[0].key;
+    }
+
+    // This's for test with rating function
+    async postRating(url, valueRating) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify({
+                value: valueRating
+            }),
+        });
+    }
+
+    async onClickFavorite() {
+        if (!this.state.saved) {
+            await AsyncStorage.setItem(`@FilmFavorite:${this.state.movie.id}`, JSON.stringify(this.state.movie));
+            console.log('run save Favorite Film');
+        }
+    }
+
+    async onClickWathcLate() {
+        if (!this.state.saved) {
+            await AsyncStorage.setItem(`@FilmWatchLate:${this.state.movie.id}`, JSON.stringify(this.state.movie));
+            console.log('run save WatchLate Film');
+        }
+    }
+
+    // just for testing with favorite function and more...
+    async cripping() {
+        let favoriteFilm = [];
+        let result = await AsyncStorage.getAllKeys();
+        result.forEach(async (key, index) => {
+            if (key.search(/@FilmFavorite/i) !== -1)
+            {
+                let value = await AsyncStorage.getItem(key);
+                let prased = JSON.parse(value);
+                favoriteFilm[index] = {};
+                favoriteFilm[index] = prased;
+                console.log(favoriteFilm[index]);
+            }
+        });
+    }
+
     componentDidMount() {
-        console.log('Current DetailFilm - ID_Movie is ' + store.getState().id_movie)
+        const id_movie = store.getState().id_movie;
+        (async () => {
+            let movie = await this.getData(API.url_request_detail_movie(id_movie));
+            let video_preview_id = await this.getIDVideo(API.url_request_video_demo(id_movie));
+            this.setState({ isLoading: false, movie, video_preview_id });
+        })();
     }
 
     render() {
-        return (
-            <View style={{ flex: 1, backgroundColor: '#111111' }}>
-                <StatusBarApp />
-                <ScrollView style={{ backgroundColor: '#111111' }}>
-                    {this.renderHeader()}
-                    {this.renderImageFilm()}
-                    {this.renderTitle()}
-                    {this.renderIMDb()}
-                    {this.renderNumberComment()}
-                    {this.renderStar1()}
-                    {this.renderDetail()}
-                    {this.renderToRankStar()}
-                    {this.renderListSameCategoryFilm()}
-                    <ListComments />
-                </ScrollView>
-            </View>
-        )
+        if (this.state.isLoading)
+            return (
+                <FetchingIndicator />
+            );
+        else
+            return (
+                <View style={{ flex: 1, backgroundColor: '#111111' }}>
+                    <StatusBarApp />
+                    <ScrollView style={{ backgroundColor: '#111111' }}>
+                        {this.renderHeader()}
+                        {this.renderImageFilm()}
+                        {this.renderTitle()}
+                        {this.renderIMDb()}
+                        {this.renderNumberComment()}
+                        {this.renderStar1()}
+                        {this.renderDetail()}
+                        {this.renderToRankStar()}
+                        {this.renderListSameCategoryFilm()}
+                        <ListComments />
+                    </ScrollView>
+                </View>
+            );
     }
 
     renderHeader() {
@@ -63,12 +143,25 @@ export default class DetailFilm extends Component {
     }
 
     renderImageFilm() {
+        if (this.state.video_preview_id === 'No Video') 
+            return null;
         return (
             <View style={styles.imageFilmContainer}>
-                <Icon
-                    name='play-circle-outline'
-                    size={60}
-                    color='red'
+                {/* <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
+                    style={styles.imageBackground} />*/}
+                <YouTube
+                    apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
+                    videoId={this.state.video_preview_id}   // The YouTube video ID
+                    play={false}             // control playback of video with true/false
+                    fullscreen={false}       // control whether the video should play in fullscreen or inline
+                    loop={false}             // control whether the video should loop when ended
+
+                    onReady={e => this.setState({ isReady: true })}
+                    onChangeState={e => this.setState({ status: e.state })}
+                    onChangeQuality={e => this.setState({ quality: e.quality })}
+                    onError={e => {this.setState({ error: e.error }); console.log(e.error);}}
+
+                    style={[{ alignSelf: 'stretch' }, styles.imageBackground ]}
                 />
             </View>
         )
@@ -81,7 +174,7 @@ export default class DetailFilm extends Component {
                 numberOfLines={3}
                 ellipsizeMode='tail'
             >
-                {this.state.obj.title}
+                {this.state.movie.title}
             </Text>
         )
     }
@@ -94,7 +187,8 @@ export default class DetailFilm extends Component {
                         IMDb
                     </Text>
                     <Text style={styles.textMark}>
-                        {this.state.obj.IMDb}/10 (0)
+                        {/* we don't have IMDb'property */}
+                        {this.state.movie.vote_average}/10 (0)
                     </Text>
                 </View>
                 <View style={styles.hori}>
@@ -113,7 +207,7 @@ export default class DetailFilm extends Component {
         return (
             <View style={styles.hori}>
                 <Text style={styles.textNumberComment}>
-                    Nhận xét ({this.state.obj.numberComments})
+                    Comments ({this.state.obj.numberComments})
                 </Text>
                 <Icon
                     name='arrow-down'
@@ -161,10 +255,11 @@ export default class DetailFilm extends Component {
             </View>
         )
     }
+
     renderTextNumberMarkStar() {
         return (
             <Text style={styles.textNumberMarkStar}>
-                ({this.state.obj.numberMarkStar})
+                ({this.state.movie.vote_count})
             </Text>
         )
     }
@@ -174,23 +269,29 @@ export default class DetailFilm extends Component {
             <View style={styles.star1Container}>
                 {this.renderListStar(20, true)}
                 <View style={styles.hori}>
-                    <Icon
-                        name='bell-off'
-                        size={25}
-                        color='white'
-                    />
-                    <Icon
-                        name='bookmark-plus'
-                        size={25}
-                        color='white'
-                        style={{ marginLeft: 10 }}
-                    />
-                    <Icon
-                        name='download'
-                        size={25}
-                        color='white'
-                        style={{ marginLeft: 10 }}
-                    />
+                    <TouchableOpacity onPress={ this.cripping.bind(this) }>
+                        <Icon
+                            name='bell-off'
+                            size={25}
+                            color='white'
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={ this.onClickFavorite.bind(this) }>
+                        <Icon
+                            name='bookmark-plus'
+                            size={25}
+                            color='white'
+                            style={{ marginLeft: 10 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={ this.onClickWathcLate.bind(this) }>
+                        <Icon
+                            name='download'
+                            size={25}
+                            color='white'
+                            style={{ marginLeft: 10 }}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -210,25 +311,56 @@ export default class DetailFilm extends Component {
     }
 
     renderListInfo() {
+        console.log(this.state.movie.id);
+        let Countries = (this.state.movie.production_countries.length !== 0) ? this.state.movie.production_countries[0].name : 'N/A';
+        let Languages = (this.state.movie.spoken_languages.length !== 0) ? this.state.movie.spoken_languages[0].name : 'N/A';
+        
+        let Director = [];
+        let Writer = [];
+        let DienVien = [];
+
+        let string_Director = '';
+        let string_Writer = '';
+        let stirng_DienVien = '';
+
+        this.state.movie.credits.crew.map((item, index) => {
+            if (item.hasOwnProperty('job')) {
+                if (item.job === 'Director'){
+                    Director.push(item);
+                    string_Director += item.name + ',' ;
+                } else if (item.job === 'Writer'){
+                    Writer.push(item);
+                    string_Writer += item.name + ', ';
+                } else{
+
+                }
+            }
+        });
+
+        for (let index = 0; index < 3; index++) {
+            DienVien.push(this.state.movie.credits.cast[index]);
+            stirng_DienVien += this.state.movie.credits.cast[index].name + ', ';
+        }
+
         if (!this.state.isShowedInfo)
             return (
                 <TouchableOpacity
                     onPress={() => { this.setState({ isShowedInfo: true }) }}>
                     <Text style={styles.textSeeMore}>
-                        Xem thêm
+                        More Info
                     </Text>
                 </TouchableOpacity>
             )
 
-        return (
+       return (
             <View style={{ marginTop: 5 }}>
-                {this.renderInfo('Đạo diễn :', this.state.obj.directors)}
-                {this.renderInfo('Kịch bản :', this.state.obj.directors)}
-                {this.renderInfo('Ngày phát hành :', this.state.obj.directors)}
-                {this.renderInfo('Thời lượng :', this.state.obj.directors)}
-                {this.renderInfo('Nước sản xuất :', this.state.obj.directors)}
-                {this.renderInfo('Ngôn ngữ :', this.state.obj.directors)}
-                {this.renderInfo('Diễn viên :', this.state.obj.directors)}
+                {this.renderInfo('Director :', string_Director)}
+                {this.renderInfo('Writer :', string_Writer)}
+                {this.renderInfo('Release Date :', this.state.movie.release_date)}
+                {this.renderInfo('Amount :', this.state.movie.runtime)}
+                {this.renderInfo('Countries :', Countries)}
+                {this.renderInfo('Languages :', Languages)}
+                {this.renderInfo('Diễn viên :', stirng_DienVien)}
             </View>
         )
     }
@@ -238,7 +370,7 @@ export default class DetailFilm extends Component {
             <View style={styles.detailContainer}>
                 {/* How to make text align android */}
                 <Text style={styles.textDetail}>
-                    {this.state.obj.detail}
+                    {this.state.movie.overview}
                 </Text>
                 {this.renderListInfo()}
             </View>
@@ -251,11 +383,11 @@ export default class DetailFilm extends Component {
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
                 </View>
                 <View style={styles.rankStartContainer}>
-
                     <Text style={styles.textNumberComment}>
-                        Xếp hạng phim này
-                </Text>
-                    {this.renderListStar(30, false)}
+                        Rating Film
+                    </Text>
+                    <Rating size={30}
+                            onPress={(index) => {console.log('Number of stars human rating is ' + (index + 1))}} />
                 </View>
             </View>
         )
@@ -267,9 +399,11 @@ export default class DetailFilm extends Component {
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
                 </View>
                 <Text style={styles.titleCategory}>
-                    Phim tương tự
+                    Recommendations
                 </Text>
-                <ListFilmByCategory />
+                <ListFilmByCategory 
+                    genre_id={this.state.movie.genres[0].id}
+                    navigation={this.props.navigation} />
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
                 </View>
             </View>

@@ -1,54 +1,38 @@
 export default lsCategory = [
     {
         key: 0,
-        category: 'Suggestions'
+        category: 'Top Rated Movies'
     },
     {
         key: 1,
-        category: 'Lastest Movies'
+        category: 'Upcoming movies'
     },
     {
         key: 2,
-        category: 'Lastest TV Series'
+        category: 'Now playing movies'
     },
     {
         key: 3,
-        category: 'Top Popular Movies'
+        category: 'Popular movies'
     },
     {
         key: 4,
-        category: 'Top Popular TV Series'
-    },
+        category: 'Popular TV shows'
+    }, 
     {
         key: 5,
-        category: 'Comming Soon - Trailers'
+        category: 'Top rated TV shows'
     },
     {
         key: 6,
-        category: 'Cinema'
-    },
+        category: 'On the air TV shows'
+    }, 
     {
         key: 7,
-        category: 'Cartoons'
+        category: 'Airing today TV shows'
     },
-    {
-         key: 8,
-         category: 'Top Korean'
-    },
-    {
-        key: 9,
-        category: 'Top Chinese'
-    },
-    {
-        key: 10,
-        category: 'Top Viet Nam'
-    },
-    {
-        key: 11,
-        category: 'Top Japanese'
-    },
-    {
-        key: 12,
-        category: 'Top TV Shows'
-    }
+    // {
+    //     key: 8,
+    //     category: 'Popular people'
+    // }
 ]

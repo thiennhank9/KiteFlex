@@ -7,6 +7,7 @@ export default class StatusBarApp extends Component {
             <StatusBar
                 backgroundColor={this.props.color}
                 barStyle="light-content"
+                networkActivityIndicatorVisible={true}
             />
         )
     }

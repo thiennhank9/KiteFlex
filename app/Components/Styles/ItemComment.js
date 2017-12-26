@@ -9,8 +9,11 @@ export default styles = StyleSheet.create({
         borderColor: 'black'
     },
     ava: {
-        width: 55,
-        height: 55
+        width: 50,
+        height: 50,
+        marginRight: 5,
+        backgroundColor: 'transparent',
+        alignSelf: 'flex-start',
     },
     txtContainer: {
         flexDirection: 'column',
@@ -19,8 +22,7 @@ export default styles = StyleSheet.create({
         borderRadius: 10,
         marginLeft: 5,
         borderWidth: 1,
-        borderColor: 'black'
-        //backgroundColor: 'black'
+        backgroundColor: 'white',
     },
     statusContainer: {
         //backgroundColor: 'blue',
