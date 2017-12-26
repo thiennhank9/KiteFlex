@@ -4,7 +4,8 @@ import types from './Types.js';
 export default reducer = (state = initialState, action) => {
     const {
         list_top_popularity,
-        id_movie
+        id_movie,
+        uuid
     } = state;
     const {type, payload} = action;
     
@@ -20,6 +21,13 @@ export default reducer = (state = initialState, action) => {
             return {
                 ...state,
                 id_movie: payload
+            }
+        }
+
+        case types.SEND_UUID: {
+            return {
+                ...state,
+                uuid: payload
             }
         }
         return state;
