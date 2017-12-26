@@ -89,6 +89,9 @@ export default class Profile extends Component {
                                     icon={{ name: 'account-circle' }}
                                     title='Đăng nhập' />
                                 <Button
+                                    onPress={() => {
+                                        this.props.navigation.navigate('Signup')
+                                    }}
                                     buttonStyle={{ width: 120 }}
                                     rounded
                                     backgroundColor={'#D73E15'}

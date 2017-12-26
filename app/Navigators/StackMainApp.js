@@ -4,6 +4,7 @@ import TabApp from './TabApp.js';
 import { DetailFilm } from '../Screens/index.js';
 import Loading from '../Screens/Loading.js';
 import Login from '../Screens/Login'
+import Signup from '../Screens/Signup'
 
 export default StackMainApp = StackNavigator({
   Loading: {
@@ -11,7 +12,8 @@ export default StackMainApp = StackNavigator({
   },
   TabApp: { screen: TabApp },
   DetailFilm: { screen: DetailFilm },
-  Login: { screen: Login }
+  Login: { screen: Login },
+    Signup: {screen: Signup}
 }, {
     headerMode: 'none',
     transitionConfig: () => ({
