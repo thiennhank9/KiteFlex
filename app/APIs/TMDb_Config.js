@@ -28,6 +28,10 @@ export default api = {
     url_request_top_popularity: 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1',
 
     //In Home - include: Movies, TV Shows, and People
+    //---List result search - MultiSearch (includes movies, tv shows and people)
+    get_multi_search: (query) => {
+        return `https://api.themoviedb.org/3/search/multi?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&query=${query}&page=1&include_adult=true`
+    },
     //---Movies
     get_top_rated: 'https://api.themoviedb.org/3/movie/top_rated?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',
     get_upcoming: 'https://api.themoviedb.org/3/movie/upcoming?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',

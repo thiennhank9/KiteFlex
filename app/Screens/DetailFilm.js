@@ -11,7 +11,7 @@ import FetchingIndicator from '../Components/FetchingIndicator';
 import Rating from '../Components/Rating';
 import API from '../APIs/TMDb_Config';
 import YouTube from 'react-native-youtube';
-
+import SearchFilm from '../Components/SearchFilm.js';
 export default class DetailFilm extends Component {
     constructor(props) {
         super(props);
@@ -76,8 +76,7 @@ export default class DetailFilm extends Component {
         let favoriteFilm = [];
         let result = await AsyncStorage.getAllKeys();
         result.forEach(async (key, index) => {
-            if (key.search(/@FilmFavorite/i) !== -1)
-            {
+            if (key.search(/@FilmFavorite/i) !== -1) {
                 let value = await AsyncStorage.getItem(key);
                 let prased = JSON.parse(value);
                 favoriteFilm[index] = {};
@@ -106,7 +105,7 @@ export default class DetailFilm extends Component {
                 <View style={{ flex: 1, backgroundColor: '#111111' }}>
                     <StatusBarApp />
                     <ScrollView style={{ backgroundColor: '#111111' }}>
-                        {this.renderHeader()}
+                        <SearchFilm icon='back' navigation={this.props.navigation} />
                         {this.renderImageFilm()}
                         {this.renderTitle()}
                         {this.renderIMDb()}
@@ -143,7 +142,7 @@ export default class DetailFilm extends Component {
     }
 
     renderImageFilm() {
-        if (this.state.video_preview_id === 'No Video') 
+        if (this.state.video_preview_id === 'No Video')
             return null;
         return (
             <View style={styles.imageFilmContainer}>
@@ -159,9 +158,9 @@ export default class DetailFilm extends Component {
                     onReady={e => this.setState({ isReady: true })}
                     onChangeState={e => this.setState({ status: e.state })}
                     onChangeQuality={e => this.setState({ quality: e.quality })}
-                    onError={e => {this.setState({ error: e.error }); console.log(e.error);}}
+                    onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
 
-                    style={[{ alignSelf: 'stretch' }, styles.imageBackground ]}
+                    style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
                 />
             </View>
         )
@@ -269,14 +268,14 @@ export default class DetailFilm extends Component {
             <View style={styles.star1Container}>
                 {this.renderListStar(20, true)}
                 <View style={styles.hori}>
-                    <TouchableOpacity onPress={ this.cripping.bind(this) }>
+                    <TouchableOpacity onPress={this.cripping.bind(this)}>
                         <Icon
                             name='bell-off'
                             size={25}
                             color='white'
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={ this.onClickFavorite.bind(this) }>
+                    <TouchableOpacity onPress={this.onClickFavorite.bind(this)}>
                         <Icon
                             name='bookmark-plus'
                             size={25}
@@ -284,7 +283,7 @@ export default class DetailFilm extends Component {
                             style={{ marginLeft: 10 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={ this.onClickWathcLate.bind(this) }>
+                    <TouchableOpacity onPress={this.onClickWathcLate.bind(this)}>
                         <Icon
                             name='download'
                             size={25}
@@ -314,7 +313,7 @@ export default class DetailFilm extends Component {
         console.log(this.state.movie.id);
         let Countries = (this.state.movie.production_countries.length !== 0) ? this.state.movie.production_countries[0].name : 'N/A';
         let Languages = (this.state.movie.spoken_languages.length !== 0) ? this.state.movie.spoken_languages[0].name : 'N/A';
-        
+
         let Director = [];
         let Writer = [];
         let DienVien = [];
@@ -325,13 +324,13 @@ export default class DetailFilm extends Component {
 
         this.state.movie.credits.crew.map((item, index) => {
             if (item.hasOwnProperty('job')) {
-                if (item.job === 'Director'){
+                if (item.job === 'Director') {
                     Director.push(item);
-                    string_Director += item.name + ',' ;
-                } else if (item.job === 'Writer'){
+                    string_Director += item.name + ',';
+                } else if (item.job === 'Writer') {
                     Writer.push(item);
                     string_Writer += item.name + ', ';
-                } else{
+                } else {
 
                 }
             }
@@ -352,7 +351,7 @@ export default class DetailFilm extends Component {
                 </TouchableOpacity>
             )
 
-       return (
+        return (
             <View style={{ marginTop: 5 }}>
                 {this.renderInfo('Director :', string_Director)}
                 {this.renderInfo('Writer :', string_Writer)}
@@ -387,7 +386,7 @@ export default class DetailFilm extends Component {
                         Rating Film
                     </Text>
                     <Rating size={30}
-                            onPress={(index) => {console.log('Number of stars human rating is ' + (index + 1))}} />
+                        onPress={(index) => { console.log('Number of stars human rating is ' + (index + 1)) }} />
                 </View>
             </View>
         )
@@ -401,7 +400,7 @@ export default class DetailFilm extends Component {
                 <Text style={styles.titleCategory}>
                     Recommendations
                 </Text>
-                <ListFilmByCategory 
+                <ListFilmByCategory
                     genre_id={this.state.movie.genres[0].id}
                     navigation={this.props.navigation} />
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>

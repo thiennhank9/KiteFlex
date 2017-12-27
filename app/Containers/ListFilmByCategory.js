@@ -28,19 +28,16 @@ export default class ListFilmByCategory extends Component {
             .then(responseJson => {
                 let results = responseJson.results;
                 let list_images = [];
-
+                //Check to makesure that limit images always more than 7 element
+                let limit_images = (results.length > 7)? 7 : results.length;
                 //only get 7 elements from json
-                for (let i = 0; i < 7; i++) {
+                for (let i = 0; i < limit_images; i++) {
                     let element = results[i];
-
                     let title_image = '';
-                    console.log(element.title)
-                    console.log(element.name)
                     if (element.title != undefined)
                         title_image = element.title;
                     else
                         title_image = element.name;
-
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,

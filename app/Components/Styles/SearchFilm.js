@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-
+import windows from '../../Themes/Windows.js'
 const icon = Platform.select({
     ios: {
         fontSize: 24,
@@ -52,6 +52,9 @@ const customInputSearch = Platform.select({
 });
 
 export default styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column'
+    },
     containerHeader: {
         height: 50,
         backgroundColor: 'black',
@@ -74,13 +77,18 @@ export default styles = StyleSheet.create({
         alignItems: 'center'
     },
     inputSearch: {
-        flex: 9.8/10,
+        flex: 9.8 / 10,
         height: 40,
         marginLeft: 10,
         fontSize: 17,
-        color: 'gray',
-        fontStyle: 'italic',
+        color: 'white',
         alignSelf: 'center',
+    },
+    greyLine: {
+        marginTop: 2, 
+        height: 3,
+        backgroundColor: 'grey',
+        width: windows.width - 20
     },
     containerIcon: {
         width: 40,
@@ -98,4 +106,41 @@ export default styles = StyleSheet.create({
     CustomContainerIcon,
     customIconMicrophone,
     customInputSearch,
+    containerListResults: {
+        marginTop: 52,
+        margin: 10,
+        //height: 50,
+        width: windows.width - 20,
+        position: 'absolute',
+        backgroundColor: 'black',
+        //make sure that render list result above image slider - can't be moved
+        zIndex: 100
+    },
+    containerEmptyResult: {
+        height: 50,
+        marginTop: 52,
+        width: windows.width,
+        position: 'absolute',
+        backgroundColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        //make sure that render list result above image slider - can't be moved
+        zIndex: 100
+    },
+    textResult: {
+        fontSize: 14,
+        color: 'gray'
+    },
+    containerIndicator: {
+        marginTop: 52,
+        margin: 10,
+        height: 70,
+        width: windows.width - 20,
+        position: 'absolute',
+        backgroundColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        //make sure that render list result above image slider - can't be moved
+        zIndex: 100
+    },
 });
