@@ -108,9 +108,8 @@ export default styles = StyleSheet.create({
     customInputSearch,
     containerListResults: {
         marginTop: 52,
-        margin: 10,
-        //height: 50,
-        width: windows.width - 20,
+        margin: 7,
+        width: windows.width - 14,
         position: 'absolute',
         backgroundColor: 'black',
         //make sure that render list result above image slider - can't be moved
@@ -133,7 +132,7 @@ export default styles = StyleSheet.create({
     },
     containerIndicator: {
         marginTop: 52,
-        margin: 10,
+        margin: 2,
         height: 70,
         width: windows.width - 20,
         position: 'absolute',

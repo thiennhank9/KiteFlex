@@ -74,5 +74,10 @@ export default api = {
     },
     url_post_rate_movie: (id_movie) => {
         return `https://api.themoviedb.org/3/movie/${id_movie}/rating?api_key=${api_config.key}`;
+    },
+
+    //In ScreenSameFilm
+    get_category: (category, page = 1) => {
+        return `https://api.themoviedb.org/3/${category}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
     }
 }

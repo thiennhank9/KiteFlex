@@ -126,12 +126,12 @@ export default class DetailFilm extends Component {
                 <TouchableOpacity
                     onPress={() => this.props.navigation.goBack()}>
                     <Icons
-                        name='ios-arrow-back'
+                        name='arrow-left'
                         style={styles.icon}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.iconSearch}>
-                    <Icon
+                    <Icons
                         name='magnify'
                         size={36}
                         color='white'

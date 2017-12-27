@@ -103,7 +103,7 @@ export default class SearchFilm extends Component {
     }
 
     renderMicIconOrBack() {
-        if (this.props.icon = 'mic')
+        if (this.props.icon == 'mic')
             return (
                 <TouchableOpacity
                     onPress={() => this.recog()}>
@@ -117,9 +117,10 @@ export default class SearchFilm extends Component {
             return (
                 <TouchableOpacity
                     onPress={() => this.props.navigation.goBack()}>
-                    <Icons
-                        name='ios-arrow-back'
+                    <Icon
+                        name='arrow-left'
                         size={30}
+                        color='red'
                     />
                 </TouchableOpacity>
             )

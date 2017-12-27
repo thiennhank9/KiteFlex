@@ -10,7 +10,7 @@ import res from '../Resources/index.js'
 import LinearGradient from 'react-native-linear-gradient'
 import obj from '../Objects/ObjDetailFilm.js';
 
-export default class ItemFilm extends PureComponent {
+export default class ItemGridFilm extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -50,7 +50,7 @@ export default class ItemFilm extends PureComponent {
     }
 
     render() {
-        const { item } = this.props.item;
+        const item = this.props.item;
         const poster = item.uri;
         const title = item.title;
         let id_movie = item.id_movie;
@@ -72,12 +72,6 @@ export default class ItemFilm extends PureComponent {
                     {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
                     {/* {this.renderEpisodeOrIMDb()} */}
                     <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>{title}</Text>
-                    {/* Text title film with gradient */}
-                    {/* <LinearGradient
-                        style={styles.cardTitleContainer}
-                        colors={['rgba(0, 0, 0, 0)', 'rgba(30, 30, 30, 1)']}>
-                        
-                    </LinearGradient> */}
                 </View>
             </TouchableOpacity>
         )

@@ -5,40 +5,37 @@ import {
     FlatList
 } from 'react-native';
 import styles from './Styles/GridFilm.js';
-import lsFilmByCategory from '../Objects/ListFilmByCategory.js';
-import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import { ItemFilm } from '../Components/index.js';
+import ItemGridFilm from '../Components/ItemGridFilm.js';
 
 export default class GridFilm extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            ds: lsFilmByCategory
-        }
     }
+
     renderItemFilm(item) {
         return (
-            <ItemFilm
-                uri={item.uri}
-                name={item.name}
+            <ItemGridFilm
+                navigation={this.props.navigation}
+                item={item}
             />
         )
     }
-    render() {
-        return (
-            <View>
-            </View>
-        )
-    }
-    
+
     // render() {
     //     return (
-    //         <OptimizedFlatList
-    //             numColumns={3}
-    //             style={styles.container}
-    //             data={this.state.ds}
-    //             renderItem={({ item }) => this.renderItemFilm(item)}
-    //         />
+    //         <View>
+    //         </View>
     //     )
     // }
+
+    render() {
+        return (
+            <FlatList
+                numColumns={3}
+                style={styles.container}
+                data={this.props.data}
+                renderItem={({ item }) => this.renderItemFilm(item)}
+            />
+        )
+    }
 }
