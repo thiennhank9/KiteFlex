@@ -206,7 +206,7 @@ export default class SearchFilm extends Component {
                         <View style={styles.containerInput}>
                             {this.renderMicIconOrBack()}
                             <TextInput
-                                //value={this.state.textSearch}
+                                value={this.state.textSearch}
                                 style={styles.inputSearch}
                                 placeholder='Search for a movie, tv show, person...'
                                 placeholderTextColor='gray'
