@@ -9,6 +9,7 @@ import ItemComment from './ItemComment.js';
 import StatusBarApp from './StatusBarApp.js';
 import CustomIndicators from './CustomIndicators.js';
 import LoginIndicator from './LoginIndicator.js';
+import ItemGridFilm from './ItemGridFilm.js';
 
 export {
     SearchFilm,
@@ -21,5 +22,6 @@ export {
     ItemComment,
     StatusBarApp,
     CustomIndicators,
-    LoginIndicator
+    LoginIndicator,
+    ItemGridFilm
 }

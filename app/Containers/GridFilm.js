@@ -21,13 +21,6 @@ export default class GridFilm extends Component {
         )
     }
 
-    // render() {
-    //     return (
-    //         <View>
-    //         </View>
-    //     )
-    // }
-
     render() {
         return (
             <FlatList

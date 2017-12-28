@@ -12,6 +12,7 @@ import Rating from '../Components/Rating';
 import API from '../APIs/TMDb_Config';
 import YouTube from 'react-native-youtube';
 import SearchFilm from '../Components/SearchFilm.js';
+
 export default class DetailFilm extends Component {
     constructor(props) {
         super(props);
@@ -25,8 +26,8 @@ export default class DetailFilm extends Component {
             status: '',
             quality: '',
             review_play: false,
+            play_youtube: false,
             video_preview_id: 'No Video',
-
         }
     }
 
@@ -145,23 +146,30 @@ export default class DetailFilm extends Component {
         if (this.state.video_preview_id === 'No Video')
             return null;
         return (
-            <View style={styles.imageFilmContainer}>
-                {/* <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
-                    style={styles.imageBackground} />*/}
+            <View
+                style={styles.imageFilmContainer}>
                 <YouTube
                     apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
                     videoId={this.state.video_preview_id}   // The YouTube video ID
-                    play={false}             // control playback of video with true/false
+                    play={this.state.play_youtube}             // control playback of video with true/false
                     fullscreen={false}       // control whether the video should play in fullscreen or inline
                     loop={false}             // control whether the video should loop when ended
-
                     onReady={e => this.setState({ isReady: true })}
                     onChangeState={e => this.setState({ status: e.state })}
                     onChangeQuality={e => this.setState({ quality: e.quality })}
                     onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
-
-                    style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
+                    style={[{alignSelf: 'stretch'}, styles.imageBackground ] }
                 />
+                <TouchableOpacity 
+                        onPress={() => {
+                            console.log(this.state.play_youtube)
+                            if (this.state.play_youtube)
+                                this.setState({ play_youtube: false })
+                            else
+                                this.setState({ play_youtube: true })
+                        }}
+                        style={ styles.imageBackground } >
+                </TouchableOpacity>
             </View>
         )
     }
@@ -310,7 +318,6 @@ export default class DetailFilm extends Component {
     }
 
     renderListInfo() {
-        console.log(this.state.movie.id);
         let Countries = (this.state.movie.production_countries.length !== 0) ? this.state.movie.production_countries[0].name : 'N/A';
         let Languages = (this.state.movie.spoken_languages.length !== 0) ? this.state.movie.spoken_languages[0].name : 'N/A';
 

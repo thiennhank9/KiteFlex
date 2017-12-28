@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import styles from './Styles/ListFilmByCategory.js';
 import lsFilmByCategory from '../Objects/ListFilmByCategory.js';
-import { ItemFilm } from '../Components/index.js';
+import { ItemFilm, ItemGridFilm } from '../Components/index.js';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import api from '../APIs/TMDb_Config.js';
 import FetchingIndicator from '../Components/FetchingIndicator.js';
@@ -76,15 +76,21 @@ export default class ListFilmByCategory extends Component {
     }
 
     renderItemFilm(item) {
+        // return (
+        //     <ItemFilm
+        //         navigation={this.props.navigation}
+        //         item={item}
+        //     />
+        // )
         return (
-            <ItemFilm
-                navigation={this.props.navigation}
+            <ItemGridFilm
+            navigation={this.props.navigation}
                 item={item}
             />
         )
     }
 
-    _keyExtractor = (item, index) => index;
+    //_keyExtractor = (item, index) => index;
 
     render() {
         if (this.state.isLoading)
@@ -92,10 +98,10 @@ export default class ListFilmByCategory extends Component {
         else
             return (
                 <FlatList
-                    keyExtractor={this._keyExtractor}
+                    //keyExtractor={this._keyExtractor}
                     horizontal
                     data={this.state.lsFilmByCategory}
-                    renderItem={this.renderItemFilm.bind(this)}
+                    renderItem={({item}) => this.renderItemFilm(item)}
                 />
             )
     }

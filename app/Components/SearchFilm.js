@@ -5,6 +5,7 @@ import styles from './Styles/SearchFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import api from '../APIs/TMDb_Config.js';
 import { BallIndicator } from 'react-native-indicators';
+import { jsUcfirst } from '../Utils/Utils.js';
 export default class SearchFilm extends Component {
     constructor(props) {
         super(props);
@@ -20,8 +21,8 @@ export default class SearchFilm extends Component {
     onClickSearch() {
         this.state.results = [];
         this.state.isEmpty = false;
-        this.setState({ 
-            isError: false 
+        this.setState({
+            isError: false
         });
         //Check to fetch and set indicator when only text search is not empty
         if (this.state.textSearch != '') {
@@ -127,17 +128,33 @@ export default class SearchFilm extends Component {
     }
 
     renderItemResult(item) {
+
+        //Set icon_name to render depends on media_type
+        let icon_name = 'movie';
+        if (item.media_type == 'tv')
+            icon_name = 'television-classic';
+        if (item.media_type == 'person')
+            icon_name = 'account';
+        let media_type = jsUcfirst(item.media_type)
         return (
             <TouchableOpacity
                 key={item.key}
-                style={{ flexDirection: 'row' }}
+                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
             >
-                <Text style={styles.textResult}> {item.name}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Icon
+                        style={{ margin: 5 }}
+                        name={icon_name}
+                        size={15}
+                        color='white'
+                    />
+                    <Text style={styles.textResult}> {item.name}</Text>
+                </View>
+                <Text style={styles.textResult}> {media_type}</Text>
             </TouchableOpacity>
         )
     }
     renderListResults() {
-
         //render nothing when text search is null
         if (this.state.textSearch == '') {
             this.state.isEmpty = false;
@@ -190,6 +207,7 @@ export default class SearchFilm extends Component {
                     {/* <View style={styles.greyLine}>
                     </View> */}
                     <FlatList
+                        style={{ backgroundColor: 'gray', borderRadius: 5, borderWidth: 2, borderColor: 'chocolate' }}
                         data={this.state.results}
                         renderItem={({ item }) => this.renderItemResult(item)}
                     />

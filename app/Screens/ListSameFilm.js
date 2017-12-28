@@ -113,7 +113,10 @@ export default class ListSameFilm extends Component {
             )
         else
             return (
-                <GridFilm style={{ height: windows.height - 100 }} data={this.state.data} />
+                <GridFilm 
+                navigation={this.props.navigation}
+                style={{ height: windows.height - 100 }} 
+                data={this.state.data} />
             )
     }
     renderPreviousPageOrNot(){

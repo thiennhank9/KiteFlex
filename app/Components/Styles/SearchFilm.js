@@ -127,8 +127,9 @@ export default styles = StyleSheet.create({
         zIndex: 100
     },
     textResult: {
-        fontSize: 14,
-        color: 'gray'
+        fontSize: 17,
+        color: 'white',
+        margin: 5
     },
     containerIndicator: {
         marginTop: 52,
