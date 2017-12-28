@@ -79,5 +79,19 @@ export default api = {
     //In ScreenSameFilm
     get_category: (category, page = 1) => {
         return `https://api.themoviedb.org/3/${category}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
+    },
+
+    //In Tab Lastest
+    get_lastest_movie: (page = 1) => {
+        return `https://api.themoviedb.org/3/movie/popular?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
+    },
+    get_lastest_episode: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/tv?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&page=${page}&timezone=America%2FNew_York&with_genres=10770&include_null_first_air_dates=false`
+    },
+    get_lastest_tvshow: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/tv?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=first_air_date.desc&page=${page}&timezone=America%2FNew_York&include_null_first_air_dates=false`
+    },
+    get_lastest_cartoon: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=12%2C16%2C%2010751`
     }
 }

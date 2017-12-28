@@ -4,7 +4,8 @@ import Windows from '../../Themes/Windows';
 export default styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
-        flex: 1
+        flex: 1,
+        justifyContent: 'flex-end'
     },
     header: {
         backgroundColor: 'black',

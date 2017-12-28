@@ -48,7 +48,24 @@ export default class ItemGridFilm extends PureComponent {
             </View>
         )
     }
-
+    renderImageOrNull(poster) {
+        console.log(poster)
+        let four_last_characters = poster.toString().substr(poster.length - 4);
+        //check four last character whether is null or not to render announcement or image
+        if (four_last_characters != 'null')
+            return (
+                <Image
+                    resizeMode='stretch'
+                    source={{ uri: poster }}
+                    style={styles.cardImage} />
+            )
+        else
+            return (
+                <View style={[{ justifyContent: 'center', alignItems: 'center' }, styles.cardImage]}>
+                    <Text> Haven't updated poster </Text>
+                </View>
+            )
+    }
     render() {
         const item = this.props.item;
         const poster = item.uri;
@@ -65,10 +82,7 @@ export default class ItemGridFilm extends PureComponent {
                 {/* Container image and title */}
                 <View style={styles.cardContainer}>
                     {/* Container image */}
-                    <Image
-                        resizeMode='stretch'
-                        source={{ uri: poster }}
-                        style={styles.cardImage} />
+                    {this.renderImageOrNull(poster)}
                     {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
                     {/* {this.renderEpisodeOrIMDb()} */}
                     <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>{title}</Text>

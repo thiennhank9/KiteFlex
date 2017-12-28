@@ -119,6 +119,7 @@ export default class ListSameFilm extends Component {
                 data={this.state.data} />
             )
     }
+    
     renderPreviousPageOrNot(){
         if (this.state.page > 1) return (
             <TouchableOpacity

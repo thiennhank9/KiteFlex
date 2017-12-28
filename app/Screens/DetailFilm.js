@@ -105,8 +105,8 @@ export default class DetailFilm extends Component {
             return (
                 <View style={{ flex: 1, backgroundColor: '#111111' }}>
                     <StatusBarApp />
+                    <SearchFilm icon='back' navigation={this.props.navigation} />
                     <ScrollView style={{ backgroundColor: '#111111' }}>
-                        <SearchFilm icon='back' navigation={this.props.navigation} />
                         {this.renderImageFilm()}
                         {this.renderTitle()}
                         {this.renderIMDb()}
@@ -158,17 +158,17 @@ export default class DetailFilm extends Component {
                     onChangeState={e => this.setState({ status: e.state })}
                     onChangeQuality={e => this.setState({ quality: e.quality })}
                     onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
-                    style={[{alignSelf: 'stretch'}, styles.imageBackground ] }
+                    style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
                 />
-                <TouchableOpacity 
-                        onPress={() => {
-                            console.log(this.state.play_youtube)
-                            if (this.state.play_youtube)
-                                this.setState({ play_youtube: false })
-                            else
-                                this.setState({ play_youtube: true })
-                        }}
-                        style={ styles.imageBackground } >
+                <TouchableOpacity
+                    onPress={() => {
+                        console.log(this.state.play_youtube)
+                        if (this.state.play_youtube)
+                            this.setState({ play_youtube: false })
+                        else
+                            this.setState({ play_youtube: true })
+                    }}
+                    style={styles.imageBackground} >
                 </TouchableOpacity>
             </View>
         )
