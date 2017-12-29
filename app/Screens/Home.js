@@ -9,7 +9,7 @@ import { ScrollHome } from '../Containers/index.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Orientation from 'react-native-orientation';
 import StatusBarApp from '../Components/StatusBarApp.js';
-
+import actionCreators from '../Redux/ActionsCreator.js';
 
 export default class Home extends Component {
     static navigationOptions = {
@@ -23,8 +23,11 @@ export default class Home extends Component {
         )
     }
 
+    componentDidMount() {
+        store.dispatch(actionCreators.send_root_navigation(this.props.navigation))
+    }
+    
     render() {
-
         return (
             <View style={styles.container}>
                 <StatusBarApp color='darkslategray' />

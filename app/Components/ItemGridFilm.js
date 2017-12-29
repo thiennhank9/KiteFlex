@@ -75,8 +75,10 @@ export default class ItemGridFilm extends PureComponent {
             <TouchableOpacity
                 onPress={() => {
                     store.dispatch(actionCreators.send_id_movie(id_movie))
+                    console.log('Clicked to move detail film with ' + id_movie);
+                    const root_navigation = store.getState().root_navigation;
+                    root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
                     //this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
-                    this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
                 }}
                 activeOpacity={0.8}>
                 {/* Container image and title */}
@@ -89,5 +91,9 @@ export default class ItemGridFilm extends PureComponent {
                 </View>
             </TouchableOpacity>
         )
+    }
+
+    componentDidMount(){
+
     }
 }
