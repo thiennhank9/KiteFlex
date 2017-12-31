@@ -5,11 +5,13 @@ import TestRefs from './TestRefs.js';
 import Signup from '../Screens/Signup';
 import YoutubePlayer from './YoutubePlayer.js';
 import TestYoutube from './TestYoutube.js';
+import TestFullMid from './TestFullMid.js';
+import TestAutoDown from './TestAutoDown.js';
 
 export default class TestScreen extends Component {
     render() {
         return (
-            <TestYoutube />
+            <TestAutoDown />
         )
     }
 }

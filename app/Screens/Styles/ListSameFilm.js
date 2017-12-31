@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'space-between'
     },
     header: {
         backgroundColor: 'black',
@@ -27,8 +27,8 @@ export default styles = StyleSheet.create({
     footer: {
         backgroundColor: 'black',
         height: 50,
-        top: windows.height - 70,
-        position: 'absolute',
+        //top: windows.height - 70,
+        //position: 'absolute',
         width: windows.width,
         flexDirection: 'row',
         justifyContent: 'space-between',

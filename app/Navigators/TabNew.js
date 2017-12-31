@@ -17,39 +17,7 @@ const labelStyle = Platform.select({
         color: '#A3A6A9',
     }
 });
-/*
-const StackTabNew = StackNavigator({
-    TabNew: { screen: TabNew },
-    DetailFilm: { screen: DetailFilm }
-},
-    {
-        headerMode: 'none',
-        transitionConfig: () => ({
-            transitionSpec: {
-                duration: 200,
-                easing: Easing.out(Easing.poly(4)),
-                timing: Animated.timing,
-            },
-            screenInterpolator: sceneProps => {
-                const { layout, position, scene } = sceneProps;
-                const { index } = scene;
 
-                const width = layout.initWidth;
-                const translateX = position.interpolate({
-                    inputRange: [index - 1, index, index + 1],
-                    outputRange: [width, 0, 0],
-                });
-
-                const opacity = position.interpolate({
-                    inputRange: [index - 1, index - 0.99, index],
-                    outputRange: [0, 1, 1],
-                });
-
-                return { opacity, transform: [{ translateX }] };
-            },
-        }),
-    })
-*/
 export default TabNew = TabNavigator({
     Movie: { screen: Movie },
     Episode: { screen: Episode },

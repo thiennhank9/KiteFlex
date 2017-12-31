@@ -15,6 +15,7 @@ api_urls = {
     url_poster: 'https://image.tmdb.org/t/p/w130'
 }
 
+//belows are api_urls, just fucking care what are on above =))
 export default api = {
     //Don't care about these path, just for test ~~
     url_get_image: (path) => {
@@ -32,6 +33,7 @@ export default api = {
     get_multi_search: (query) => {
         return `https://api.themoviedb.org/3/search/multi?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&query=${query}&page=1&include_adult=true`
     },
+    
     //---Movies
     get_top_rated: 'https://api.themoviedb.org/3/movie/top_rated?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',
     get_upcoming: 'https://api.themoviedb.org/3/movie/upcoming?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',

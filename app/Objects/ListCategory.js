@@ -31,8 +31,8 @@ export default lsCategory = [
         key: 7,
         category: 'Airing today TV shows'
     },
-    // {
-    //     key: 8,
-    //     category: 'Popular people'
-    // }
+    {
+        key: 8,
+        category: 'Popular people'
+    }
 ]

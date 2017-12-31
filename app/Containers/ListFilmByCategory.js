@@ -34,13 +34,24 @@ export default class ListFilmByCategory extends Component {
                 for (let i = 0; i < limit_images; i++) {
                     let element = results[i];
                     let title_image = '';
-                    if (element.title != undefined)
+                    let media_type = '';
+                    if (element.title != undefined) {
                         title_image = element.title;
-                    else
+                        media_type = 'movie';
+                    }
+                    else {
                         title_image = element.name;
+                        media_type = 'tv';
+                    }
+                    //If this is person, set profile_path to profile_path
+                    if (element.profile_path != undefined) {
+                        element.poster_path = element.profile_path
+                        media_type = 'person'
+                    }
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,
+                        media_type: media_type,
                         uri: api.url_get_poster(element.poster_path),
                         title: title_image,
                         id_movie: element.id
@@ -76,15 +87,9 @@ export default class ListFilmByCategory extends Component {
     }
 
     renderItemFilm(item) {
-        // return (
-        //     <ItemFilm
-        //         navigation={this.props.navigation}
-        //         item={item}
-        //     />
-        // )
         return (
             <ItemGridFilm
-            navigation={this.props.navigation}
+                navigation={this.props.navigation}
                 item={item}
             />
         )

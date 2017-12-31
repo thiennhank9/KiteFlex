@@ -18,38 +18,39 @@ export default class ItemGridFilm extends PureComponent {
     clickToSeeDetail() {
         console.log("Clicked!")
     }
+    //Now don't use this function
 
-    renderEpisodeOrIMDb() {
-        //Now show two, just in test mode
-        return (
-            <View style={styles.episodeContainer}>
-                {/* Text box of IMDb */}
-                <View style={styles.containerTextAndIcon}>
-                    <Text style={{ color: 'gold', fontWeight: 'bold', fontSize: 12 }}>
-                        IMDb
-                    </Text>
-                    <View style={styles.IMDb}>
-                        <Text style={styles.textIMDb}>
-                            9.5
-                        </Text>
-                    </View>
-                </View>
-                {/* Circle number of episode */}
-                <View style={styles.containerTextAndIcon}>
-                    <Text style={{ color: 'darkblue', fontWeight: 'bold', fontSize: 12 }}>
-                        Tập
-                    </Text>
-                    <View style={styles.episodeNumber}>
-                        <Text style={styles.textEp}>
-                            999
-                        </Text>
-                    </View>
-                </View>
-            </View>
-        )
-    }
+    // renderEpisodeOrIMDb() {
+    //     //Now show two, just in test mode
+    //     return (
+    //         <View style={styles.episodeContainer}>
+    //             {/* Text box of IMDb */}
+    //             <View style={styles.containerTextAndIcon}>
+    //                 <Text style={{ color: 'gold', fontWeight: 'bold', fontSize: 12 }}>
+    //                     IMDb
+    //                 </Text>
+    //                 <View style={styles.IMDb}>
+    //                     <Text style={styles.textIMDb}>
+    //                         9.5
+    //                     </Text>
+    //                 </View>
+    //             </View>
+    //             {/* Circle number of episode */}
+    //             <View style={styles.containerTextAndIcon}>
+    //                 <Text style={{ color: 'darkblue', fontWeight: 'bold', fontSize: 12 }}>
+    //                     Tập
+    //                 </Text>
+    //                 <View style={styles.episodeNumber}>
+    //                     <Text style={styles.textEp}>
+    //                         999
+    //                     </Text>
+    //                 </View>
+    //             </View>
+    //         </View>
+    //     )
+    // }
+
     renderImageOrNull(poster) {
-        console.log(poster)
         let four_last_characters = poster.toString().substr(poster.length - 4);
         //check four last character whether is null or not to render announcement or image
         if (four_last_characters != 'null')
@@ -71,11 +72,13 @@ export default class ItemGridFilm extends PureComponent {
         const poster = item.uri;
         const title = item.title;
         let id_movie = item.id_movie;
+        const media_type = item.media_type;
+        // if (media_type == 'person')
+        //     console.log(media_type + " name " + title)
         return (
             <TouchableOpacity
                 onPress={() => {
                     store.dispatch(actionCreators.send_id_movie(id_movie))
-                    console.log('Clicked to move detail film with ' + id_movie);
                     const root_navigation = store.getState().root_navigation;
                     root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
                     //this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
@@ -93,7 +96,7 @@ export default class ItemGridFilm extends PureComponent {
         )
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
     }
 }
