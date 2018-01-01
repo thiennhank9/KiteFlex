@@ -200,9 +200,9 @@ export default class DetailFilm extends Component {
                     12
                 </Text>
                 <TouchableOpacity style={styles.watchbutton}>
-                    <Text style={styles.textWatch}>Watch</Text>
+                    <Text style={styles.textWatch}>WATCH</Text>
                     <View style={styles.iconPlay}>
-                        <Icons name='md-play' size={22} color='#F26622' style={{marginLeft: 2}} />
+                        <Icons name='md-play' size={20} color='#F26622' style={{marginLeft: 2}} />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -452,7 +452,7 @@ export default class DetailFilm extends Component {
     
     renderListSimilarFilm() {
         return (
-            <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'column', marginTop: 2 }}>
                 <Text style={styles.titleCategory}>
                     Similar
                 </Text>
@@ -467,7 +467,7 @@ export default class DetailFilm extends Component {
 
     renderListCastFilm() {
         return (
-            <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'column', marginTop: 2 }}>
                 <Text style={styles.titleCategory}>
                     Cast
                 </Text>
@@ -482,7 +482,7 @@ export default class DetailFilm extends Component {
 
     renderTrailerFilm() {
         return (
-            <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'column', marginTop: 2 }}>
                 <Text style={styles.titleCategory}>
                     Trailer
                 </Text>
