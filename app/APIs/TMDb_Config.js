@@ -74,6 +74,12 @@ export default api = {
     url_request_reviews_movie: (id_movie) => {
         return `https://api.themoviedb.org/3/movie/${id_movie}/reviews?api_key=${api_config.key}&language=en-US&page=1`;
     },
+    url_request_similar_movie: (id_movie) => {
+        return `https://api.themoviedb.org/3/movie/${id_movie}/similar?api_key=${api_config.key}&language=en-US&page=1`;
+    },
+    url_request_cast_movie: (id_movie) => {
+        return `https://api.themoviedb.org/3/movie/${id_movie}/credits?api_key=${api_config.key}`;
+    },
     url_post_rate_movie: (id_movie) => {
         return `https://api.themoviedb.org/3/movie/${id_movie}/rating?api_key=${api_config.key}`;
     },
