@@ -79,6 +79,10 @@ export default class ListFilmByCategory extends Component {
         if (this.props.genre_id)
             url = API.url_request_genre_movies(this.props.genre_id);
 
+        //Use for get similar in detail film, find list movies with id movie
+        if (this.props.similar_id)
+            url = API.url_request_similar_movie(this.props.similar_id);
+
         //check if the category is not in the list
         if (url !== undefined)
 

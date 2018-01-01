@@ -207,5 +207,10 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         margin: 10
     },
+    trailer: {
+        width: windows.width * 3/4,
+        height: 200,
+        alignSelf: 'center',
+    },
     icon
 })
