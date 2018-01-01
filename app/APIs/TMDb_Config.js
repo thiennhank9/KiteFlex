@@ -12,7 +12,7 @@ api_config = {
 api_urls = {
     url_main: 'https://api.themoviedb.org/3',
     url_base_image: 'https://image.tmdb.org/t/p/w500',
-    url_poster: 'https://image.tmdb.org/t/p/w130'
+    url_poster: 'https://image.tmdb.org/t/p/w130',
 }
 
 //belows are api_urls, just fucking care what are on above =))
@@ -83,6 +83,14 @@ export default api = {
         return `https://api.themoviedb.org/3/${category}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
     },
 
+    //In Screen DetailPeron
+    get_detail_person: (person_id) => {
+        return `https://api.themoviedb.org/3/person/${person_id}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&append_to_response=movie_credits`
+    },
+    get_profile_path: (profile_path) => {
+        return `https://image.tmdb.org/t/p/w130${profile_path}`
+    },
+
     //In Tab Lastest
     get_lastest_movie: (page = 1) => {
         return `https://api.themoviedb.org/3/movie/popular?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
@@ -95,5 +103,20 @@ export default api = {
     },
     get_lastest_cartoon: (page = 1) => {
         return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=12%2C16%2C%2010751`
+    },
+
+    //In Tab Popular
+    //In Screen List Same Category
+    get_same_category: (id_genre = 28, page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=${page}&with_genres=${id_genre}`;
+    },
+    get_most_watch: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=vote_count.desc&include_adult=true&include_video=true&page=${page}`
+    },
+    get_high_light:(page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=${page}&year=2017`
+    },
+    get_by_imdb: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=${page}`
     }
 }

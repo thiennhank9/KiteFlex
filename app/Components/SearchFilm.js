@@ -6,6 +6,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import api from '../APIs/TMDb_Config.js';
 import { BallIndicator } from 'react-native-indicators';
 import { jsUcfirst } from '../Utils/Utils.js';
+import actionCreators from '../Redux/ActionsCreator.js';
+//import Voice from 'react-native-voice';
+
 export default class SearchFilm extends Component {
     constructor(props) {
         super(props);
@@ -14,10 +17,135 @@ export default class SearchFilm extends Component {
             isSearching: false,
             isError: false,
             isEmpty: false, //is the results returned empty
-            results: []
+            results: [],
+            /*
+            //state of voice only, just fucking care - me lazy =))
+            recognized: '',
+            pitch: '',
+            error: '',
+            end: '',
+            started: '',
+            results: [],
+            partialResults: [],
+            */
+        }
+
+        //bind function for voice only
+        /*
+        Voice.onSpeechStart = this.onSpeechStart.bind(this);
+        Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
+        Voice.onSpeechEnd = this.onSpeechEnd.bind(this);
+        Voice.onSpeechError = this.onSpeechError.bind(this);
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
+        Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
+        */
+    }
+    /*
+    //Range start fucntion voice
+    componentWillUnmount() {
+        Voice.destroy().then(Voice.removeAllListeners);
+    }
+
+    onSpeechStart(e) {
+        this.setState({
+            started: '√',
+        });
+    }
+
+    onSpeechRecognized(e) {
+        this.setState({
+            recognized: '√',
+        });
+    }
+
+    onSpeechEnd(e) {
+        this.setState({
+            end: '√',
+        });
+    }
+
+    onSpeechError(e) {
+        this.setState({
+            error: JSON.stringify(e.error),
+        });
+    }
+
+    onSpeechResults(e) {
+        // this.setState({
+        //     results: e.value,
+        // });
+        this.state.results = e.value;
+        console.log(this.state.results[0]);
+        this.setState({
+            textSearch: this.state.results[0]
+        })
+
+    }
+
+    onSpeechPartialResults(e) {
+        this.setState({
+            partialResults: e.value,
+        });
+    }
+
+    onSpeechVolumeChanged(e) {
+        this.setState({
+            pitch: e.value,
+        });
+    }
+
+    async _startRecognizing(e) {
+        this.setState({
+            recognized: '',
+            pitch: '',
+            error: '',
+            started: '',
+            results: [],
+            partialResults: [],
+            end: ''
+        });
+        try {
+            await Voice.start('en-US');
+        } catch (e) {
+            console.error(e);
         }
     }
 
+    async _stopRecognizing(e) {
+        try {
+            await Voice.stop();
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    async _cancelRecognizing(e) {
+        try {
+            await Voice.cancel();
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    async _destroyRecognizer(e) {
+        try {
+            await Voice.destroy();
+        } catch (e) {
+            console.error(e);
+        }
+        this.setState({
+            recognized: '',
+            pitch: '',
+            error: '',
+            started: '',
+            results: [],
+            partialResults: [],
+            end: ''
+        });
+    }
+    */
+    //End voice
     onClickSearch() {
         this.state.results = [];
         this.state.isEmpty = false;
@@ -83,7 +211,7 @@ export default class SearchFilm extends Component {
         })
     }
 
-    recog() {
+    onClickRecog() {
         console.log('Recoging!')
     }
 
@@ -107,7 +235,10 @@ export default class SearchFilm extends Component {
         if (this.props.icon == 'mic')
             return (
                 <TouchableOpacity
-                    onPress={() => this.recog()}>
+                    //hidden={true}
+                    onPress={
+                        // this._startRecognizing.bind(this)
+                        () => this.onClickRecog()}>
                     <Icon
                         name='microphone'
                         style={[styles.icon, styles.customIconMicrophone]}
@@ -130,28 +261,44 @@ export default class SearchFilm extends Component {
     renderItemResult(item) {
 
         //Set icon_name to render depends on media_type
+        //default for type movie
         let icon_name = 'movie';
-        if (item.media_type == 'tv')
+        let icon_color = 'gold';
+
+        if (item.media_type == 'tv') {
             icon_name = 'television-classic';
-        if (item.media_type == 'person')
+            icon_color = 'FireBrick'
+        }
+        if (item.media_type == 'person') {
             icon_name = 'account';
+            icon_color = 'chocolate'
+        }
         let media_type = jsUcfirst(item.media_type)
+
         return (
-            <TouchableOpacity
-                key={item.key}
-                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Icon
-                        style={{ margin: 5 }}
-                        name={icon_name}
-                        size={15}
-                        color='white'
-                    />
-                    <Text style={styles.textResult}> {item.name}</Text>
+            <View>
+                <TouchableOpacity
+                    key={item.key}
+                    style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                    onPress={() => {
+                        store.dispatch(actionCreators.send_id_movie(item.id));
+                        this.props.navigation.navigate('DetailFilm');
+                    }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Icon
+                            style={{ margin: 5 }}
+                            name={icon_name}
+                            size={15}
+                            color={icon_color}
+                        />
+                        <Text style={styles.textResult}> {item.name}</Text>
+                    </View>
+                    <Text style={styles.text_type}> ...{media_type}</Text>
+                </TouchableOpacity>
+                {/* render grey color between results */}
+                <View style={{ height: 1.5, margin: 3, backgroundColor: 'grey' }}>
                 </View>
-                <Text style={styles.textResult}> {media_type}</Text>
-            </TouchableOpacity>
+            </View>
         )
     }
     renderListResults() {
@@ -207,7 +354,7 @@ export default class SearchFilm extends Component {
                     {/* <View style={styles.greyLine}>
                     </View> */}
                     <FlatList
-                        style={{ backgroundColor: 'gray', borderRadius: 5, borderWidth: 2, borderColor: 'chocolate' }}
+                        style={{ backgroundColor: 'black', borderRadius: 2, borderWidth: 1, borderColor: '#111111' }}
                         data={this.state.results}
                         renderItem={({ item }) => this.renderItemResult(item)}
                     />

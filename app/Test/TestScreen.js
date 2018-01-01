@@ -7,11 +7,13 @@ import YoutubePlayer from './YoutubePlayer.js';
 import TestYoutube from './TestYoutube.js';
 import TestFullMid from './TestFullMid.js';
 import TestAutoDown from './TestAutoDown.js';
+import TestVoice from './TestVoice.js';
+import DetailPerson from '../Screens/DetailPerson.js';
 
 export default class TestScreen extends Component {
     render() {
         return (
-            <TestAutoDown />
+            <DetailPerson />
         )
     }
 }

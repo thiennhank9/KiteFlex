@@ -44,8 +44,51 @@ export default styles = StyleSheet.create({
     },
     imageFilmContainer: {
         width: windows.width,
-        height: windows.height / 3,
-        backgroundColor: 'black',
+        height: windows.height / 2.5,
+        backgroundColor: 'transparent',
+    },
+    imageBackdrop: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 40,
+        left: 0,
+        backgroundColor: 'red',
+    },
+    imagePoster: {
+        position: 'absolute',
+        left: 20,
+        bottom: 0,
+        backgroundColor: 'blue',
+        height: 170,
+        width: 125,
+        elevation: 100,
+        borderWidth: 3,
+        borderColor: 'black',
+        zIndex: 4
+    },
+    star: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+    },
+    titleFilm: {
+        position: 'absolute',
+        left: 150,
+        bottom: 10,
+        margin: 0,
+    },
+    viewText: {
+        position: 'absolute',
+        left: 155,
+        bottom: 10,
+        margin: 0,
+    },
+    watchbutton: {
+        position: 'absolute',
+        right: 10,
+        bottom: 10,
+        width: 100,
     },
     imageBackground: {
         position: 'absolute',

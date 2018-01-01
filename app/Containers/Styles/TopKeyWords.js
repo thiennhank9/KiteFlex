@@ -4,15 +4,20 @@ import windows from '../../Themes/Windows.js';
 export default styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        //height: 200,
+        //height: 25,
         width: windows.width,
         backgroundColor: 'black',
         flexWrap: 'wrap'
     },
     titleCategory: {
+        height: 30,
+        margin: 5,
         color: 'palegoldenrod',
+        justifyContent: 'center',
+        alignItems: 'center',
         fontSize: 17,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignItems: 'center'
     },
     itemContainer: {
         backgroundColor: 'grey',

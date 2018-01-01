@@ -8,7 +8,7 @@ import { ListCategoryByIcon } from '../Containers/index.js';
 
 export default class Category extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Danh mục',
+        tabBarLabel: 'Categories',
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='border-all'
