@@ -12,7 +12,7 @@ api_config = {
 api_urls = {
     url_main: 'https://api.themoviedb.org/3',
     url_base_image: 'https://image.tmdb.org/t/p/w500',
-    url_poster: 'https://image.tmdb.org/t/p/w130'
+    url_poster: 'https://image.tmdb.org/t/p/w130',
 }
 
 //belows are api_urls, just fucking care what are on above =))
@@ -81,6 +81,14 @@ export default api = {
     //In ScreenSameFilm
     get_category: (category, page = 1) => {
         return `https://api.themoviedb.org/3/${category}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
+    },
+
+    //In Screen DetailPeron
+    get_detail_person: (person_id) => {
+        return `https://api.themoviedb.org/3/person/${person_id}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&append_to_response=movie_credits`
+    },
+    get_profile_path: (profile_path) => {
+        return `https://image.tmdb.org/t/p/w130${profile_path}`
     },
 
     //In Tab Lastest

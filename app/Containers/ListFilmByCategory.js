@@ -71,7 +71,7 @@ export default class ListFilmByCategory extends Component {
     }
 
     getListFilmByCategory() {
-
+        //catch the props here
         //find url by each category
         let url = objHash[this.props.category]
 

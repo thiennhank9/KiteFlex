@@ -9,6 +9,7 @@ import styles from './Styles/ItemFilm.js'
 import res from '../Resources/index.js'
 import LinearGradient from 'react-native-linear-gradient'
 import obj from '../Objects/ObjDetailFilm.js';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class ItemGridFilm extends PureComponent {
     constructor(props) {
@@ -63,7 +64,12 @@ export default class ItemGridFilm extends PureComponent {
         else
             return (
                 <View style={[{ justifyContent: 'center', alignItems: 'center' }, styles.cardImage]}>
-                    <Text> Haven't updated poster </Text>
+                    <Text style={{ textAlign: 'center', color: 'grey', fontSize: 17 }}> Sorry! We haven't updated this image! </Text>
+                    <Icon
+                        name='emoticon-sad'
+                        color='grey'
+                        size={25}
+                    />
                 </View>
             )
     }
@@ -73,15 +79,23 @@ export default class ItemGridFilm extends PureComponent {
         const title = item.title;
         let id_movie = item.id_movie;
         const media_type = item.media_type;
-        // if (media_type == 'person')
-        //     console.log(media_type + " name " + title)
+
         return (
             <TouchableOpacity
                 onPress={() => {
-                    store.dispatch(actionCreators.send_id_movie(id_movie))
+                    store.dispatch(actionCreators.send_id_movie(id_movie));
                     const root_navigation = store.getState().root_navigation;
-                    root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
-                    //this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
+                    console.log(media_type);
+                    if (media_type == "movie") {
+                        root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
+
+                    }
+                    else {
+                        if (media_type == "tv")
+                            root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
+                        else
+                            root_navigation.navigate('DetailPerson', { id_person: id_movie })
+                    }
                 }}
                 activeOpacity={0.8}>
                 {/* Container image and title */}

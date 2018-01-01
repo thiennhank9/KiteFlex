@@ -115,6 +115,12 @@ export default styles = StyleSheet.create({
         //make sure that render list result above image slider - can't be moved
         zIndex: 100
     },
+    text_type: {
+        fontSize: 13,
+        fontStyle: 'italic',
+        color: 'grey',
+        margin: 5
+    },
     containerEmptyResult: {
         height: 50,
         marginTop: 52,
@@ -133,9 +139,9 @@ export default styles = StyleSheet.create({
     },
     containerIndicator: {
         marginTop: 52,
-        margin: 2,
+        margin: 7,
         height: 70,
-        width: windows.width - 20,
+        width: windows.width - 14,
         position: 'absolute',
         backgroundColor: 'black',
         justifyContent: 'center',

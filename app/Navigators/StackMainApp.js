@@ -5,6 +5,7 @@ import { DetailFilm } from '../Screens/index.js';
 import Loading from '../Screens/Loading.js';
 import Login from '../Screens/Login'
 import ListSameFilm from '../Screens/ListSameFilm.js';
+import DetailPerson from '../Screens/DetailPerson.js';
 
 export default StackMainApp = StackNavigator({
   Loading: {
@@ -12,6 +13,7 @@ export default StackMainApp = StackNavigator({
   },
   TabApp: { screen: TabApp },
   DetailFilm: { screen: DetailFilm },
+  DetailPerson: {screen: DetailPerson},
   ListSameFilm: { screen: ListSameFilm },
   Login: { screen: Login }
 }, {
