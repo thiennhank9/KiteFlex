@@ -9,6 +9,7 @@ import api from '../APIs/TMDb_Config.js';
 import GridFilm from '../Containers/GridFilm.js';
 import windows from '../Themes/Windows.js';
 import { PacmanIndicator } from 'react-native-indicators';
+
 export default class Movie extends Component {
     static navigationOptions = {
         tabBarLabel: 'Movie',

@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { ItemCategory } from '../Components/index.js';
 import styles from './Styles/ListCategoryByIcon';
-import lsIconCategory from '../Objects/ListIconCategory.js';
+import genres from '../Objects/GenresFromAPI.js';
 
 export default class ListCategoryByIcon extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ds: lsIconCategory
+            ds: genres
         }
     }
     renderItemCategory(item) {
         return (
             <ItemCategory
-                icon={item.icon}
-                name={item.name}
+                item={item}
             />
         )
     }

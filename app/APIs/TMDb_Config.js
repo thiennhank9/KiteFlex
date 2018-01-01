@@ -103,5 +103,20 @@ export default api = {
     },
     get_lastest_cartoon: (page = 1) => {
         return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=12%2C16%2C%2010751`
+    },
+
+    //In Tab Popular
+    //In Screen List Same Category
+    get_same_category: (id_genre = 28, page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=${page}&with_genres=${id_genre}`;
+    },
+    get_most_watch: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=vote_count.desc&include_adult=true&include_video=true&page=${page}`
+    },
+    get_high_light:(page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=${page}&year=2017`
+    },
+    get_by_imdb: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=${page}`
     }
 }
