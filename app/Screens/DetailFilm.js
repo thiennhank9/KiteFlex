@@ -126,6 +126,7 @@ export default class DetailFilm extends Component {
                         {this.renderTrailerFilm()}
                         {this.renderListSameCategoryFilm()}
                         {this.renderListSimilarFilm()}
+                        {this.renderListCastFilm()}
                         <ListComments />
                     </ScrollView>
                 </View>
@@ -457,6 +458,21 @@ export default class DetailFilm extends Component {
                 </Text>
                 <ListFilmByCategory
                     similar_id={this.state.movie.id}
+                    navigation={this.props.navigation} />
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
+            </View>
+        )
+    }
+
+    renderListCastFilm() {
+        return (
+            <View style={{ flexDirection: 'column' }}>
+                <Text style={styles.titleCategory}>
+                    Cast
+                </Text>
+                <ListFilmByCategory
+                    person_detail_id={this.state.movie.id}
                     navigation={this.props.navigation} />
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
                 </View>

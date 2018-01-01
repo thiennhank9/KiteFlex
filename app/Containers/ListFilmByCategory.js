@@ -26,7 +26,9 @@ export default class ListFilmByCategory extends Component {
         return fetch(url)
             .then(response => response.json())
             .then(responseJson => {
-                let results = responseJson.results;
+                let results = [];
+                if (responseJson.results) results = responseJson.results;
+                else results = responseJson.cast;
                 let list_images = [];
                 //Check to makesure that limit images always more than 7 element
                 let limit_images = (results.length > 7)? 7 : results.length;
@@ -82,6 +84,9 @@ export default class ListFilmByCategory extends Component {
         //Use for get similar in detail film, find list movies with id movie
         if (this.props.similar_id)
             url = API.url_request_similar_movie(this.props.similar_id);
+
+        if (this.props.person_detail_id)
+            url = API.url_request_cast_movie(this.props.person_detail_id);
 
         //check if the category is not in the list
         if (url !== undefined)
