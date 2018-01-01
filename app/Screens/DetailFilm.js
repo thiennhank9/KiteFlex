@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar, AsyncStorage } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, Text, StatusBar, AsyncStorage, Button } from 'react-native';
 import styles from './Styles/DetailFilm.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -28,6 +28,8 @@ export default class DetailFilm extends Component {
             review_play: false,
             play_youtube: false,
             video_preview_id: 'No Video',
+            colorStar: 'white',
+            nameStart: 'ios-star-outline',
         }
     }
 
@@ -93,7 +95,13 @@ export default class DetailFilm extends Component {
             let movie = await this.getData(API.url_request_detail_movie(id_movie));
             let video_preview_id = await this.getIDVideo(API.url_request_video_demo(id_movie));
             this.setState({ isLoading: false, movie, video_preview_id });
+            console.log(movie);
         })();
+    }
+
+    changeColorStar() {
+        if (this.state.colorStar === 'white') this.setState({ colorStar: 'yellow', nameStart: 'md-star'});
+        if (this.state.colorStar === 'yellow') this.setState({ colorStar: 'white', nameStart:'ios-star-outline' });
     }
 
     render() {
@@ -146,29 +154,46 @@ export default class DetailFilm extends Component {
         if (this.state.video_preview_id === 'No Video')
             return null;
         return (
-            <View
-                style={styles.imageFilmContainer}>
-                <YouTube
-                    apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
-                    videoId={this.state.video_preview_id}   // The YouTube video ID
-                    play={this.state.play_youtube}             // control playback of video with true/false
-                    fullscreen={false}       // control whether the video should play in fullscreen or inline
-                    loop={false}             // control whether the video should loop when ended
-                    onReady={e => this.setState({ isReady: true })}
-                    onChangeState={e => this.setState({ status: e.state })}
-                    onChangeQuality={e => this.setState({ quality: e.quality })}
-                    onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
-                    style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
-                />
-                <TouchableOpacity
-                    onPress={() => {
-                        console.log(this.state.play_youtube)
-                        if (this.state.play_youtube)
-                            this.setState({ play_youtube: false })
-                        else
-                            this.setState({ play_youtube: true })
-                    }}
-                    style={styles.imageBackground} >
+            <View style={styles.imageFilmContainer}>
+                <View
+                    style={styles.imageBackdrop}>
+                    <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path)}}
+                        style={styles.imageBackground} />
+                    <View style={styles.backDropOpacity} />
+                    {/* <YouTube
+                        apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
+                        videoId={this.state.video_preview_id}   // The YouTube video ID
+                        play={this.state.play_youtube}             // control playback of video with true/false
+                        fullscreen={false}       // control whether the video should play in fullscreen or inline
+                        loop={false}             // control whether the video should loop when ended
+                        onReady={e => this.setState({ isReady: true })}
+                        onChangeState={e => this.setState({ status: e.state })}
+                        onChangeQuality={e => this.setState({ quality: e.quality })}
+                        onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
+                        style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
+                    /> */}
+                    {/* <TouchableOpacity
+                        onPress={() => {
+                            console.log(this.state.play_youtube)
+                            if (this.state.play_youtube)
+                                this.setState({ play_youtube: false })
+                            else
+                                this.setState({ play_youtube: true })
+                        }}
+                        style={styles.imageBackground} >
+                    </TouchableOpacity> */}
+                    <TouchableOpacity style={styles.star} onPress={() => {this.changeColorStar()}}>
+                        <Icons name={this.state.nameStart} size={24} color={this.state.colorStar} />
+                    </TouchableOpacity>
+                    <Text style={[styles.textTitle, styles.titleFilm]}>{this.state.movie.title}</Text>
+                </View>
+                <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
+                    style={styles.imagePoster} />        
+                <Text style={[styles.textTitle, styles.viewText]}>
+                    12
+                </Text>
+                <TouchableOpacity style={styles.watchbutton}>
+                    <Text>Watch</Text>
                 </TouchableOpacity>
             </View>
         )
