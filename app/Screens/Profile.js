@@ -5,7 +5,10 @@ import {
     TouchableOpacity,
     Image,
     SectionList,
-    StatusBar
+    StatusBar,
+    Modal,
+    TouchableWithoutFeedback,
+    TextInput
 } from 'react-native';
 import styles from './Styles/Profile.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,6 +19,7 @@ import windows from '../Themes/Windows.js';
 import {firebaseApp} from "../Components/FirebaseConfig"
 import {resetAction} from "../Navigators/NavigationActions";
 import actionCreators from "../Redux/ActionsCreator";
+import Icons from 'react-native-vector-icons/Ionicons'
 
 const objSystem =
     [
@@ -51,9 +55,11 @@ export default class Profile extends Component {
         super(props);
         this.state = {
             ds: objSystem,
-            isRegistered: store.getState().uuid !== null
+            isRegistered: store.getState().uuid !== null,
+            modalChangePasswordVisible: false
         }
     }
+
 
     clickToSignIn() {
         console.log('Clicked to sign in!')
@@ -73,7 +79,7 @@ export default class Profile extends Component {
                     onPress={() => this.clickToSignIn()}>
                     <Image
                         style={styles.avatar}
-                        source={res.avatar.blank_avatar}
+                        source={this.state.isRegistered ? {uri: 'https://cdn.macrumors.com/article-new/2014/12/tomcruise-250x250.jpg?retina'} : res.avatar.blank_avatar}
                         resizeMode='stretch'
                     />
                     {
@@ -100,7 +106,7 @@ export default class Profile extends Component {
                             </View> :
                             <View style={{ marginTop: 20, alignItems: 'center' }}>
                                 <Text style={{ color: 'white' }}>
-                                    Xin chào Alexander!
+                                    Xin chào Tom!
                                 </Text>
                                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                     <Button
@@ -115,11 +121,12 @@ export default class Profile extends Component {
                                         icon={{ name: 'reply' }}
                                         title='Đăng xuất' />
                                     <Button
+                                        onPress={() => this.setState({modalChangePasswordVisible: true})}
                                         buttonStyle={{ width: 120 }}
                                         rounded
                                         backgroundColor={'#D73E15'}
                                         icon={{ name: 'create' }}
-                                        title='Sửa Profile' />
+                                        title='Đổi mật khẩu' />
                                 </View>
                             </View>
                     }
@@ -174,6 +181,62 @@ export default class Profile extends Component {
             <View style={styles.container}>
                 {this.renderAvatar()}
                 {this.renderSectionSetting()}
+                <Modal
+                    animationType='fade'
+                    transparent
+                    visible={this.state.modalChangePasswordVisible}
+                    onRequestClose={() => {
+                        this.setState({modalChangePasswordVisible: false})
+                    }}>
+                    <View
+                        style={styles.modalICContainer}>
+                        <TouchableWithoutFeedback style={styles.modalICContent}>
+                            <View style={styles.modalICContent}>
+                                <Text style={styles.modalTitle}>Change Password</Text>
+                                <View style={[styles.inputWrapper, {marginTop: 10}]}>
+                                    <Icons name='ios-lock-outline'
+                                           style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40}}
+                                    />
+                                    <TextInput style={styles.input}
+                                               placeholder='New Password'
+                                               placeholderTextColor='white'
+                                               underlineColorAndroid='transparent'
+                                               onChangeText={text => this.setState({email: text})}
+                                               value={this.state.email}
+                                    />
+                                </View>
+                                <View style={[styles.inputWrapper, {marginTop: 0}]}>
+                                    <Icons name='ios-lock-outline'
+                                           style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40}}
+                                    />
+                                    <TextInput style={styles.input}
+                                               placeholder='Confirm Password'
+                                               placeholderTextColor='white'
+                                               underlineColorAndroid='transparent'
+                                               onChangeText={text => this.setState({email: text})}
+                                               value={this.state.email}
+                                    />
+                                </View>
+                                <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 30}}>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            this.setState({modalChangePasswordVisible: false})
+                                        }}
+                                        style={{padding: 8}}>
+                                        <Text style={[styles.modalButtonText, {marginRight: 40}]}>CANCEL</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            this.setState({modalChangePasswordVisible: false})
+                                        }}
+                                        style={{padding: 8}}>
+                                        <Text style={[styles.modalButtonText, {marginLeft: 40}]}>OK</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </Modal>
             </View>
         )
     }
