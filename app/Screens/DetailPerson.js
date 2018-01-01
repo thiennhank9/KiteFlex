@@ -22,7 +22,8 @@ export default class DetailPerson extends Component {
                 biography: '',
                 list_movies: []
             },
-            list_others: []
+            list_others: [],
+            is_showed_full_bioraphy: false
         }
     }
 
@@ -33,30 +34,30 @@ export default class DetailPerson extends Component {
 
     fetchOthers() {
         return fetch(api.get_popular_people)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            let results = responseJson.results;
-            let limit_render = 7;
-            if (results.length < 7)
-                limit_render = results.length;
-            let list_others = [];
-            for (let i = 0; i < limit_render; i++) {
-                let item = results[i];
-                objPerson = {
-                    key: i,
-                    id: item.id,
-                    name: item.name,
-                    profile_path: api.get_profile_path(item.profile_path)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                let results = responseJson.results;
+                let limit_render = 7;
+                if (results.length < 7)
+                    limit_render = results.length;
+                let list_others = [];
+                for (let i = 0; i < limit_render; i++) {
+                    let item = results[i];
+                    objPerson = {
+                        key: i,
+                        id: item.id,
+                        name: item.name,
+                        profile_path: api.get_profile_path(item.profile_path)
+                    }
+                    list_others.push(objPerson)
                 }
-                list_others.push(objPerson)
-            }
-            this.setState({
-                list_others: list_others
+                this.setState({
+                    list_others: list_others
+                })
             })
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+            .catch((error) => {
+                console.error(error)
+            })
     }
     fetchData() {
         const person_id = this.props.navigation.state.params.id_person;
@@ -135,10 +136,33 @@ export default class DetailPerson extends Component {
     }
 
     renderBiography() {
+        if (this.state.is_showed_full_bioraphy) {
+            return (
+                <View>
+                    <Text style={styles.text_title_biography}> Biography</Text>
+                    <Text style={styles.text_info_biography}>
+                        {this.state.data.biography}
+                    </Text>
+                    <TouchableOpacity onPress={() => this.setState({is_showed_full_bioraphy: false})}>
+                        <Text style={{color: 'red', fontSize: 13, margin: 5, borderRadius: 5}}>
+                            Less
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+
         return (
             <View>
                 <Text style={styles.text_title_biography}> Biography</Text>
-                <Text numberOfLines={6} ellipsizeMode='tail' style={styles.text_info_biography}> {this.state.data.biography}</Text>
+                <Text numberOfLines={6} ellipsizeMode='tail' style={styles.text_info_biography}>
+                    {this.state.data.biography}
+                </Text>
+                <TouchableOpacity onPress={() => this.setState({is_showed_full_bioraphy: true})}>
+                    <Text style={{color: 'red', fontSize: 13, margin: 5, borderRadius: 5}}>
+                        More 
+                    </Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -148,7 +172,7 @@ export default class DetailPerson extends Component {
         let key = item.key;
         let id = item.id;
         let poster_path = item.poster_path;
-        
+
         return (
             <TouchableOpacity
                 key={key}
@@ -156,7 +180,7 @@ export default class DetailPerson extends Component {
                     store.dispatch(actionsCreators.send_id_movie(id));
                     let root_navigation = store.getState().root_navigation;
                     root_navigation.navigate('DetailFilm');
-                }}            
+                }}
                 style={styles.item_movie_container}>
                 <Image
                     source={{ uri: poster_path }}
@@ -190,7 +214,7 @@ export default class DetailPerson extends Component {
         )
     }
 
-    renderItemPerson(item){
+    renderItemPerson(item) {
         let name = item.name;
         let key = item.key;
         let id = item.id;
@@ -200,7 +224,7 @@ export default class DetailPerson extends Component {
                 key={key}
                 onPress={() => {
                     let root_navigation = store.getState().root_navigation;
-                    root_navigation.navigate('DetailPerson', {id_person: id});
+                    root_navigation.navigate('DetailPerson', { id_person: id });
                 }}
                 style={styles.item_movie_container}>
                 <Image
