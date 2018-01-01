@@ -12,6 +12,7 @@ import Rating from '../Components/Rating';
 import API from '../APIs/TMDb_Config';
 import YouTube from 'react-native-youtube';
 import SearchFilm from '../Components/SearchFilm.js';
+import ElevatedView from 'react-native-elevated-view'
 
 export default class DetailFilm extends Component {
     constructor(props) {
@@ -187,13 +188,19 @@ export default class DetailFilm extends Component {
                     </TouchableOpacity>
                     <Text style={[styles.textTitle, styles.titleFilm]}>{this.state.movie.title}</Text>
                 </View>
-                <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
-                    style={styles.imagePoster} />        
+                <ElevatedView style={styles.imagePoster}
+                        elevation={10} >
+                    <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
+                        style={styles.imageBackground} />
+                </ElevatedView>
                 <Text style={[styles.textTitle, styles.viewText]}>
                     12
                 </Text>
                 <TouchableOpacity style={styles.watchbutton}>
-                    <Text>Watch</Text>
+                    <Text style={styles.textWatch}>Watch</Text>
+                    <View style={styles.iconPlay}>
+                        <Icons name='md-play' size={22} color='#F26622' style={{marginLeft: 2}} />
+                    </View>
                 </TouchableOpacity>
             </View>
         )
