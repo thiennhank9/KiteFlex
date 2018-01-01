@@ -26,6 +26,8 @@ export default styles = StyleSheet.create({
     footer: {
         backgroundColor: '#1A2127',
         height: 30,
+        //top: windows.height - 70,
+        //position: 'absolute',
         width: windows.width,
         flexDirection: 'row',
         justifyContent: 'space-between',

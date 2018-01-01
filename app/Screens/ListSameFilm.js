@@ -1,28 +1,15 @@
-
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import StatusBarApp from '../Components/StatusBarApp.js';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from './Styles/Episode.js';
+import styles from './Styles/ListSameFilm';
 import toUrls from '../Objects/CategoryUrl.js';
 import FetchingIndicator from '../Components/FetchingIndicator.js';
 import api from '../APIs/TMDb_Config.js';
 import GridFilm from '../Containers/GridFilm.js';
 import windows from '../Themes/Windows.js';
 import { PacmanIndicator } from 'react-native-indicators';
-
-export default class Cartoon extends Component {
-    static navigationOptions = {
-        tabBarLabel: 'Cartoon',
-        tabBarIcon: ({ tintColor }) => (
-            <Icons
-                name='leaf'
-                size={24}
-                style={{ color: tintColor }}
-            />
-        )
-    }
-
+export default class ListSameFilm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,14 +24,16 @@ export default class Cartoon extends Component {
     }
 
     fetchData() {
-        let url_request = api.get_lastest_cartoon(this.state.page);
+        let url_category = toUrls[this.props.navigation.state.params.category];
+        let url_request = api.get_category(url_category, this.state.page);
         this.getListFilmFromUrl(url_request);
     }
-
     render() {
         return (
             <View style={styles.container}>
                 <StatusBarApp color='chocolate' />
+                {this.renderHeader()}
+                {this.renderLine()}
                 {this.renderGridFilmOrIndicator()}
                 {this.renderFooter()}
             </View>
@@ -86,13 +75,25 @@ export default class Cartoon extends Component {
                 for (let i = 0; i < results.length; i++) {
                     let element = results[i];
                     let title_image = '';
-                    if (element.title != undefined)
+                    let media_type = '';
+                    if (element.title != undefined) {
                         title_image = element.title;
-                    else
+                        media_type = 'movie';
+                    }
+                    else {
                         title_image = element.name;
+                        media_type = 'tv';
+                    }
+                    //If this is person, set profile_path to profile_path
+                    if (element.profile_path != undefined) {
+                        element.poster_path = element.profile_path
+                        media_type = 'person'
+                    }
+
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,
+                        media_type: media_type,
                         uri: api.url_get_poster(element.poster_path),
                         title: title_image,
                         id_movie: element.id
@@ -114,52 +115,46 @@ export default class Cartoon extends Component {
     renderGridFilmOrIndicator() {
         if (this.state.isLoading)
             return (
-                <View style={{
-                    // height: windows.height - 185, 
-                    flex: 1,
-                    backgroundColor: 'black', justifyContent: 'center', alignItems: 'center'
-                }}>
-                    <View>
-                        <PacmanIndicator
-                            size={50}
-                            color='gold'
-                        />
-                        {/* <Text style={styles.textCategory}> Loading </Text> */}
-                    </View>
+                <View style={{ flex: 1, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center' }}>
+                    <PacmanIndicator
+                        size={50}
+                        color='gold'
+                    />
+                    {/* <Text style={styles.textCategory}> Loading </Text> */}
                 </View>
             )
         else
             return (
-                <GridFilm
-                    navigation={this.props.navigation}
-                    // style={{ height: windows.height - 185 }}
-                    data={this.state.data} />
+                <GridFilm 
+                navigation={this.props.navigation}
+                style={{ height: windows.height - 100 }} 
+                data={this.state.data} />
             )
     }
-
-    renderPreviousPageOrNot() {
+    
+    renderPreviousPageOrNot(){
         if (this.state.page > 1) return (
             <TouchableOpacity
-                style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => {
-                    if (this.state.page > 1) {
-                        this.setState({
-                            page: this.state.page - 1,
-                            isLoading: true
-                        })
-                        this.fetchData();
-                    }
-                }}>
-                <Icons
-                    name='arrow-left'
-                    size={20}
-                    color='chocolate'
-                />
-            </TouchableOpacity>
+                    style={{ height: 50, width: 50, justifyContent: 'center', alignItems: 'center' }}
+                    onPress={() => {
+                        if (this.state.page > 1) {
+                            this.setState({
+                                page: this.state.page - 1,
+                                isLoading: true
+                            })
+                            this.fetchData();
+                        }
+                    }}>
+                    <Icons
+                        name='arrow-left'
+                        size={30}
+                        color='chocolate'
+                    />
+                </TouchableOpacity>
         )
         else return (
-            <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}>
-            </View>
+            <View style={{ height: 50, width: 50, justifyContent: 'center', alignItems: 'center' }}>
+                </View>
         )
     }
     renderFooter() {
@@ -168,7 +163,7 @@ export default class Cartoon extends Component {
                 {this.renderPreviousPageOrNot()}
                 <Text style={styles.textCategory}> Page {this.state.page}</Text>
                 <TouchableOpacity
-                    style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}
+                    style={{ height: 50, width: 50, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
                         console.log('pressed!');
                         this.setState({
@@ -179,7 +174,7 @@ export default class Cartoon extends Component {
                     }}>
                     <Icons
                         name='arrow-right'
-                        size={20}
+                        size={30}
                         color='chocolate'
                     />
                 </TouchableOpacity>

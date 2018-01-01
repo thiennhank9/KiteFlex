@@ -4,7 +4,8 @@ import Windows from '../../Themes/Windows';
 export default styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
-        flex: 1
+        flex: 1,
+        justifyContent: 'space-between'
     },
     header: {
         backgroundColor: 'black',
@@ -14,7 +15,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center'
     },
     textCategory: {
-        fontSize: 17,
+        fontSize: 21,
         fontWeight: 'bold',
         color: 'chocolate'
     },
@@ -24,8 +25,10 @@ export default styles = StyleSheet.create({
         margin: 5
     },
     footer: {
-        backgroundColor: '#1A2127',
-        height: 30,
+        backgroundColor: 'black',
+        height: 50,
+        //top: windows.height - 70,
+        //position: 'absolute',
         width: windows.width,
         flexDirection: 'row',
         justifyContent: 'space-between',

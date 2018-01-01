@@ -18,5 +18,11 @@ export default actionCreators = {
             type: types.SEND_UUID,
             payload: uuid
         }
+    },
+    send_root_navigation: (navigation) => {
+        return {
+            type: types.SEND_ROOT_NAVIGATION,
+            payload: navigation
+        }
     }
 }

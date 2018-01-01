@@ -5,6 +5,7 @@ import ListFilmByCategory from './ListFilmByCategory.js';
 import GridFilm from './GridFilm.js';
 import ListCategoryByIcon from './ListCategoryByIcon.js';
 import ListComments from './ListComments.js';
+import TopKeyWords from './TopKeyWords.js';
 
 export {
     ScrollHome,
@@ -13,5 +14,6 @@ export {
     ListFilmByCategory,
     GridFilm,
     ListCategoryByIcon,
-    ListComments
+    ListComments,
+    TopKeyWords
 }

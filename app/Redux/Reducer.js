@@ -5,7 +5,8 @@ export default reducer = (state = initialState, action) => {
     const {
         list_top_popularity,
         id_movie,
-        uuid
+        uuid,
+        root_navigation
     } = state;
     const {type, payload} = action;
     
@@ -28,6 +29,13 @@ export default reducer = (state = initialState, action) => {
             return {
                 ...state,
                 uuid: payload
+            }
+        }
+
+        case types.SEND_ROOT_NAVIGATION: {
+            return {
+                ...state,
+                root_navigation: payload
             }
         }
         return state;

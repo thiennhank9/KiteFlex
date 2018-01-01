@@ -1,10 +1,11 @@
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
-
+import { Animated, Easing } from 'react-native';
 import Movie from '../Screens/Movie.js';
 import Episode from '../Screens/Episode.js';
 import TVShow from '../Screens/TVShow.js';
 import Cartoon from '../Screens/Cartoon.js';
+import DetailFilm from '../Screens/DetailFilm.js';
 
 const labelStyle = Platform.select({
     ios: {
@@ -23,18 +24,18 @@ export default TabNew = TabNavigator({
     TVShow: { screen: TVShow },
     Cartoon: { screen: Cartoon }
 }, {
-    lazy: true,
-    swipeEnabled: false,
-    tabBarPosition: 'top',
-    tabBarOptions: {
         lazy: true,
-        activeTintColor: '#D73E15',
-        showIcon: true,
-        labelStyle,
-        style: {
-            backgroundColor: '#1A2127',
-            marginVertical: 7,
-            height: 57,
-        },
-    }
-})
+        swipeEnabled: false,
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            lazy: true,
+            activeTintColor: '#D73E15',
+            showIcon: true,
+            labelStyle,
+            style: {
+                backgroundColor: '#1A2127',
+                marginVertical: 7,
+                height: 57,
+            },
+        }
+    })

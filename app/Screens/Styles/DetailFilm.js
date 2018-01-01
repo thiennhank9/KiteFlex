@@ -45,10 +45,7 @@ export default styles = StyleSheet.create({
     imageFilmContainer: {
         width: windows.width,
         height: windows.height / 3,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        position: 'relative',
+        backgroundColor: 'black',
     },
     imageBackground: {
         position: 'absolute',
@@ -100,7 +97,7 @@ export default styles = StyleSheet.create({
         borderColor: 'red',
         borderWidth: 1,
         textAlign: 'center',
-        
+
     },
     textVN: {
         color: 'white',
@@ -111,7 +108,7 @@ export default styles = StyleSheet.create({
         fontSize: 10,
         padding: 3,
         textAlign: 'center',
-        
+
     },
     textNumberMarkStar: {
         color: 'red',
@@ -142,7 +139,7 @@ export default styles = StyleSheet.create({
     },
     titleCategory: {
         color: 'palegoldenrod',
-        fontSize: 19,       
+        fontSize: 19,
         margin: 10
     },
     icon

@@ -49,8 +49,23 @@ export default class ItemFilm extends PureComponent {
         )
     }
 
+    renderImageOrNull(poster) {
+        if (poster != null)
+            return (
+                <Image
+                    resizeMode='stretch'
+                    source={{ uri: poster }}
+                    style={styles.cardImage} />
+            )
+        else
+            return (
+                <View style={[{ justifyContent: 'center', alignItems: 'center' }, styles.cardImage]}>
+                    <Text style={{ textAlign: 'center' }}> Haven't updated poster </Text>
+                </View>
+            )
+    }
     render() {
-        const {item} = this.props.item;
+        const { item } = this.props.item;
         const poster = item.uri;
         const title = item.title;
         let id_movie = item.id_movie;
@@ -58,26 +73,16 @@ export default class ItemFilm extends PureComponent {
             <TouchableOpacity
                 onPress={() => {
                     store.dispatch(actionCreators.send_id_movie(id_movie))
-                    //this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
                     this.props.navigation.navigate('DetailFilm', { objDetailFilm: obj })
                 }}
                 activeOpacity={0.8}>
                 {/* Container image and title */}
                 <View style={styles.cardContainer}>
                     {/* Container image */}
-                        <Image 
-                        resizeMode='stretch'
-                        source={{ uri: poster}} 
-                        style={styles.cardImage} />
-                        {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
-                        {/* {this.renderEpisodeOrIMDb()} */}
-                        <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>{title}</Text>
-                    {/* Text title film with gradient */}
-                    {/* <LinearGradient
-                        style={styles.cardTitleContainer}
-                        colors={['rgba(0, 0, 0, 0)', 'rgba(30, 30, 30, 1)']}>
-                        
-                    </LinearGradient> */}
+                    {this.renderImageOrNull(poster)}
+                    {/* Container number of episode and IMDb - Just render 1 of them, can't render 2 at same time */}
+                    {/* {this.renderEpisodeOrIMDb()} */}
+                    <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode='tail'>{title}</Text>
                 </View>
             </TouchableOpacity>
         )

@@ -7,6 +7,7 @@ import {
     Library,
     Profile
 } from '../Screens/index.js';
+//import {TabNew} from './TabNew.js';
 
 const labelStyle = Platform.select({
     ios: {

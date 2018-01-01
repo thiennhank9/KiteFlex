@@ -5,5 +5,4 @@ export default styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#111111'
     },
-
 })

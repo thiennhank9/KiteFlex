@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import styles from './Styles/ListFilmByCategory.js';
 import lsFilmByCategory from '../Objects/ListFilmByCategory.js';
-import { ItemFilm } from '../Components/index.js';
+import { ItemFilm, ItemGridFilm } from '../Components/index.js';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import api from '../APIs/TMDb_Config.js';
 import FetchingIndicator from '../Components/FetchingIndicator.js';
@@ -28,22 +28,30 @@ export default class ListFilmByCategory extends Component {
             .then(responseJson => {
                 let results = responseJson.results;
                 let list_images = [];
-
+                //Check to makesure that limit images always more than 7 element
+                let limit_images = (results.length > 7)? 7 : results.length;
                 //only get 7 elements from json
-                for (let i = 0; i < 7; i++) {
+                for (let i = 0; i < limit_images; i++) {
                     let element = results[i];
-
                     let title_image = '';
-                    console.log(element.title)
-                    console.log(element.name)
-                    if (element.title != undefined)
+                    let media_type = '';
+                    if (element.title != undefined) {
                         title_image = element.title;
-                    else
+                        media_type = 'movie';
+                    }
+                    else {
                         title_image = element.name;
-
+                        media_type = 'tv';
+                    }
+                    //If this is person, set profile_path to profile_path
+                    if (element.profile_path != undefined) {
+                        element.poster_path = element.profile_path
+                        media_type = 'person'
+                    }
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,
+                        media_type: media_type,
                         uri: api.url_get_poster(element.poster_path),
                         title: title_image,
                         id_movie: element.id
@@ -80,14 +88,14 @@ export default class ListFilmByCategory extends Component {
 
     renderItemFilm(item) {
         return (
-            <ItemFilm
+            <ItemGridFilm
                 navigation={this.props.navigation}
                 item={item}
             />
         )
     }
 
-    _keyExtractor = (item, index) => index;
+    //_keyExtractor = (item, index) => index;
 
     render() {
         if (this.state.isLoading)
@@ -95,10 +103,10 @@ export default class ListFilmByCategory extends Component {
         else
             return (
                 <FlatList
-                    keyExtractor={this._keyExtractor}
+                    //keyExtractor={this._keyExtractor}
                     horizontal
                     data={this.state.lsFilmByCategory}
-                    renderItem={this.renderItemFilm.bind(this)}
+                    renderItem={({item}) => this.renderItemFilm(item)}
                 />
             )
     }

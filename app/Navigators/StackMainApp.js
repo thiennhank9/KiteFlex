@@ -5,6 +5,7 @@ import { DetailFilm } from '../Screens/index.js';
 import Loading from '../Screens/Loading.js';
 import Login from '../Screens/Login'
 import Signup from '../Screens/Signup'
+import ListSameFilm from '../Screens/ListSameFilm.js';
 
 export default StackMainApp = StackNavigator({
   Loading: {
@@ -12,8 +13,9 @@ export default StackMainApp = StackNavigator({
   },
   TabApp: { screen: TabApp },
   DetailFilm: { screen: DetailFilm },
-  Login: { screen: Login },
-    Signup: {screen: Signup}
+    Signup: {screen: Signup},
+  ListSameFilm: { screen: ListSameFilm },
+  Login: { screen: Login }
 }, {
     headerMode: 'none',
     transitionConfig: () => ({

@@ -15,6 +15,7 @@ api_urls = {
     url_poster: 'https://image.tmdb.org/t/p/w130'
 }
 
+//belows are api_urls, just fucking care what are on above =))
 export default api = {
     //Don't care about these path, just for test ~~
     url_get_image: (path) => {
@@ -28,6 +29,11 @@ export default api = {
     url_request_top_popularity: 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1',
 
     //In Home - include: Movies, TV Shows, and People
+    //---List result search - MultiSearch (includes movies, tv shows and people)
+    get_multi_search: (query) => {
+        return `https://api.themoviedb.org/3/search/multi?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&query=${query}&page=1&include_adult=true`
+    },
+    
     //---Movies
     get_top_rated: 'https://api.themoviedb.org/3/movie/top_rated?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',
     get_upcoming: 'https://api.themoviedb.org/3/movie/upcoming?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=1',
@@ -70,5 +76,24 @@ export default api = {
     },
     url_post_rate_movie: (id_movie) => {
         return `https://api.themoviedb.org/3/movie/${id_movie}/rating?api_key=${api_config.key}`;
+    },
+
+    //In ScreenSameFilm
+    get_category: (category, page = 1) => {
+        return `https://api.themoviedb.org/3/${category}?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
+    },
+
+    //In Tab Lastest
+    get_lastest_movie: (page = 1) => {
+        return `https://api.themoviedb.org/3/movie/popular?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&page=${page}`
+    },
+    get_lastest_episode: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/tv?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&page=${page}&timezone=America%2FNew_York&with_genres=10770&include_null_first_air_dates=false`
+    },
+    get_lastest_tvshow: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/tv?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=first_air_date.desc&page=${page}&timezone=America%2FNew_York&include_null_first_air_dates=false`
+    },
+    get_lastest_cartoon: (page = 1) => {
+        return `https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=12%2C16%2C%2010751`
     }
 }

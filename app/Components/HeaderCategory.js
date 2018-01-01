@@ -11,8 +11,9 @@ import { toTitleCase, jsUcfirst } from '../Utils/Utils.js';
 export default class HeaderCategory extends PureComponent {
 
     clickToExpand() {
-        console.log("Clicked!")
+        this.props.navigation.navigate('ListSameFilm', {category: this.props.category})
     }
+
     render() {
         return (
             <View style={styles.container}>
