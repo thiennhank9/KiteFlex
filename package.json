@@ -11,6 +11,7 @@
     "react": "^16.0.0",
     "react-native": "^0.50.4",
     "react-native-elements": "^0.18.4",
+    "react-native-elevated-view": "0.0.6",
     "react-native-image-slider": "^1.1.5",
     "react-native-indicators": "^0.10.0",
     "react-native-linear-gradient": "^2.3.0",

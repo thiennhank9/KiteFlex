@@ -12,6 +12,7 @@ import Rating from '../Components/Rating';
 import API from '../APIs/TMDb_Config';
 import YouTube from 'react-native-youtube';
 import SearchFilm from '../Components/SearchFilm.js';
+import ElevatedView from 'react-native-elevated-view'
 
 export default class DetailFilm extends Component {
     constructor(props) {
@@ -122,7 +123,10 @@ export default class DetailFilm extends Component {
                         {this.renderStar1()}
                         {this.renderDetail()}
                         {this.renderToRankStar()}
+                        {this.renderTrailerFilm()}
                         {this.renderListSameCategoryFilm()}
+                        {this.renderListSimilarFilm()}
+                        {this.renderListCastFilm()}
                         <ListComments />
                     </ScrollView>
                 </View>
@@ -187,13 +191,19 @@ export default class DetailFilm extends Component {
                     </TouchableOpacity>
                     <Text style={[styles.textTitle, styles.titleFilm]}>{this.state.movie.title}</Text>
                 </View>
-                <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
-                    style={styles.imagePoster} />        
+                <ElevatedView style={styles.imagePoster}
+                        elevation={10} >
+                    <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
+                        style={styles.imageBackground} />
+                </ElevatedView>
                 <Text style={[styles.textTitle, styles.viewText]}>
                     12
                 </Text>
                 <TouchableOpacity style={styles.watchbutton}>
-                    <Text>Watch</Text>
+                    <Text style={styles.textWatch}>Watch</Text>
+                    <View style={styles.iconPlay}>
+                        <Icons name='md-play' size={22} color='#F26622' style={{marginLeft: 2}} />
+                    </View>
                 </TouchableOpacity>
             </View>
         )
@@ -420,6 +430,7 @@ export default class DetailFilm extends Component {
                     <Rating size={30}
                         onPress={(index) => { console.log('Number of stars human rating is ' + (index + 1)) }} />
                 </View>
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }} />
             </View>
         )
     }
@@ -427,14 +438,68 @@ export default class DetailFilm extends Component {
     renderListSameCategoryFilm() {
         return (
             <View style={{ flexDirection: 'column' }}>
-                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
-                </View>
                 <Text style={styles.titleCategory}>
                     Recommendations
                 </Text>
                 <ListFilmByCategory
                     genre_id={this.state.movie.genres[0].id}
                     navigation={this.props.navigation} />
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
+            </View>
+        )
+    }
+    
+    renderListSimilarFilm() {
+        return (
+            <View style={{ flexDirection: 'column' }}>
+                <Text style={styles.titleCategory}>
+                    Similar
+                </Text>
+                <ListFilmByCategory
+                    similar_id={this.state.movie.id}
+                    navigation={this.props.navigation} />
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
+            </View>
+        )
+    }
+
+    renderListCastFilm() {
+        return (
+            <View style={{ flexDirection: 'column' }}>
+                <Text style={styles.titleCategory}>
+                    Cast
+                </Text>
+                <ListFilmByCategory
+                    person_detail_id={this.state.movie.id}
+                    navigation={this.props.navigation} />
+                <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
+                </View>
+            </View>
+        )
+    }
+
+    renderTrailerFilm() {
+        return (
+            <View style={{ flexDirection: 'column' }}>
+                <Text style={styles.titleCategory}>
+                    Trailer
+                </Text>
+                <View style={styles.trailer} >
+                    <YouTube
+                            apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
+                            videoId={this.state.video_preview_id}   // The YouTube video ID
+                            play={this.state.play_youtube}             // control playback of video with true/false
+                            fullscreen={false}       // control whether the video should play in fullscreen or inline
+                            loop={false}             // control whether the video should loop when ended
+                            onReady={e => this.setState({ isReady: true })}
+                            onChangeState={e => this.setState({ status: e.state })}
+                            onChangeQuality={e => this.setState({ quality: e.quality })}
+                            onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
+                            style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
+                        />
+                </View>
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
                 </View>
             </View>

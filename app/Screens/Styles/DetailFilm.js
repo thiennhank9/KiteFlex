@@ -45,7 +45,6 @@ export default styles = StyleSheet.create({
     imageFilmContainer: {
         width: windows.width,
         height: windows.height / 2.5,
-        backgroundColor: 'transparent',
     },
     imageBackdrop: {
         position: 'absolute',
@@ -53,19 +52,22 @@ export default styles = StyleSheet.create({
         right: 0,
         bottom: 40,
         left: 0,
-        backgroundColor: 'red',
     },
     imagePoster: {
         position: 'absolute',
         left: 20,
         bottom: 0,
-        backgroundColor: 'blue',
+        backgroundColor: 'black',
         height: 170,
         width: 125,
-        elevation: 100,
-        borderWidth: 3,
-        borderColor: 'black',
-        zIndex: 4
+    },
+    backDropOpacity: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 45,
+        backgroundColor: 'rgba(0, 0, 0, 0.45)',
     },
     star: {
         position: 'absolute',
@@ -74,21 +76,41 @@ export default styles = StyleSheet.create({
     },
     titleFilm: {
         position: 'absolute',
-        left: 150,
+        left: 165,
         bottom: 10,
         margin: 0,
     },
     viewText: {
         position: 'absolute',
-        left: 155,
+        left: 165,
         bottom: 10,
         margin: 0,
     },
     watchbutton: {
         position: 'absolute',
         right: 10,
-        bottom: 10,
+        bottom: 0,
         width: 100,
+        height: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#F26622',
+        borderRadius: 15,
+    },
+    textWatch: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: 'white',
+        marginHorizontal: 10,
+    },
+    iconPlay: {
+        marginRight: 5,
+        backgroundColor: 'white',
+        width: 25,
+        height: 25,
+        borderRadius: 12.5,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     imageBackground: {
         position: 'absolute',
@@ -184,6 +206,11 @@ export default styles = StyleSheet.create({
         color: 'palegoldenrod',
         fontSize: 19,
         margin: 10
+    },
+    trailer: {
+        width: windows.width * 3/4,
+        height: 200,
+        alignSelf: 'center',
     },
     icon
 })
