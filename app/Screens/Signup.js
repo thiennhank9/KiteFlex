@@ -33,7 +33,7 @@ export default class LaunchScreen extends Component {
     }
 
     _onPress() {
-        this.onSignup()
+
         if (this.state.isLoading) return;
 
         this.setState({isLoading: true});
@@ -48,6 +48,7 @@ export default class LaunchScreen extends Component {
 
         setTimeout(() => {
             this._onGrow();
+            this.onSignup()
         }, 2000);
 
         setTimeout(() => {
@@ -72,7 +73,9 @@ export default class LaunchScreen extends Component {
     onSignup () {
         console.log('onSignin', this.state.email + '/' + this.state.password)
         firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => console.log('Success'))
+            .then(() => {
+                this.props.navigation.navigate('Login')
+            })
             .catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;

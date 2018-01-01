@@ -34,7 +34,6 @@ export default class LaunchScreen extends Component {
     }
 
     _onPress() {
-        this.onSignin()
         if (this.state.isLoading) return;
 
         this.setState({isLoading: true});
@@ -48,7 +47,8 @@ export default class LaunchScreen extends Component {
         ).start();
 
         setTimeout(() => {
-            this._onGrow();
+            this._onGrow()
+            this.onSignin()
         }, 2000);
 
         setTimeout(() => {
