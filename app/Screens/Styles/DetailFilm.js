@@ -74,6 +74,16 @@ export default styles = StyleSheet.create({
         top: 10,
         right: 10,
     },
+    title_on_backdrop: {
+        color: 'gold',
+        fontSize: 15,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        position: 'absolute',
+        left: 165,
+        bottom: 10,
+        margin: 0,
+    },
     titleFilm: {
         position: 'absolute',
         left: 165,
@@ -94,7 +104,7 @@ export default styles = StyleSheet.create({
         height: 30,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#F26622',
+        backgroundColor: 'tomato',
         borderRadius: 15,
     },
     textWatch: {
@@ -124,6 +134,15 @@ export default styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         margin: 10
+    },
+    text_views: {
+        color: 'gold',
+        fontSize: 17,
+        fontWeight: 'bold',
+        position: 'absolute',
+        left: 165,
+        bottom: 5,
+        margin: 0,
     },
     star1Container: {
         marginLeft: 5,

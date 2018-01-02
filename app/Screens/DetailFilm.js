@@ -189,20 +189,20 @@ export default class DetailFilm extends Component {
                     <TouchableOpacity style={styles.star} onPress={() => {this.changeColorStar()}}>
                         <Icons name={this.state.nameStart} size={24} color={this.state.colorStar} />
                     </TouchableOpacity>
-                    <Text style={[styles.textTitle, styles.titleFilm]}>{this.state.movie.title}</Text>
+                    <Text style={styles.title_on_backdrop}>{this.state.movie.title}</Text>
                 </View>
                 <ElevatedView style={styles.imagePoster}
                         elevation={10} >
                     <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
                         style={styles.imageBackground} />
                 </ElevatedView>
-                <Text style={[styles.textTitle, styles.viewText]}>
-                    12
+                <Text style={styles.text_views}>
+                    Views: 12
                 </Text>
                 <TouchableOpacity style={styles.watchbutton}>
                     <Text style={styles.textWatch}>Watch</Text>
                     <View style={styles.iconPlay}>
-                        <Icons name='md-play' size={22} color='#F26622' style={{marginLeft: 2}} />
+                        <Icons name='md-play' size={22} color='tomato' style={{marginLeft: 2}} />
                     </View>
                 </TouchableOpacity>
             </View>
