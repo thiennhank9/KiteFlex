@@ -16,7 +16,6 @@ import res from '../Resources/index.js';
 import { Button } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import windows from '../Themes/Windows.js';
-import {firebaseApp} from "../Components/FirebaseConfig"
 import {resetAction} from "../Navigators/NavigationActions";
 import actionCreators from "../Redux/ActionsCreator";
 import Icons from 'react-native-vector-icons/Ionicons'
@@ -34,8 +33,7 @@ const objSystem =
             }, {
                 name: 'Phản hồi',
                 icon: 'alert-octagram'
-            }
-            ]
+            }]
         }
     ];
 
@@ -111,7 +109,6 @@ export default class Profile extends Component {
                                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                     <Button
                                         onPress={() => {
-                                            firebaseApp.auth().signOut()
                                             store.dispatch(actionCreators.send_uuid(null))
                                             this.props.navigation.dispatch(resetAction)
                                         }}

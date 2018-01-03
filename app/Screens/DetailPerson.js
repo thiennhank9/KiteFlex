@@ -6,7 +6,6 @@ import ListOthersPerson from '../Containers/ListOthersPerson';
 import { ListComments } from '../Containers/index';
 import api from '../APIs/TMDb_Config';
 import actionsCreators from '../Redux/ActionsCreator';
-import { error } from '@firebase/database/dist/esm/src/core/util/util';
 
 export default class DetailPerson extends Component {
     constructor(props) {

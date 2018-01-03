@@ -3,8 +3,8 @@ import {StackNavigator} from 'react-navigation';
 import TabApp from './TabApp.js';
 import {DetailFilm} from '../Screens/index.js';
 import Loading from '../Screens/Loading.js';
-import Login from '../Screens/Login'
-import Signup from '../Screens/Signup'
+import Login from '../Screens/Account/Login.js';
+//import Signup from '../Screens/Signup'
 import ListSameFilm from '../Screens/ListSameFilm.js';
 import DetailPerson from '../Screens/DetailPerson.js';
 import ListSameCategory from '../Screens/ListSameCategory';
@@ -15,7 +15,7 @@ export default StackMainApp = StackNavigator({
     },
     TabApp: {screen: TabApp},
     DetailFilm: {screen: DetailFilm},
-    Signup: {screen: Signup},
+    //Signup: {screen: Signup},
     DetailPerson: {screen: DetailPerson},
     ListSameFilm: {screen: ListSameFilm},
     ListSameCategory: {screen: ListSameCategory},

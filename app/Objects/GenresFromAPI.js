@@ -1,4 +1,3 @@
-
 export default genres = [
     {
         key: 1,
