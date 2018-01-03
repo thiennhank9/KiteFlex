@@ -10,3 +10,11 @@ export function splitIntoTags(string) {
     })
     return arrTags;
 }
+
+export function isObjectEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}

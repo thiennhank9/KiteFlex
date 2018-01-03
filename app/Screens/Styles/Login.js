@@ -9,6 +9,18 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between'
     },
+    containerBody: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    iconBack: {
+      margin: 5  
+    },
+    logo:{
+        marginTop: 30
+    },
     textUnderline: {
         margin: 10,
         textDecorationLine: 'underline'
@@ -17,16 +29,41 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         width: windows.width,
-        height: 50
+        height: 50, 
+        backgroundColor: 'black'
     },
     containerInput: {
+        marginTop: 30,
+        flexDirection: 'column',
+        width: windows.width * 3 / 4
+    },
+    input: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     containerTextUnderline: {
         margin: 30,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
+    },
+    containerSocialIcons: {
+        flexDirection: 'row',
+    },
+    containerButton: {
+        width: windows.width*3/4,
+        height: 40,
+        marginTop: 10,
+        flexDirection: 'row',
+        borderRadius: 30,
+        backgroundColor: 'tomato',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    socialIcon: {
+        width: 40,
+        height: 40,
+        borderRadius: 20
     }
 })

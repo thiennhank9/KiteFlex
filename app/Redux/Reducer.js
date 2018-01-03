@@ -5,7 +5,7 @@ export default reducer = (state = initialState, action) => {
     const {
         list_top_popularity,
         id_movie,
-        uuid,
+        user,
         root_navigation
     } = state;
     const {type, payload} = action;
@@ -25,10 +25,10 @@ export default reducer = (state = initialState, action) => {
             }
         }
 
-        case types.SEND_UUID: {
+        case types.SEND_CURRENT_USER: {
             return {
                 ...state,
-                uuid: payload
+                user: payload
             }
         }
 
@@ -36,6 +36,12 @@ export default reducer = (state = initialState, action) => {
             return {
                 ...state,
                 root_navigation: payload
+            }
+        }
+        case types.CLEAR_CURRENT_USER: {
+            return {
+                ...state,
+                user: {} //delete all key and property in object user
             }
         }
         return state;

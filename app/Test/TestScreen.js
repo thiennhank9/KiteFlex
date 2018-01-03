@@ -9,6 +9,7 @@ import TestFullMid from './TestFullMid.js';
 import TestAutoDown from './TestAutoDown.js';
 import TestVoice from './TestVoice.js';
 import DetailPerson from '../Screens/DetailPerson.js';
+import TestFirebase from './TestFirebase.js';
 
 export default class TestScreen extends Component {
     render() {

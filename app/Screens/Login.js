@@ -4,6 +4,7 @@ import Icons from 'react-native-vector-icons/Ionicons'
 import {firebaseApp} from "../Components/FirebaseConfig"
 import actionCreators from '../Redux/ActionsCreator.js';
 import {resetAction} from '../Navigators/NavigationActions.js';
+
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 const MARGIN = 40;

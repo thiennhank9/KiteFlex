@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import windows from '../Themes/Windows.js';
 import {resetAction} from "../Navigators/NavigationActions";
 import actionCreators from "../Redux/ActionsCreator";
+import {isObjectEmpty} from '../Utils/Utils.js';
 
 const objSystem =
     [
@@ -49,7 +50,18 @@ export default class Profile extends Component {
         super(props);
         this.state = {
             ds: objSystem,
-            isRegistered: store.getState().uuid !== null
+            isLoggedIn: false
+        }
+    }
+
+    componentWillMount(){
+        let currentUser = store.getState().user;
+        console.log(currentUser);
+        if (!isObjectEmpty(currentUser)) {
+            console.log('logged in')
+            this.setState({
+                isLoggedIn: true
+            })
         }
     }
 
