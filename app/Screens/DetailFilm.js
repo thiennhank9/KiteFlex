@@ -64,14 +64,12 @@ export default class DetailFilm extends Component {
     async onClickFavorite() {
         if (!this.state.saved) {
             await AsyncStorage.setItem(`@FilmFavorite:${this.state.movie.id}`, JSON.stringify(this.state.movie));
-            console.log('run save Favorite Film');
         }
     }
 
     async onClickWathcLate() {
         if (!this.state.saved) {
             await AsyncStorage.setItem(`@FilmWatchLate:${this.state.movie.id}`, JSON.stringify(this.state.movie));
-            console.log('run save WatchLate Film');
         }
     }
 
@@ -85,7 +83,6 @@ export default class DetailFilm extends Component {
                 let prased = JSON.parse(value);
                 favoriteFilm[index] = {};
                 favoriteFilm[index] = prased;
-                console.log(favoriteFilm[index]);
             }
         });
     }
@@ -96,7 +93,6 @@ export default class DetailFilm extends Component {
             let movie = await this.getData(API.url_request_detail_movie(id_movie));
             let video_preview_id = await this.getIDVideo(API.url_request_video_demo(id_movie));
             this.setState({ isLoading: false, movie, video_preview_id });
-            console.log(movie);
         })();
     }
 
@@ -106,6 +102,7 @@ export default class DetailFilm extends Component {
     }
 
     render() {
+        const item = this.props.navigation.state.params.objDetail;
         if (this.state.isLoading)
             return (
                 <FetchingIndicator />
@@ -127,7 +124,7 @@ export default class DetailFilm extends Component {
                         {this.renderListSameCategoryFilm()}
                         {this.renderListSimilarFilm()}
                         {this.renderListCastFilm()}
-                        <ListComments />
+                        <ListComments item={item} />
                     </ScrollView>
                 </View>
             );

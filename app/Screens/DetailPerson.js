@@ -256,12 +256,13 @@ export default class DetailPerson extends Component {
             </View>
         )
     }
-    renderComments() {
+    renderComments(item) {
         return (
-            <ListComments />
+            <ListComments item={item}/>
         )
     }
     render() {
+        const item = this.props.navigation.state.params.objDetail;
         return (
             <View style={styles.container}>
                 <SearchFilm icon='back' navigation={this.props.navigation} />
@@ -270,7 +271,7 @@ export default class DetailPerson extends Component {
                     {this.renderBiography()}
                     {this.renderListMoviesOfPerson()}
                     {this.renderOthers()}
-                    {this.renderComments()}
+                    {this.renderComments(item)}
                 </ScrollView>
             </View>
         )
