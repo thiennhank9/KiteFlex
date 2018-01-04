@@ -76,6 +76,7 @@ export default class TVShow extends Component {
     }
 
     getListFilmFromUrl(url) {
+        console.log(url);
         return fetch(url)
             .then(response => response.json())
             .then(responseJson => {
@@ -84,7 +85,10 @@ export default class TVShow extends Component {
 
                 for (let i = 0; i < results.length; i++) {
                     let element = results[i];
+                    if (!element)
+                        continue;
                     let title_image = '';
+                    console.log(element);
                     if (element.title != undefined)
                         title_image = element.title;
                     else
