@@ -5,6 +5,8 @@ import styles from '../Styles/Login.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebaseApp from '../../Firebase/Config.js';
 import LinearGradient from 'react-native-linear-gradient';
+import actionCreators from '../../Redux/ActionsCreator.js';
+import {resetAction} from '../../Navigators/NavigationActions.js';
 
 export default class Login extends Component {
     constructor(props) {
@@ -21,16 +23,24 @@ export default class Login extends Component {
             .then(() => {
                 firebaseApp.auth().onAuthStateChanged(function (user) {
                     if (user) {
-                        console.log(user.uid);
-                        console.log(user.email);
+                        let currentUser = {
+                            email: user.email,
+                            uid: user.uid
+                        }
+                        store.dispatch(actionCreators.send_current_user(currentUser));
+                        this.props.navigation.dispatch(resetAction);
+                        console.log('goback')
                     }
-                })
+                }.bind(this))
             })
             .catch((error) => {
                 ToastAndroid.show(error.toString(), ToastAndroid.SHORT)
             })
+        
     }
-
+    goBack() {
+        this.props.navigation.goBack();
+    }
     renderHeader() {
         return (
             <TouchableOpacity
@@ -118,7 +128,8 @@ export default class Login extends Component {
     renderTextUnderline() {
         return (
             <View style={styles.containerTextUnderline}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Login')}>
                     <Text style={styles.textUnderline}>
                         Create new account
                 </Text>
