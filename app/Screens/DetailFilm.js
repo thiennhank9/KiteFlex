@@ -196,7 +196,9 @@ export default class DetailFilm extends Component {
                 <Text style={styles.text_views}>
                     Views: 12
                 </Text>
-                <TouchableOpacity style={styles.watchbutton}>
+                <TouchableOpacity 
+                    onPress={() => this.props.navigation.navigate('PlayVideo', {item: this.props.navigation.state.params.objDetail})}
+                    style={styles.watchbutton}>
                     <Text style={styles.textWatch}>Watch</Text>
                     <View style={styles.iconPlay}>
                         <Icons name='md-play' size={22} color='tomato' style={{marginLeft: 2}} />

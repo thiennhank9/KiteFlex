@@ -137,14 +137,16 @@ export default class ListComments extends Component {
                     <TextInput
                         placeholder="Comment in here..."
                         placeholderTextColor='black'
+                        multiline={true}
                         onChangeText={(textComment) => this.setState({ textComment })}
                         style={styles.input}
                     />
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                        <Button
-                            title='Add comment'
-                            onPress={() => this.addComment(item, this.state.textComment)}
-                        />
+                        <TouchableOpacity
+                            style={styles.buttonSendComment}
+                            onPress={() => this.addComment(item, this.state.textComment)}>
+                            <Text style={{ margin: 4, color: 'white', fontWeight: 'bold', fontSize: 15 }}> Add comment </Text>
+                        </TouchableOpacity>
                     </View>
                     {this.renderFlatListOrNot()}
                 </View>

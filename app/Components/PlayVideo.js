@@ -15,14 +15,14 @@ import FirmControl from '../Components/FirmControl';
 import TitleControl from '../Components/TitleControl';
 import Orientation from 'react-native-orientation';
 
-//const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
+const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
 //const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
-const url_mp4= 'http://ic-1b4afd00-12f1d2-1bjdobr21.s.loris.llnwd.net/hien/12_2017/9_12/Brawl.in.Cell.Block.99.2017.1080p.HDrip.x264.SUB.mp4'
+//const url_mp4= 'http://ic-1b4afd00-12f1d2-1bjdobr21.s.loris.llnwd.net/hien/12_2017/9_12/Brawl.in.Cell.Block.99.2017.1080p.HDrip.x264.SUB.mp4'
 export default class PlayVideo extends Component {
 
   state = {
     rate: 1,
-    volume: 1,
+    volume: 100,
     muted: false,
     resizeMode: 'contain',
     duration: 0.0,
@@ -32,7 +32,7 @@ export default class PlayVideo extends Component {
   };
 
   componentWillMount() {
-    Orientation.lockToLandscape();
+    //Orientation.lockToLandscape();
   }
   video: Video;
 
@@ -120,7 +120,10 @@ export default class PlayVideo extends Component {
 
   renderFirmTitle = () => {
     return (
-      <TitleControl firmName='Chuyen tinh bac sy' />
+      <TitleControl 
+      item={this.props.navigation.state.params.item}
+      navigation={this.props.navigation}
+      firmName='Chuyen tinh bac sy' />
     )
   }
 
@@ -129,7 +132,7 @@ export default class PlayVideo extends Component {
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
 
     const playPauseIcon = this.state.paused ? 'play-circle-outline' : 'pause-circle-outline';
-    const speakerIcon = this.state.muted ? 'volume-high' : 'volume-off';
+    const speakerIcon = this.state.muted ? 'volume-off' : 'volume-high';
 
     return (
       <FirmControl flexCompleted={flexCompleted}

@@ -8,24 +8,21 @@ class TitleControl extends Component {
     state = {  }
 
     render() {
+        const item = this.props.navigation.state.params.item;
+        console.log(item)
         return (
             <View style={styles.filmTitle}>
                 <View style={styles.headerTitle}>
                     <TouchableOpacity style={styles.iconBack}
-                                        onPress={() => {}}>
+                                        onPress={() => {this.props.navigation.goBack()}}>
                         <Icon
                         name='arrow-left'
                         size={24}
                         style={styles.icon}
                         />
                     </TouchableOpacity>
-                    <Text style={styles.textTitle}>{this.props.firmName}</Text>
+                    <Text style={styles.textTitle}>{item.title}</Text>
                 </View>
-    
-                {/* <View style={styles.anotherButton}>
-                <View style={{backgroundColor: 'green', width: 20}} />
-                <View style={{backgroundColor: 'green', width: 20}} />
-                </View> */}
             </View>
         );
     }

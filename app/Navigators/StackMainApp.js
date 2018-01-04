@@ -8,6 +8,7 @@ import SignUp from '../Screens/Account/SignUp.js';
 import ListSameFilm from '../Screens/ListSameFilm.js';
 import DetailPerson from '../Screens/DetailPerson.js';
 import ListSameCategory from '../Screens/ListSameCategory';
+import PlayVideo from '../Components/PlayVideo.js';
 
 export default StackMainApp = StackNavigator({
     Loading: {
@@ -19,7 +20,8 @@ export default StackMainApp = StackNavigator({
     DetailPerson: {screen: DetailPerson},
     ListSameFilm: {screen: ListSameFilm},
     ListSameCategory: {screen: ListSameCategory},
-    Login: {screen: Login}
+    Login: {screen: Login},
+    PlayVideo: {screen: PlayVideo}
 }, {
     headerMode: 'none',
     transitionConfig: () => ({
