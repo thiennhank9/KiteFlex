@@ -6,7 +6,7 @@ import styles from './Styles/Loading.js';
 import actionCreators from '../Redux/ActionsCreator.js';
 import {resetAction} from '../Navigators/NavigationActions.js';
 import api from '../APIs/TMDb_Config.js';
-import firebaseApp from '../Firebase/Config.js';
+import firebaseApp from '../Firebase/Config';
 import {isObjectEmpty} from '../Utils/Utils.js';
 
 //config reset action navigation 

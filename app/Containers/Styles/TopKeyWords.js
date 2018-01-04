@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import windows from '../../Themes/Windows.js';
 
 export default styles = StyleSheet.create({
@@ -28,10 +28,11 @@ export default styles = StyleSheet.create({
         //width: 100,
         borderRadius: 15,
         borderWidth: 2,
-        borderColor: 'gold'
+        borderColor: 'gold',
     },
     text: {
         fontSize: 15,
         color: 'black',
+        backgroundColor: 'transparent',
     }
 })

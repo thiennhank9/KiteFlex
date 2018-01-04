@@ -97,8 +97,8 @@ export default class DetailFilm extends Component {
     }
 
     changeColorStar() {
-        if (this.state.colorStar === 'white') this.setState({ colorStar: 'yellow', nameStart: 'md-star'});
-        if (this.state.colorStar === 'yellow') this.setState({ colorStar: 'white', nameStart:'ios-star-outline' });
+        if (this.state.colorStar === 'white') this.setState({ colorStar: 'yellow', nameStart: 'md-star' });
+        if (this.state.colorStar === 'yellow') this.setState({ colorStar: 'white', nameStart: 'ios-star-outline' });
     }
 
     render() {
@@ -158,7 +158,7 @@ export default class DetailFilm extends Component {
             <View style={styles.imageFilmContainer}>
                 <View
                     style={styles.imageBackdrop}>
-                    <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path)}}
+                    <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
                         style={styles.imageBackground} />
                     <View style={styles.backDropOpacity} />
                     {/* <YouTube
@@ -183,14 +183,14 @@ export default class DetailFilm extends Component {
                         }}
                         style={styles.imageBackground} >
                     </TouchableOpacity> */}
-                    <TouchableOpacity style={styles.star} onPress={() => {this.changeColorStar()}}>
+                    <TouchableOpacity style={styles.star} onPress={() => { this.changeColorStar() }}>
                         <Icons name={this.state.nameStart} size={24} color={this.state.colorStar} />
                     </TouchableOpacity>
                     <Text style={styles.title_on_backdrop}>{this.state.movie.title}</Text>
                 </View>
                 <ElevatedView style={styles.imagePoster}
-                        elevation={10} >
-                    <Image  source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
+                    elevation={10} >
+                    <Image source={{ uri: API.url_get_poster(this.state.movie.poster_path) }}
                         style={styles.imageBackground} />
                 </ElevatedView>
                 <Text style={styles.text_views}>
@@ -199,7 +199,7 @@ export default class DetailFilm extends Component {
                 <TouchableOpacity style={styles.watchbutton}>
                     <Text style={styles.textWatch}>Watch</Text>
                     <View style={styles.iconPlay}>
-                        <Icons name='md-play' size={22} color='tomato' style={{marginLeft: 2}} />
+                        <Icons name='md-play' size={22} color='tomato' style={{ marginLeft: 2, backgroundColor: 'transparent' }} />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -446,7 +446,7 @@ export default class DetailFilm extends Component {
             </View>
         )
     }
-    
+
     renderListSimilarFilm() {
         return (
             <View style={{ flexDirection: 'column' }}>
@@ -485,17 +485,17 @@ export default class DetailFilm extends Component {
                 </Text>
                 <View style={styles.trailer} >
                     <YouTube
-                            apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
-                            videoId={this.state.video_preview_id}   // The YouTube video ID
-                            play={this.state.play_youtube}             // control playback of video with true/false
-                            fullscreen={false}       // control whether the video should play in fullscreen or inline
-                            loop={false}             // control whether the video should loop when ended
-                            onReady={e => this.setState({ isReady: true })}
-                            onChangeState={e => this.setState({ status: e.state })}
-                            onChangeQuality={e => this.setState({ quality: e.quality })}
-                            onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
-                            style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
-                        />
+                        apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
+                        videoId={this.state.video_preview_id}   // The YouTube video ID
+                        play={this.state.play_youtube}             // control playback of video with true/false
+                        fullscreen={false}       // control whether the video should play in fullscreen or inline
+                        loop={false}             // control whether the video should loop when ended
+                        onReady={e => this.setState({ isReady: true })}
+                        onChangeState={e => this.setState({ status: e.state })}
+                        onChangeQuality={e => this.setState({ quality: e.quality })}
+                        onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
+                        style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
+                    />
                 </View>
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }}>
                 </View>

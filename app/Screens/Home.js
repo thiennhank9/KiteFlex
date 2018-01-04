@@ -30,7 +30,7 @@ export default class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBarApp color='darkslategray' />
+                <StatusBarApp color='darkslategray' style={styles.platform}/>
                 <SearchFilm icon='mic' navigation={this.props.navigation} />
                 <ScrollHome navigation={this.props.navigation} />
             </View>

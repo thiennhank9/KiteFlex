@@ -13,6 +13,11 @@ const icon = Platform.select({
 })
 
 export default styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     hori: {
         flexDirection: 'row',
         alignItems: 'center'
@@ -66,13 +71,21 @@ export default styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        height: 45,
         backgroundColor: 'rgba(0, 0, 0, 0.45)',
+        ...Platform.select({
+            ios: {
+                height: 35,
+            },
+            android: {
+                height: 45,
+            }
+        }),
     },
     star: {
         position: 'absolute',
         top: 10,
         right: 10,
+        backgroundColor: 'transparent',
     },
     title_on_backdrop: {
         color: 'gold',
@@ -81,8 +94,16 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold',
         position: 'absolute',
         left: 165,
-        bottom: 10,
         margin: 0,
+        backgroundColor: 'transparent',
+        ...Platform.select({
+            ios: {
+                bottom: 8,
+            },
+            android: {
+                bottom: 10,
+            }
+        }),
     },
     titleFilm: {
         position: 'absolute',
