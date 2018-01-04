@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './Styles/ItemComment.js';
-
+import res from '../Resources/index.js';
 export default class ItemComment extends PureComponent {
     constructor(props) {
         super(props);
@@ -41,7 +41,7 @@ export default class ItemComment extends PureComponent {
                         numberOfLines={4}
                         ellipsizeMode='tail'
                     >
-                        {this.props.last_day} days ago
+                        {this.props.last_day} 2 days ago
                     </Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
@@ -59,18 +59,25 @@ export default class ItemComment extends PureComponent {
         )
     }
     render() {
+        const item = this.props.item;
+        console.log(item)
+        const comment = item.comment;
+        const uid = item.uid;
+        const email = item.email;
         return (
-            <View style={styles.container}>
+            <View
+                key={item.key}
+                style={styles.container}>
                 <Image
                     style={styles.ava}
-                    source={this.props.avatar}
+                    source={res.avatar.blank_avatar}
                 />
                 <View style={styles.txtContainer}>
                     <Text style={{ color: '#CA2C2C', fontSize: 14, fontWeight: 'bold' }}>
-                        {this.props.name_user}
+                        {email}
                     </Text>
                     <Text style={{ color: '#000000', fontSize: 13, marginTop: 2 }}>
-                        {this.props.comment}
+                        {comment}
                     </Text>
                     {this.renderStatus()}
                 </View>

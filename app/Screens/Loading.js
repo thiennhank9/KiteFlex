@@ -23,6 +23,7 @@ export default class Loading extends Component {
                     uid: user.uid
                 }
                 store.dispatch(actionCreators.send_current_user(currentUser));
+                console.log(store.getState().user);
             }
             else {
                 console.log('no user');

@@ -15,6 +15,15 @@ export default styles = StyleSheet.create({
         width: 100,
         height: 150
     },
+    text_more_and_less:{
+        color: 'white', 
+        fontSize: 13, 
+        fontWeight: 'bold', 
+        margin: 5,
+        //width: 40,
+        //borderRadius: 5,
+        //backgroundColor: 'red'
+    },
     text_category: {
         fontSize: 16,
         fontWeight: 'bold',
@@ -44,6 +53,10 @@ export default styles = StyleSheet.create({
         marginTop: 3,
         fontSize: 13,
         color: 'white',
-        backgroundColor: 'blue'
-    }
+    },
+    titleCategory: {
+        color: 'palegoldenrod',
+        fontSize: 17,
+        fontWeight: 'bold'
+    },
 })
