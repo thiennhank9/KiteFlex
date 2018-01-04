@@ -14,9 +14,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FirmControl from '../Components/FirmControl';
 import TitleControl from '../Components/TitleControl';
 import Orientation from 'react-native-orientation';
+import firebaseApp from '../Firebase/Config.js';
 
-const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4';
-//const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4';
+const url_mp4 =  'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'; //cartoons
+//const url_mp4 = 'http://s.phimbathu.com/hien/11_09/trailer_1.mp4'; 
 //const url_mp4= 'http://ic-1b4afd00-12f1d2-1bjdobr21.s.loris.llnwd.net/hien/12_2017/9_12/Brawl.in.Cell.Block.99.2017.1080p.HDrip.x264.SUB.mp4'
 export default class PlayVideo extends Component {
 
@@ -29,10 +30,23 @@ export default class PlayVideo extends Component {
     currentTime: 0.0,
     paused: false,
     showFirmControl: false,
+    url_video: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'
   };
 
   componentWillMount() {
-    //Orientation.lockToLandscape();
+    const item = this.props.navigation.state.params.item;
+
+    const root_path = firebaseApp.database().ref();
+    const path_to_video = `list_videos/${item.media_type}/${item.id_movie}`;
+    root_path.once('value')
+    .then(function(snapshot) {
+      let url_video = snapshot.child(path_to_video.toString()).val();
+      if (url_video) {
+        this.setState({
+          url_video: url_video
+        })
+      }
+    }.bind(this))
   }
   video: Video;
 
@@ -162,7 +176,7 @@ export default class PlayVideo extends Component {
           <Video
             ref={(ref: Video) => { this.video = ref }}
             /* For ExoPlayer */
-            source={{ uri: url_mp4, type: 'mpd' }}
+            source={{ uri: this.state.url_video, type: 'mpd' }}
             //source={require('./broadchurch.mp4')}
             style={styles.fullScreen}
             rate={this.state.rate}

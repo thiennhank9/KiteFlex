@@ -9,7 +9,6 @@ class TitleControl extends Component {
 
     render() {
         const item = this.props.navigation.state.params.item;
-        console.log(item)
         return (
             <View style={styles.filmTitle}>
                 <View style={styles.headerTitle}>
