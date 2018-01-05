@@ -144,8 +144,10 @@ export default class ImageSlider extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 store.dispatch(actionCreators.send_id_movie(id_movie))
-
-                                this.props.navigation.navigate('DetailFilm')
+                                let item = {
+                                    id_movie: id_movie
+                                }
+                                this.props.navigation.navigate('DetailFilm', {objDetail: item})
                             }
                             }
                             style={{ flexDirection: 'column' }}
