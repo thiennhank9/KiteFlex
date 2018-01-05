@@ -138,14 +138,18 @@ export default class ImageSlider extends Component {
                     const imageObject = typeof image === 'string' ? { uri: image.uri } : image;
 
                     let id_movie = image.id_movie; //navigate to DetailFilm with id_movie
-
+                    let uri = image.uri_poster;
+                    let title = image.title;
                     const imageComponent =
                         //This is the component render each item IMAGE
                         <TouchableOpacity
                             onPress={() => {
                                 store.dispatch(actionCreators.send_id_movie(id_movie))
                                 let item = {
-                                    id_movie: id_movie
+                                    id_movie: id_movie,
+                                    media_type: 'movie',
+                                    uri: uri,
+                                    title: title
                                 }
                                 this.props.navigation.navigate('DetailFilm', {objDetail: item})
                             }

@@ -48,6 +48,7 @@ export default class Loading extends Component {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: index,
                         uri: api.url_get_image(element.backdrop_path),
+                        uri_poster: api.url_get_poster(element.poster_path),
                         title: element.title,
                         vote_average: element.vote_average,
                         overview: element.overview,
