@@ -179,6 +179,7 @@ export default class SearchFilm extends Component {
                             key: i,
                             media_type: media_type,
                             id: element.id,
+                            uri: api.url_get_poster(element.poster_path),
                             name: '' //depend on media type
                         }
                         //chekc media type to set field: name
