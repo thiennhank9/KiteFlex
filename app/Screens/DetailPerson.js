@@ -82,6 +82,9 @@ export default class DetailPerson extends Component {
                     obj_movie = {
                         key: i,
                         id: cast.id,
+                        media_type: 'movie',
+                        id_movie: cast.id,
+                        title: cast.title,
                         poster_path: api.url_get_poster(cast.poster_path),
                         name: cast.title,
                     }
@@ -178,7 +181,7 @@ export default class DetailPerson extends Component {
                 onPress={() => {
                     store.dispatch(actionsCreators.send_id_movie(id));
                     let root_navigation = store.getState().root_navigation;
-                    root_navigation.navigate('DetailFilm');
+                    root_navigation.navigate('DetailFilm', {objDetail: item});
                 }}
                 style={styles.item_movie_container}>
                 <Image

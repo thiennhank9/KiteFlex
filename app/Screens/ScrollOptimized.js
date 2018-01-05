@@ -32,7 +32,6 @@ export default class ScrollOptimized extends Component {
                 data={this.state.data}
                 renderItem={({ item }) => this.renderItem(item)}
                 onEndReached={() => {
-                    console.log('End!')
                     this.addMoreItems()
                 }}
             />

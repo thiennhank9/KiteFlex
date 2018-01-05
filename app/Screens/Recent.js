@@ -44,7 +44,7 @@ class Recent extends Component {
 
     getListWatchedByStore(){
         let list_watched = store.getState().list_recents;
-        console.log(list_watched)
+
         this.setState({
             data: list_watched
         })
@@ -85,7 +85,7 @@ class Recent extends Component {
     }
 
     getListWatched() {
-        console.log('getting list watched')
+
         const uid = store.getState().user.uid;
         const path_to_uid = `list_watched/${uid}`;
         try {
@@ -97,10 +97,10 @@ class Recent extends Component {
                     this.setState({
                         data: list_watched
                     })
-                    console.log('getted and set state')
+
                 }
                 else {
-                    console.log('nothing')
+
                 }
             }.bind(this))
 
@@ -112,7 +112,7 @@ class Recent extends Component {
 
     renderGridFilmOrIndicator() {
         const {list_recents} = this.props;
-        console.log(list_recents);
+
         if (this.state.isLoading)
             return (
                 <View style={{
@@ -172,7 +172,7 @@ class Recent extends Component {
                 <TouchableOpacity
                     style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
-                        console.log('pressed!');
+
                         this.setState({
                             page: this.state.page + 1,
                             isLoading: true

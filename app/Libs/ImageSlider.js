@@ -144,7 +144,7 @@ export default class ImageSlider extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 store.dispatch(actionCreators.send_id_movie(id_movie))
-                                console.log('ImageSlider - ID_Movie clicked is ' + id_movie)
+
                                 this.props.navigation.navigate('DetailFilm')
                             }
                             }

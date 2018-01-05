@@ -41,7 +41,7 @@ export default class Login extends Component {
                         }
                         store.dispatch(actionCreators.send_current_user(currentUser));
                         this.props.navigation.dispatch(resetAction);
-                        console.log('goback')
+
                     }
                 }.bind(this))
             })
@@ -61,7 +61,7 @@ export default class Login extends Component {
             <TouchableOpacity
                 style={styles.containerHeader}
                 onPress={() => {
-                    console.log('Pressed!')
+
                     this.props.navigation.goBack();
                 }}>
                 <Icon

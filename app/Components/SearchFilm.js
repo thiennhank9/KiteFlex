@@ -76,7 +76,7 @@ export default class SearchFilm extends Component {
         //     results: e.value,
         // });
         this.state.results = e.value;
-        console.log(this.state.results[0]);
+
         this.setState({
             textSearch: this.state.results[0]
         })
@@ -212,7 +212,7 @@ export default class SearchFilm extends Component {
     }
 
     onClickRecog() {
-        console.log('Recoging!')
+
     }
 
     renderClearButton() {
@@ -282,7 +282,7 @@ export default class SearchFilm extends Component {
                     key={item.key}
                     style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
                     onPress={() => {
-                        console.log(item)
+
                         //store.dispatch(actionCreators.send_id_movie(item.id));
                         this.props.navigation.navigate('DetailFilm', {objDetail: item});
                     }}>

@@ -99,14 +99,14 @@ export default class Profile extends Component {
                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
                     <Button
                         onPress={() => {
-                            console.log('Signed out')
+
                             firebaseApp.auth().signOut();
                             store.dispatch(actionCreators.clear_current_user());
                             this.setState({
                                 isLoggedIn: false
                             })
                             //test
-                            console.log(store.getState().user);
+
                         }}
                         buttonStyle={{ width: 120 }}
                         rounded
@@ -151,7 +151,7 @@ export default class Profile extends Component {
         )
     }
     clickToSetSetting(){
-        console.log('clicked to set setting')
+
     }
     
     renderItemSetting(item) {
