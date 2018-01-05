@@ -123,7 +123,7 @@ export default class DetailPerson extends Component {
                     source={{ uri: this.state.data.profile_path }}
                     style={styles.image}
                 />
-                <View style={{ flexDirection: 'column' }}>
+                <View style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
                     {this.renderInfoItem('Full Name', this.state.data.name)}
                     {this.renderInfoItem('Date Of Birth', this.state.data.birthday)}
                     {this.renderInfoItem('Place of Birth', this.state.data.place_of_birth)}
@@ -143,7 +143,7 @@ export default class DetailPerson extends Component {
                         {this.state.data.biography}
                     </Text>
                     <TouchableOpacity onPress={() => this.setState({is_showed_full_bioraphy: false})}>
-                        <Text style={{color: 'red', fontSize: 13, margin: 5, borderRadius: 5}}>
+                        <Text style={styles.text_more_and_less}>
                             Less
                         </Text>
                     </TouchableOpacity>
@@ -158,7 +158,7 @@ export default class DetailPerson extends Component {
                     {this.state.data.biography}
                 </Text>
                 <TouchableOpacity onPress={() => this.setState({is_showed_full_bioraphy: true})}>
-                    <Text style={{color: 'red', fontSize: 13, margin: 5, borderRadius: 5}}>
+                    <Text style={styles.text_more_and_less}>
                         More 
                     </Text>
                 </TouchableOpacity>
@@ -183,7 +183,7 @@ export default class DetailPerson extends Component {
                 style={styles.item_movie_container}>
                 <Image
                     source={{ uri: poster_path }}
-                    style={{ margin: 2, height: 160, backgroundColor: 'pink' }}>
+                    style={{ margin: 2, height: 160 }}>
                 </Image>
                 <Text numberOfLines={2} ellipsizeMode='tail' style={styles.item_title}>
                     {name}
@@ -196,9 +196,9 @@ export default class DetailPerson extends Component {
         return (
             <View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Text style={{ margin: 5 }}> Movie casted </Text>
-                    <TouchableOpacity style={{ margin: 5, backgroundColor: 'red' }}>
-                        <Text style={{ margin: 3 }}>
+                    <Text style={styles.titleCategory}> Movie casted </Text>
+                    <TouchableOpacity style={{ margin: 5, backgroundColor: 'red', borderRadius: 4 }}>
+                        <Text style={{ margin: 3, fontSize: 14, fontWeight: 'bold', color: 'white' }}>
                             More
                         </Text>
                     </TouchableOpacity>
@@ -240,9 +240,9 @@ export default class DetailPerson extends Component {
         return (
             <View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Text style={{ margin: 5 }}> Others </Text>
-                    <TouchableOpacity style={{ margin: 5, backgroundColor: 'red' }}>
-                        <Text style={{ margin: 3 }}>
+                    <Text style={styles.titleCategory}> Others </Text>
+                    <TouchableOpacity style={{ margin: 5, backgroundColor: 'red', borderRadius: 4 }}>
+                        <Text style={{ margin: 3, fontSize: 14, fontWeight: 'bold', color: 'white' }}>
                             More
                         </Text>
                     </TouchableOpacity>
@@ -256,12 +256,13 @@ export default class DetailPerson extends Component {
             </View>
         )
     }
-    renderComments() {
+    renderComments(item) {
         return (
-            <ListComments />
+            <ListComments item={item}/>
         )
     }
     render() {
+        const item = this.props.navigation.state.params.objDetail;
         return (
             <View style={styles.container}>
                 <SearchFilm icon='back' navigation={this.props.navigation} />
@@ -270,7 +271,7 @@ export default class DetailPerson extends Component {
                     {this.renderBiography()}
                     {this.renderListMoviesOfPerson()}
                     {this.renderOthers()}
-                    {this.renderComments()}
+                    {this.renderComments(item)}
                 </ScrollView>
             </View>
         )

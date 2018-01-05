@@ -1,6 +1,6 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase'
 
-const config = {
+var config = {
     apiKey: "AIzaSyCLvAr27VW5_Gd4mL4KmW-7pkOYyW3JT5E",
     authDomain: "kiteflex-ce13a.firebaseapp.com",
     databaseURL: "https://kiteflex-ce13a.firebaseio.com",
@@ -9,4 +9,4 @@ const config = {
     messagingSenderId: "1085283107517"
 };
 
-export default firebaseApp = firebase.initializeApp(config);
+export const firebaseApp = firebase.initializeApp(config);

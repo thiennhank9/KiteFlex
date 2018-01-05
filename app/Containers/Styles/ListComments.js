@@ -11,5 +11,12 @@ export default styles = StyleSheet.create({
         fontSize: 14,
         marginTop: 10,
         backgroundColor: 'white'
+    },
+    buttonSendComment: {
+        backgroundColor: '#5F9EA0',
+        height: 30,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })

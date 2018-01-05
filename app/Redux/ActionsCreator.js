@@ -13,10 +13,16 @@ export default actionCreators = {
             payload: id_movie
         }
     },
-    send_uuid: (uuid) => {
+    send_current_user: (user) => {
         return {
-            type: types.SEND_UUID,
-            payload: uuid
+            type: types.SEND_CURRENT_USER,
+            payload: user
+        }
+    },
+    clear_current_user: () => {
+        return {
+            type: types.CLEAR_CURRENT_USER,
+            payload: {}
         }
     },
     send_root_navigation: (navigation) => {

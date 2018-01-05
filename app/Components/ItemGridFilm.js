@@ -16,9 +16,6 @@ export default class ItemGridFilm extends PureComponent {
         super(props);
     }
 
-    clickToSeeDetail() {
-        console.log("Clicked!")
-    }
     //Now don't use this function
 
     // renderEpisodeOrIMDb() {
@@ -85,16 +82,20 @@ export default class ItemGridFilm extends PureComponent {
                 onPress={() => {
                     store.dispatch(actionCreators.send_id_movie(id_movie));
                     const root_navigation = store.getState().root_navigation;
-                    console.log(media_type);
+                    
                     if (media_type == "movie") {
-                        root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
+                        root_navigation.navigate('DetailFilm', { objDetail: item })
 
                     }
                     else {
-                        if (media_type == "tv")
-                            root_navigation.navigate('DetailFilm', { objDetailFilm: obj })
-                        else
-                            root_navigation.navigate('DetailPerson', { id_person: id_movie })
+                        if (media_type == "tv") {
+                            console.log(item);
+                            root_navigation.navigate('DetailFilm', { objDetail: item })
+                        }
+                        else {
+                            console.log(item);
+                            root_navigation.navigate('DetailPerson', { id_person: id_movie, objDetail: item })
+                        }
                     }
                 }}
                 activeOpacity={0.8}>

@@ -5,10 +5,7 @@ import {
     TouchableOpacity,
     Image,
     SectionList,
-    StatusBar,
-    Modal,
-    TouchableWithoutFeedback,
-    TextInput
+    StatusBar
 } from 'react-native';
 import styles from './Styles/Profile.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,9 +13,10 @@ import res from '../Resources/index.js';
 import { Button } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import windows from '../Themes/Windows.js';
-import {resetAction} from "../Navigators/NavigationActions";
+import { resetAction } from "../Navigators/NavigationActions";
 import actionCreators from "../Redux/ActionsCreator";
-import Icons from 'react-native-vector-icons/Ionicons'
+import { isObjectEmpty } from '../Utils/Utils.js';
+import firebaseApp from '../Firebase/Config.js';
 
 const objSystem =
     [
@@ -53,18 +51,77 @@ export default class Profile extends Component {
         super(props);
         this.state = {
             ds: objSystem,
-            isRegistered: store.getState().uuid !== null,
-            modalChangePasswordVisible: false
+            isLoggedIn: false
         }
     }
 
-
-    clickToSignIn() {
-        console.log('Clicked to sign in!')
+    componentWillMount() {
+        let currentUser = store.getState().user;
+        if (!isObjectEmpty(currentUser)) {
+            this.setState({
+                isLoggedIn: true
+            })
+        }
     }
 
-    clickToSetSetting() {
-        console.log('Clicked to set settings!')
+    renderLogInOrNot() {
+        let currentUser = store.getState().user;
+        let email = currentUser.email;
+        if (!this.state.isLoggedIn) {
+            return (
+                <View style={{ flexDirection: 'row', width: windows.width - 40, justifyContent: 'space-between', marginTop: 20 }}>
+                    <Button
+                        onPress={() => {
+                            this.props.navigation.navigate('Login')
+                        }}
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'account-circle' }}
+                        title='Đăng nhập' />
+                    <Button
+                        onPress={() => {
+                            this.props.navigation.navigate('SignUp')
+                        }}
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'create' }}
+                        title='Đăng ký' />
+                </View>
+            )
+        }
+        return (
+            <View style={{ marginTop: 20, alignItems: 'center' }}>
+                <Text style={{ color: 'white' }}>
+                    Xin chào {email} !
+                </Text>
+                <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                    <Button
+                        onPress={() => {
+                            console.log('Signed out')
+                            firebaseApp.auth().signOut();
+                            store.dispatch(actionCreators.clear_current_user());
+                            this.setState({
+                                isLoggedIn: false
+                            })
+                            //test
+                            console.log(store.getState().user);
+                        }}
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'reply' }}
+                        title='Đăng xuất' />
+                    <Button
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'create' }}
+                        title='Sửa Profile' />
+                </View>
+            </View>
+        )
     }
 
     renderAvatar() {
@@ -77,56 +134,10 @@ export default class Profile extends Component {
                     onPress={() => this.clickToSignIn()}>
                     <Image
                         style={styles.avatar}
-                        source={this.state.isRegistered ? {uri: 'https://cdn.macrumors.com/article-new/2014/12/tomcruise-250x250.jpg?retina'} : res.avatar.blank_avatar}
+                        source={res.avatar.blank_avatar}
                         resizeMode='stretch'
                     />
-                    {
-                        !this.state.isRegistered ?
-                            <View style={{ flexDirection: 'row', width:windows.width - 40,justifyContent: 'space-between', marginTop: 20 }}>
-                                <Button
-                                    onPress={() => {
-                                        this.props.navigation.navigate('Login')
-                                    }}
-                                    buttonStyle={{ width: 120 }}
-                                    rounded
-                                    backgroundColor={'#D73E15'}
-                                    icon={{ name: 'account-circle' }}
-                                    title='Đăng nhập' />
-                                <Button
-                                    onPress={() => {
-                                        this.props.navigation.navigate('Signup')
-                                    }}
-                                    buttonStyle={{ width: 120 }}
-                                    rounded
-                                    backgroundColor={'#D73E15'}
-                                    icon={{ name: 'create' }}
-                                    title='Đăng ký' />
-                            </View> :
-                            <View style={{ marginTop: 20, alignItems: 'center' }}>
-                                <Text style={{ color: 'white' }}>
-                                    Xin chào Tom!
-                                </Text>
-                                <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                                    <Button
-                                        onPress={() => {
-                                            store.dispatch(actionCreators.send_uuid(null))
-                                            this.props.navigation.dispatch(resetAction)
-                                        }}
-                                        buttonStyle={{ width: 120 }}
-                                        rounded
-                                        backgroundColor={'#D73E15'}
-                                        icon={{ name: 'reply' }}
-                                        title='Đăng xuất' />
-                                    <Button
-                                        onPress={() => this.setState({modalChangePasswordVisible: true})}
-                                        buttonStyle={{ width: 120 }}
-                                        rounded
-                                        backgroundColor={'#D73E15'}
-                                        icon={{ name: 'create' }}
-                                        title='Đổi mật khẩu' />
-                                </View>
-                            </View>
-                    }
+                    {this.renderLogInOrNot()}
                 </View>
             </View>
         )
@@ -139,7 +150,10 @@ export default class Profile extends Component {
             </Text>
         )
     }
-
+    clickToSetSetting(){
+        console.log('clicked to set setting')
+    }
+    
     renderItemSetting(item) {
         return (
             <View>
@@ -178,62 +192,6 @@ export default class Profile extends Component {
             <View style={styles.container}>
                 {this.renderAvatar()}
                 {this.renderSectionSetting()}
-                <Modal
-                    animationType='fade'
-                    transparent
-                    visible={this.state.modalChangePasswordVisible}
-                    onRequestClose={() => {
-                        this.setState({modalChangePasswordVisible: false})
-                    }}>
-                    <View
-                        style={styles.modalICContainer}>
-                        <TouchableWithoutFeedback style={styles.modalICContent}>
-                            <View style={styles.modalICContent}>
-                                <Text style={styles.modalTitle}>Change Password</Text>
-                                <View style={[styles.inputWrapper, {marginTop: 10}]}>
-                                    <Icons name='ios-lock-outline'
-                                           style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40}}
-                                    />
-                                    <TextInput style={styles.input}
-                                               placeholder='New Password'
-                                               placeholderTextColor='white'
-                                               underlineColorAndroid='transparent'
-                                               onChangeText={text => this.setState({email: text})}
-                                               value={this.state.email}
-                                    />
-                                </View>
-                                <View style={[styles.inputWrapper, {marginTop: 0}]}>
-                                    <Icons name='ios-lock-outline'
-                                           style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40}}
-                                    />
-                                    <TextInput style={styles.input}
-                                               placeholder='Confirm Password'
-                                               placeholderTextColor='white'
-                                               underlineColorAndroid='transparent'
-                                               onChangeText={text => this.setState({email: text})}
-                                               value={this.state.email}
-                                    />
-                                </View>
-                                <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 30}}>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            this.setState({modalChangePasswordVisible: false})
-                                        }}
-                                        style={{padding: 8}}>
-                                        <Text style={[styles.modalButtonText, {marginRight: 40}]}>CANCEL</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            this.setState({modalChangePasswordVisible: false})
-                                        }}
-                                        style={{padding: 8}}>
-                                        <Text style={[styles.modalButtonText, {marginLeft: 40}]}>OK</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
-                </Modal>
             </View>
         )
     }

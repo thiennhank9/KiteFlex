@@ -6,14 +6,31 @@ import styles from './Styles/Loading.js';
 import actionCreators from '../Redux/ActionsCreator.js';
 import {resetAction} from '../Navigators/NavigationActions.js';
 import api from '../APIs/TMDb_Config.js';
-
-// const url_request = 'https://api.themoviedb.org/3/discover/movie?api_key=0f866d616e28d66616b042c3c43a39d4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=1';
-// const url_base_image = 'https://image.tmdb.org/t/p/w500';
+import firebaseApp from '../Firebase/Config.js';
+import {isObjectEmpty} from '../Utils/Utils.js';
 
 //config reset action navigation 
 export default class Loading extends Component {
     constructor(props) {
         super(props);
+    }
+
+    automaticallySignIn(){
+        firebaseApp.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                let currentUser = {
+                    email: user.email,
+                    uid: user.uid
+                }
+                store.dispatch(actionCreators.send_current_user(currentUser));
+                console.log(store.getState().user);
+            }
+            else {
+                console.log('no user');
+                //make sure - just clear current user in redux
+                //store.dispatch(actionCreators.clear_current_user())
+            }
+        })
     }
 
     getListImagesFilmPopularity() {
@@ -52,6 +69,7 @@ export default class Loading extends Component {
     }
 
     componentDidMount() {
+        this.automaticallySignIn();
         this.getListImagesFilmPopularity();
     }
 
