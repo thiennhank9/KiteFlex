@@ -9,7 +9,8 @@ export default reducer = (state = initialState, action) => {
         root_navigation,
         list_recents,
         list_favorites,
-        list_watch_later
+        list_watch_later,
+        list_downloads
     } = state;
     const {type, payload} = action;
     
@@ -63,6 +64,12 @@ export default reducer = (state = initialState, action) => {
             return {
                 ...state,
                 list_watch_later: payload
+            }
+        }
+        case types.SEND_LIST_DOWNLOADS: {
+            return {
+                ...state,
+                list_downloads: payload
             }
         }
         return state;

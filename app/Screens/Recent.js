@@ -112,7 +112,7 @@ class Recent extends Component {
 
     renderGridFilmOrIndicator() {
         const {list_recents} = this.props;
-
+        console.log(list_recents)
         if (this.state.isLoading)
             return (
                 <View style={{

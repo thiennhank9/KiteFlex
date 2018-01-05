@@ -85,6 +85,7 @@ export default class DetailPerson extends Component {
                         media_type: 'movie',
                         id_movie: cast.id,
                         title: cast.title,
+                        uri:api.url_get_poster(cast.poster_path),
                         poster_path: api.url_get_poster(cast.poster_path),
                         name: cast.title,
                     }

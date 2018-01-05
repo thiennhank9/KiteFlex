@@ -48,5 +48,11 @@ export default actionCreators = {
             type: types.SEND_LIST_WATCH_LATER,
             payload: list_watch_later
         }
+    },
+    send_list_downloads: (list_downloads) => {
+        return {
+            type: types.SEND_LIST_DOWNLOADS,
+            payload: list_downloads
+        }
     }
 }

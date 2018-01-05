@@ -75,7 +75,44 @@ export default class DetailFilm extends Component {
             await AsyncStorage.setItem(`@FilmWatchLate:${this.state.movie.id}`, JSON.stringify(this.state.movie));
         }
     }
-    clickToWatchLater(){
+
+    clickToDownload() {
+        const item = this.props.navigation.state.params.objDetail;
+        const uid = store.getState().user.uid;
+        const path_to_uid = `list_downloads/${uid}`;
+        try {
+            const root_path = firebaseApp.database().ref();
+            root_path.once('value')
+                .then(function (snapshot) {
+                    if (snapshot.child(path_to_uid.toString()).exists()) {
+                        let list_watched = snapshot.child(path_to_uid.toString()).val();
+                        for (let i = 0; i < list_watched.length; i++) {
+                            //check if item is added into firebase
+                            if ((list_watched[i].media_type == item.media_type)
+                                && (list_watched[i].id_movie == item.id_movie)) {
+                                return;
+                            }
+                        }
+                        //add new item into firebase
+                        list_watched.unshift(item);
+                        store.dispatch(actionCreators.send_list_downloads(list_watched));
+                        let path = firebaseApp.database().ref(path_to_uid.toString());
+                        path.update(list_watched)
+                    }
+                    else {
+                        //add first item into firebase
+                        let list_watched = [];
+                        list_watched.unshift(item);
+                        store.dispatch(actionCreators.send_list_downloads(list_watched));
+                        let path = firebaseApp.database().ref(path_to_uid.toString());
+                        path.update(list_watched)
+                    }
+                })
+        }
+        catch (error) {
+        }
+    }
+    clickToWatchLater() {
         if (this.state.icon_name_bell == 'bell-off') {
             //case when turn out to click to watched later
             this.setState({
@@ -136,9 +173,9 @@ export default class DetailFilm extends Component {
                             //filter the item in firebase that's same as item now
                             list_watched = list_watched.filter(item_firebase => {
                                 ((item_firebae.media_type != item.media_type)
-                                || (item_firebase.id_movie != item.id_movie))
-                            })   
-                            store.dispatch(actionCreators.send_list_watch_later(list_watched));                        
+                                    || (item_firebase.id_movie != item.id_movie))
+                            })
+                            store.dispatch(actionCreators.send_list_watch_later(list_watched));
                             let path = firebaseApp.database().ref(path_to_uid.toString());
                             path.update(list_watched)
                         }
@@ -234,9 +271,9 @@ export default class DetailFilm extends Component {
                             //filter the item in firebase that's same as item now
                             list_watched = list_watched.filter(item_firebase => {
                                 ((item_firebae.media_type != item.media_type)
-                                || (item_firebase.id_movie != item.id_movie))
-                            }) 
-                            store.dispatch(actionCreators.send_list_favorites(list_watched));                          
+                                    || (item_firebase.id_movie != item.id_movie))
+                            })
+                            store.dispatch(actionCreators.send_list_favorites(list_watched));
                             let path = firebaseApp.database().ref(path_to_uid.toString());
                             path.update(list_watched)
                         }
@@ -267,7 +304,7 @@ export default class DetailFilm extends Component {
                                 return;
                             }
                         }
-                        list_watched.unshift(item);                        
+                        list_watched.unshift(item);
                         let path = firebaseApp.database().ref(path_to_uid.toString());
                         path.update(list_watched)
                         store.dispatch(actionCreators.send_list_recents(list_watched));
@@ -353,7 +390,7 @@ export default class DetailFilm extends Component {
                     <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
                         style={styles.imageBackground} />
                     <View style={styles.backDropOpacity} />
-                    
+
                     <TouchableOpacity style={styles.star} onPress={() => { this.changeColorStar() }}>
                         <Icons name={this.state.nameStart} size={24} color={this.state.colorStar} />
                     </TouchableOpacity>
@@ -496,7 +533,7 @@ export default class DetailFilm extends Component {
                             style={{ marginLeft: 10 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.onClickWathcLate.bind(this)}>
+                    <TouchableOpacity onPress={() => this.clickToDownload()}>
                         <Icon
                             name='download'
                             size={25}

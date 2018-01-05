@@ -5,5 +5,6 @@ export default initialState = {
     root_navigation: null,
     list_recents: [],
     list_favorites: [],
-    list_watch_later: []
+    list_watch_later: [],
+    list_downloads: []
 }
