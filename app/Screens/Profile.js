@@ -13,9 +13,10 @@ import res from '../Resources/index.js';
 import { Button } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import windows from '../Themes/Windows.js';
-import {resetAction} from "../Navigators/NavigationActions";
+import { resetAction } from "../Navigators/NavigationActions";
 import actionCreators from "../Redux/ActionsCreator";
-import {isObjectEmpty} from '../Utils/Utils.js';
+import { isObjectEmpty } from '../Utils/Utils.js';
+import firebaseApp from '../Firebase/Config.js';
 
 const objSystem =
     [
@@ -54,23 +55,73 @@ export default class Profile extends Component {
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
         let currentUser = store.getState().user;
-        console.log(currentUser);
         if (!isObjectEmpty(currentUser)) {
-            console.log('logged in')
             this.setState({
                 isLoggedIn: true
             })
         }
     }
 
-    clickToSignIn() {
-        console.log('Clicked to sign in!')
-    }
-
-    clickToSetSetting() {
-        console.log('Clicked to set settings!')
+    renderLogInOrNot() {
+        let currentUser = store.getState().user;
+        let email = currentUser.email;
+        if (!this.state.isLoggedIn) {
+            return (
+                <View style={{ flexDirection: 'row', width: windows.width - 40, justifyContent: 'space-between', marginTop: 20 }}>
+                    <Button
+                        onPress={() => {
+                            this.props.navigation.navigate('Login')
+                        }}
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'account-circle' }}
+                        title='Đăng nhập' />
+                    <Button
+                        onPress={() => {
+                            this.props.navigation.navigate('SignUp')
+                        }}
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'create' }}
+                        title='Đăng ký' />
+                </View>
+            )
+        }
+        return (
+            <View style={{ marginTop: 20, alignItems: 'center' }}>
+                <Text style={{ color: 'white' }}>
+                    Xin chào {email} !
+                </Text>
+                <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                    <Button
+                        onPress={() => {
+                            console.log('Signed out')
+                            firebaseApp.auth().signOut();
+                            store.dispatch(actionCreators.clear_current_user());
+                            this.setState({
+                                isLoggedIn: false
+                            })
+                            //test
+                            console.log(store.getState().user);
+                        }}
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'reply' }}
+                        title='Đăng xuất' />
+                    <Button
+                        buttonStyle={{ width: 120 }}
+                        rounded
+                        backgroundColor={'#D73E15'}
+                        icon={{ name: 'create' }}
+                        title='Sửa Profile' />
+                </View>
+            </View>
+        )
     }
 
     renderAvatar() {
@@ -86,52 +137,7 @@ export default class Profile extends Component {
                         source={res.avatar.blank_avatar}
                         resizeMode='stretch'
                     />
-                    {
-                        !this.state.isRegistered ?
-                            <View style={{ flexDirection: 'row', width:windows.width - 40,justifyContent: 'space-between', marginTop: 20 }}>
-                                <Button
-                                    onPress={() => {
-                                        this.props.navigation.navigate('Login')
-                                    }}
-                                    buttonStyle={{ width: 120 }}
-                                    rounded
-                                    backgroundColor={'#D73E15'}
-                                    icon={{ name: 'account-circle' }}
-                                    title='Đăng nhập' />
-                                <Button
-                                    onPress={() => {
-                                        this.props.navigation.navigate('Signup')
-                                    }}
-                                    buttonStyle={{ width: 120 }}
-                                    rounded
-                                    backgroundColor={'#D73E15'}
-                                    icon={{ name: 'create' }}
-                                    title='Đăng ký' />
-                            </View> :
-                            <View style={{ marginTop: 20, alignItems: 'center' }}>
-                                <Text style={{ color: 'white' }}>
-                                    Xin chào Alexander!
-                                </Text>
-                                <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                                    <Button
-                                        onPress={() => {
-                                            store.dispatch(actionCreators.send_uuid(null))
-                                            this.props.navigation.dispatch(resetAction)
-                                        }}
-                                        buttonStyle={{ width: 120 }}
-                                        rounded
-                                        backgroundColor={'#D73E15'}
-                                        icon={{ name: 'reply' }}
-                                        title='Đăng xuất' />
-                                    <Button
-                                        buttonStyle={{ width: 120 }}
-                                        rounded
-                                        backgroundColor={'#D73E15'}
-                                        icon={{ name: 'create' }}
-                                        title='Sửa Profile' />
-                                </View>
-                            </View>
-                    }
+                    {this.renderLogInOrNot()}
                 </View>
             </View>
         )
@@ -144,7 +150,10 @@ export default class Profile extends Component {
             </Text>
         )
     }
-
+    clickToSetSetting(){
+        console.log('clicked to set setting')
+    }
+    
     renderItemSetting(item) {
         return (
             <View>

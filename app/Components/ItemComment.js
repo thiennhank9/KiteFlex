@@ -60,7 +60,7 @@ export default class ItemComment extends PureComponent {
     }
     render() {
         const item = this.props.item;
-        console.log(item)
+        //console.log(item)
         const comment = item.comment;
         const uid = item.uid;
         const email = item.email;

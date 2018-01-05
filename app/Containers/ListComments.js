@@ -27,7 +27,7 @@ export default class ListComments extends Component {
         root_path.once("value")
             .then(function (snapshot) {
                 let list_comments = snapshot.child(path_to_comment.toString()).val();
-                console.log(list_comments);
+                //console.log(list_comments);
                 this.setState({
                     list_comments: list_comments
                 })
@@ -43,7 +43,7 @@ export default class ListComments extends Component {
         root_path.once("value")
             .then(function (snapshot) {
                 if (snapshot.child(path_to_comment.toString()).exists()) {
-                    console.log('updated')
+                    //console.log('updated')
                     let comments = snapshot.child(path_to_comment.toString()).val();
                     let current_length = comments.length;
                     const new_comment = {
@@ -55,20 +55,20 @@ export default class ListComments extends Component {
                     comments.unshift(new_comment);
                     let path = firebaseApp.database().ref(`list_comments/${media_type}/${id}`)
                     path.update(comments);
-                    console.log('updated');
+                    //console.log('updated');
                     root_path.once("value")
                         .then(function (snapshot) {
                             let list_comments = snapshot.child(path_to_comment.toString()).val();
-                            console.log(list_comments);
+                            //console.log(list_comments);
                             this.setState({
                                 list_comments: list_comments
                             })
                         }.bind(this))
                 }
                 else {
-                    console.log('none');
+                    //console.log('none');
                     let path = firebaseApp.database().ref(`list_comments/${media_type}/${id}`)
-                    console.log(store.getState().user)
+                    //console.log(store.getState().user)
                     const list_comments = [
                         {
                             key: 0,
@@ -78,11 +78,11 @@ export default class ListComments extends Component {
                         }
                     ]
                     path.update(list_comments);
-                    console.log('updated')
+                    //console.log('updated')
                     root_path.once("value")
                         .then(function (snapshot) {
                             let list_comments = snapshot.child(path_to_comment.toString()).val();
-                            console.log(list_comments);
+                            //console.log(list_comments);
                             this.setState({
                                 list_comments: list_comments
                             })
@@ -113,7 +113,7 @@ export default class ListComments extends Component {
     }
 
     renderFlatListOrNot() {
-        console.log(this.state.list_comments)
+        //console.log(this.state.list_comments)
         if (this.state.list_comments)
             return (
                 <FlatList
@@ -127,7 +127,7 @@ export default class ListComments extends Component {
     }
     render() {
         const item = this.props.item;
-        console.log(item);
+        //console.log(item);
         return (
             <View style={{ backgroundColor: '#1C1C1C' }}>
                 <View style={{ margin: 10 }}>
@@ -137,14 +137,16 @@ export default class ListComments extends Component {
                     <TextInput
                         placeholder="Comment in here..."
                         placeholderTextColor='black'
+                        multiline={true}
                         onChangeText={(textComment) => this.setState({ textComment })}
                         style={styles.input}
                     />
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                        <Button
-                            title='Add comment'
-                            onPress={() => this.addComment(item, this.state.textComment)}
-                        />
+                        <TouchableOpacity
+                            style={styles.buttonSendComment}
+                            onPress={() => this.addComment(item, this.state.textComment)}>
+                            <Text style={{ margin: 4, color: 'white', fontWeight: 'bold', fontSize: 15 }}> Add comment </Text>
+                        </TouchableOpacity>
                     </View>
                     {this.renderFlatListOrNot()}
                 </View>

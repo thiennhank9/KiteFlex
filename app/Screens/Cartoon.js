@@ -93,6 +93,7 @@ export default class Cartoon extends Component {
                     let objElement = {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: i,
+                        media_type: 'movie',
                         uri: api.url_get_poster(element.poster_path),
                         title: title_image,
                         id_movie: element.id

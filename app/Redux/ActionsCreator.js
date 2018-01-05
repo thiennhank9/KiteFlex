@@ -30,5 +30,23 @@ export default actionCreators = {
             type: types.SEND_ROOT_NAVIGATION,
             payload: navigation
         }
+    },
+    send_list_recents: (list_recents) => {
+        return {
+            type: types.SEND_LIST_RECENTS,
+            payload: list_recents
+        }
+    },
+    send_list_favorites: (list_favorites) => {
+        return {
+            type: types.SEND_LIST_FAVORITES,
+            payload: list_favorites
+        }
+    },
+    send_list_watch_later: (list_watch_later) => {
+        return {
+            type: types.SEND_LIST_WATCH_LATER,
+            payload: list_watch_later
+        }
     }
 }

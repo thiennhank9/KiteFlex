@@ -8,7 +8,7 @@ import GridFilm from '../Containers/GridFilm.js';
 import styles from './Styles/Container.js';
 export default class Download extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Quản lý tải',
+        tabBarLabel: 'Downed',
         tabBarIcon: ({ tintColor }) => (
             <Icon
                 name='cloud-download'

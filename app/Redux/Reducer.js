@@ -6,7 +6,10 @@ export default reducer = (state = initialState, action) => {
         list_top_popularity,
         id_movie,
         user,
-        root_navigation
+        root_navigation,
+        list_recents,
+        list_favorites,
+        list_watch_later
     } = state;
     const {type, payload} = action;
     
@@ -42,6 +45,24 @@ export default reducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: {} //delete all key and property in object user
+            }
+        }
+        case types.SEND_LIST_RECENTS: {
+            return {
+                ...state,
+                list_recents: payload
+            }
+        }
+        case types.SEND_LIST_FAVORITES: {
+            return {
+                ...state,
+                list_favorites: payload
+            }
+        }
+        case types.SEND_LIST_WATCH_LATER: {
+            return {
+                ...state,
+                list_watch_later: payload
             }
         }
         return state;

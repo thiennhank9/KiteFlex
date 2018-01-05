@@ -13,6 +13,8 @@ import API from '../APIs/TMDb_Config';
 import YouTube from 'react-native-youtube';
 import SearchFilm from '../Components/SearchFilm.js';
 import ElevatedView from 'react-native-elevated-view'
+import firebaseApp from '../Firebase/Config.js';
+import actionCreators from '../Redux/ActionsCreator.js';
 
 export default class DetailFilm extends Component {
     constructor(props) {
@@ -30,6 +32,7 @@ export default class DetailFilm extends Component {
             play_youtube: false,
             video_preview_id: 'No Video',
             colorStar: 'white',
+            icon_name_bell: 'bell-off',
             nameStart: 'ios-star-outline',
         }
     }
@@ -72,7 +75,83 @@ export default class DetailFilm extends Component {
             await AsyncStorage.setItem(`@FilmWatchLate:${this.state.movie.id}`, JSON.stringify(this.state.movie));
         }
     }
+    clickToWatchLater() {
+        if (this.state.icon_name_bell == 'bell-off') {
+            //case when turn out to click to watched later
+            this.setState({
+                icon_name_bell: 'bell'
+            })
 
+            const item = this.props.navigation.state.params.objDetail;
+            const uid = store.getState().user.uid;
+            const path_to_uid = `list_watch_later/${uid}`;
+            try {
+                const root_path = firebaseApp.database().ref();
+                root_path.once('value')
+                    .then(function (snapshot) {
+                        if (snapshot.child(path_to_uid.toString()).exists()) {
+                            let list_watched = snapshot.child(path_to_uid.toString()).val();
+                            for (let i = 0; i < list_watched.length; i++) {
+                                //check if item is added into firebase
+                                if ((list_watched[i].media_type == item.media_type)
+                                    && (list_watched[i].id_movie == item.id_movie)) {
+                                    return;
+                                }
+                            }
+                            //add new item into firebase
+                            list_watched.unshift(item);
+                            store.dispatch(actionCreators.send_list_watch_later(list_watched));
+                            let path = firebaseApp.database().ref(path_to_uid.toString());
+                            path.update(list_watched)
+                        }
+                        else {
+                            //add first item into firebase
+                            let list_watched = [];
+                            list_watched.unshift(item);
+                            store.dispatch(actionCreators.send_list_watch_later(list_watched));
+                            let path = firebaseApp.database().ref(path_to_uid.toString());
+                            path.update(list_watched)
+                        }
+                    })
+            }
+            catch (error) {
+            }
+        }
+        else {
+            //case not to watch later
+            this.setState({
+                icon_name_bell: 'bell-off'
+            })
+
+            //these code below add to firebase, so just don't mind
+            const item = this.props.navigation.state.params.objDetail;
+            const uid = store.getState().user.uid;
+            const path_to_uid = `list_watch_later/${uid}`;
+            try {
+                const root_path = firebaseApp.database().ref();
+                root_path.once('value')
+                    .then(function (snapshot) {
+                        if (snapshot.child(path_to_uid.toString()).exists()) {
+                            let list_watched = snapshot.child(path_to_uid.toString()).val();
+                            //filter the item in firebase that's same as item now
+                            list_watched = list_watched.filter(item_firebase => {
+                                ((item_firebae.media_type != item.media_type)
+                                    || (item_firebase.id_movie != item.id_movie))
+                            })
+                            store.dispatch(actionCreators.send_list_watch_later(list_watched));
+                            let path = firebaseApp.database().ref(path_to_uid.toString());
+                            path.update(list_watched)
+                        }
+                        else {
+                            //do nothing here
+                        }
+                    })
+
+            }
+            catch (error) {
+            }
+        }
+    }
     // just for testing with favorite function and more...
     async cripping() {
         let favoriteFilm = [];
@@ -88,17 +167,130 @@ export default class DetailFilm extends Component {
     }
 
     componentDidMount() {
-        const id_movie = store.getState().id_movie;
+        const item = this.props.navigation.state.params.objDetail;
+        //const id_movie = store.getState().id_movie;
+        const id_movie = item.id_movie;
+        this.addToListWatched();
         (async () => {
             let movie = await this.getData(API.url_request_detail_movie(id_movie));
             let video_preview_id = await this.getIDVideo(API.url_request_video_demo(id_movie));
             this.setState({ isLoading: false, movie, video_preview_id });
         })();
     }
-
+    //clickToFavorites
     changeColorStar() {
-        if (this.state.colorStar === 'white') this.setState({ colorStar: 'yellow', nameStart: 'md-star' });
-        if (this.state.colorStar === 'yellow') this.setState({ colorStar: 'white', nameStart: 'ios-star-outline' });
+        if (this.state.colorStar === 'white') {
+            this.setState({ colorStar: 'yellow', nameStart: 'md-star' });
+            //these code below add to firebase, so just don't mind
+            const item = this.props.navigation.state.params.objDetail;
+            const uid = store.getState().user.uid;
+            const path_to_uid = `list_favorites/${uid}`;
+            try {
+                const root_path = firebaseApp.database().ref();
+                root_path.once('value')
+                    .then(function (snapshot) {
+                        if (snapshot.child(path_to_uid.toString()).exists()) {
+                            let list_watched = snapshot.child(path_to_uid.toString()).val();
+                            for (let i = 0; i < list_watched.length; i++) {
+                                //check if item is added into firebase
+                                if ((list_watched[i].media_type == item.media_type)
+                                    && (list_watched[i].id_movie == item.id_movie)) {
+                                    return;
+                                }
+                            }
+                            //add new item into firebase
+                            list_watched.unshift(item);
+                            store.dispatch(actionCreators.send_list_favorites(list_watched));
+                            let path = firebaseApp.database().ref(path_to_uid.toString());
+                            path.update(list_watched)
+                        }
+                        else {
+                            //add first item into firebase
+                            let list_watched = [];
+                            list_watched.unshift(item);
+                            let path = firebaseApp.database().ref(path_to_uid.toString());
+                            store.dispatch(actionCreators.send_list_favorites(list_watched));
+                            path.update(list_watched)
+                        }
+                    })
+
+            }
+            catch (error) {
+            }
+        }
+
+        if (this.state.colorStar === 'yellow') {
+            this.setState({ colorStar: 'white', nameStart: 'ios-star-outline' });
+            //these code below add to firebase, so just don't mind
+            const item = this.props.navigation.state.params.objDetail;
+            const uid = store.getState().user.uid;
+            const path_to_uid = `list_favorites/${uid}`;
+            try {
+                const root_path = firebaseApp.database().ref();
+                root_path.once('value')
+                    .then(function (snapshot) {
+                        if (snapshot.child(path_to_uid.toString()).exists()) {
+                            let list_watched = snapshot.child(path_to_uid.toString()).val();
+                            //filter the item in firebase that's same as item now
+                            list_watched = list_watched.filter(item_firebase => {
+                                ((item_firebae.media_type != item.media_type)
+                                    || (item_firebase.id_movie != item.id_movie))
+                            })
+                            store.dispatch(actionCreators.send_list_favorites(list_watched));
+                            let path = firebaseApp.database().ref(path_to_uid.toString());
+                            path.update(list_watched)
+                        }
+                        else {
+                            //do nothing here
+                        }
+                    })
+
+            }
+            catch (error) {
+            }
+        }
+    }
+
+    addToListWatched() {
+        const item = this.props.navigation.state.params.objDetail;
+        const uid = store.getState().user.uid;
+        const path_to_uid = `list_watched/${uid}`;
+        try {
+            const root_path = firebaseApp.database().ref();
+            root_path.once('value')
+                .then(function (snapshot) {
+                    if (snapshot.child(path_to_uid.toString()).exists()) {
+                        let list_watched = snapshot.child(path_to_uid.toString()).val();
+                        for (let i = 0; i < list_watched.length; i++) {
+                            if ((list_watched[i].media_type == item.media_type)
+                                && (list_watched[i].id_movie == item.id_movie)) {
+                                return;
+                            }
+                        }
+                        list_watched.unshift(item);
+                        let path = firebaseApp.database().ref(path_to_uid.toString());
+                        path.update(list_watched)
+                        store.dispatch(actionCreators.send_list_recents(list_watched));
+                    }
+                    else {
+                        let list_watched = [];
+                        list_watched.unshift(item);
+                        let path = firebaseApp.database().ref(path_to_uid.toString());
+                        path.update(list_watched)
+                        store.dispatch(actionCreators.send_list_recents(list_watched));
+                    }
+                })
+
+        }
+        catch (error) {
+
+        }
+        // let list_watched_json = await AsyncStorage.getItem('list_watched');
+        // let list_watched_array = JSON.parse(list_watched_json);
+
+        // list_watched.push(item);
+        // await AsyncStorage.setItem('list_watched', list_watched);
+        // list_watched = await JSON.parse(AsyncStorage.getItem('list_watched'));
     }
 
     render() {
@@ -161,28 +353,6 @@ export default class DetailFilm extends Component {
                     <Image source={{ uri: API.url_get_image(this.state.movie.backdrop_path) }}
                         style={styles.imageBackground} />
                     <View style={styles.backDropOpacity} />
-                    {/* <YouTube
-                        apiKey='AIzaSyBeR28f0U8cz_1TNY6rmajH5wBrheEvkPY'
-                        videoId={this.state.video_preview_id}   // The YouTube video ID
-                        play={this.state.play_youtube}             // control playback of video with true/false
-                        fullscreen={false}       // control whether the video should play in fullscreen or inline
-                        loop={false}             // control whether the video should loop when ended
-                        onReady={e => this.setState({ isReady: true })}
-                        onChangeState={e => this.setState({ status: e.state })}
-                        onChangeQuality={e => this.setState({ quality: e.quality })}
-                        onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
-                        style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
-                    /> */}
-                    {/* <TouchableOpacity
-                        onPress={() => {
-                            console.log(this.state.play_youtube)
-                            if (this.state.play_youtube)
-                                this.setState({ play_youtube: false })
-                            else
-                                this.setState({ play_youtube: true })
-                        }}
-                        style={styles.imageBackground} >
-                    </TouchableOpacity> */}
                     <TouchableOpacity style={styles.star} onPress={() => { this.changeColorStar() }}>
                         <Icons name={this.state.nameStart} size={24} color={this.state.colorStar} />
                     </TouchableOpacity>
@@ -196,10 +366,12 @@ export default class DetailFilm extends Component {
                 <Text style={styles.text_views}>
                     Views: 12
                 </Text>
-                <TouchableOpacity style={styles.watchbutton}>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('PlayVideo', { item: this.props.navigation.state.params.objDetail })}
+                    style={styles.watchbutton}>
                     <Text style={styles.textWatch}>Watch</Text>
                     <View style={styles.iconPlay}>
-                        <Icons name='md-play' size={22} color='tomato' style={{ marginLeft: 2, backgroundColor: 'transparent' }} />
+                        <Icons name='md-play' size={22} color='tomato' style={{ marginLeft: 2 }} />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -308,9 +480,9 @@ export default class DetailFilm extends Component {
             <View style={styles.star1Container}>
                 {this.renderListStar(20, true)}
                 <View style={styles.hori}>
-                    <TouchableOpacity onPress={this.cripping.bind(this)}>
+                    <TouchableOpacity onPress={() => this.clickToWatchLater()}>
                         <Icon
-                            name='bell-off'
+                            name={this.state.icon_name_bell}
                             size={25}
                             color='white'
                         />
@@ -425,7 +597,7 @@ export default class DetailFilm extends Component {
                         Rating Film
                     </Text>
                     <Rating size={30}
-                        onPress={(index) => { console.log('Number of stars human rating is ' + (index + 1)) }} />
+                        onPress={(index) => { }} />
                 </View>
                 <View style={{ height: 1, backgroundColor: 'grey', margin: 10 }} />
             </View>
@@ -493,7 +665,7 @@ export default class DetailFilm extends Component {
                         onReady={e => this.setState({ isReady: true })}
                         onChangeState={e => this.setState({ status: e.state })}
                         onChangeQuality={e => this.setState({ quality: e.quality })}
-                        onError={e => { this.setState({ error: e.error }); console.log(e.error); }}
+                        onError={e => { this.setState({ error: e.error }); }}
                         style={[{ alignSelf: 'stretch' }, styles.imageBackground]}
                     />
                 </View>
