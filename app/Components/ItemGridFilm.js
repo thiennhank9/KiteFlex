@@ -82,13 +82,12 @@ export default class ItemGridFilm extends PureComponent {
                 onPress={() => {
                     store.dispatch(actionCreators.send_id_movie(id_movie));
                     const root_navigation = store.getState().root_navigation;
-                    
-                    if (media_type == "movie") {
+                    console.log(item.media_type);
+                    if (item.media_type == "movie") {
                         root_navigation.navigate('DetailFilm', { objDetail: item })
-
                     }
                     else {
-                        if (media_type == "tv") {
+                        if (item.media_type == "tv") {
                             console.log(item);
                             root_navigation.navigate('DetailFilm', { objDetail: item })
                         }

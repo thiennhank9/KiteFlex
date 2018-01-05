@@ -23,14 +23,14 @@ export default class Loading extends Component {
                     uid: user.uid
                 }
                 store.dispatch(actionCreators.send_current_user(currentUser));
-                console.log(store.getState().user);
+                this.getListWatched(user);
+                this.getListFavorites(user);
+                this.getListWatchLater(user);
             }
             else {
-                console.log('no user');
-                //make sure - just clear current user in redux
-                //store.dispatch(actionCreators.clear_current_user())
+
             }
-        })
+        }.bind(this))
     }
 
     getListImagesFilmPopularity() {
@@ -64,13 +64,13 @@ export default class Loading extends Component {
                 this.props.navigation.dispatch(resetAction)
             })
             .catch((error) => {
-                console.error(error)
             })
     }
-
+    //function get data should be put here
     componentDidMount() {
         this.automaticallySignIn();
         this.getListImagesFilmPopularity();
+        //this.getListWatched();
     }
 
     render() {
@@ -88,5 +88,70 @@ export default class Loading extends Component {
                 </View>
             </View>
         )
+    }
+
+    //function that get data list watched, favorite and watch later from firebase
+    //for tab library
+    getListWatched(user) {
+        const uid = user.uid;
+        const path_to_uid = `list_watched/${uid}`;
+        try {
+            const root_path = firebaseApp.database().ref();
+            root_path.once('value')
+            .then(function(snapshot){
+                if (snapshot.child(path_to_uid.toString()).exists()) {
+                    let list_watched = snapshot.child(path_to_uid.toString()).val();
+                    store.dispatch(actionCreators.send_list_recents(list_watched));
+                }
+                else {
+                }
+            }.bind(this))
+
+        }
+        catch (error) {
+            
+        }
+    }
+
+    getListFavorites(user) {
+        const uid = user.uid;
+        const path_to_uid = `list_favorites/${uid}`;
+        try {
+            const root_path = firebaseApp.database().ref();
+            root_path.once('value')
+            .then(function(snapshot){
+                if (snapshot.child(path_to_uid.toString()).exists()) {
+                    let list_watched = snapshot.child(path_to_uid.toString()).val();
+                    store.dispatch(actionCreators.send_list_favorites(list_watched))
+                }
+                else {
+                }
+            }.bind(this))
+
+        }
+        catch (error) {
+            
+        }
+    }
+
+    getListWatchLater(user) {
+        const uid = user.uid;
+        const path_to_uid = `list_watch_later/${uid}`;
+        try {
+            const root_path = firebaseApp.database().ref();
+            root_path.once('value')
+            .then(function(snapshot){
+                if (snapshot.child(path_to_uid.toString()).exists()) {
+                    let list_watched = snapshot.child(path_to_uid.toString()).val();
+                    store.dispatch(actionCreators.send_list_watch_later(list_watched))
+                }
+                else {
+                }
+            }.bind(this))
+
+        }
+        catch (error) {
+            
+        }
     }
 }

@@ -94,7 +94,8 @@ export default class IMDb extends Component {
                         key: i,
                         uri: api.url_get_poster(element.poster_path),
                         title: title_image,
-                        id_movie: element.id
+                        id_movie: element.id,
+                        media_type: 'movie',
                     }
                     list_images.push(objElement);
                 }
