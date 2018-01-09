@@ -392,7 +392,7 @@ export default class DetailFilm extends Component {
                     <View style={styles.backDropOpacity} />
 
                     <TouchableOpacity style={styles.star} onPress={() => { this.changeColorStar() }}>
-                        <Icons name={this.state.nameStart} size={24} color={this.state.colorStar} />
+                        <Icons name={this.state.nameStart} size={35} color={this.state.colorStar} />
                     </TouchableOpacity>
                     <Text style={styles.title_on_backdrop}>{this.state.movie.title}</Text>
                 </View>
