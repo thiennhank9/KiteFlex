@@ -109,7 +109,7 @@ export default class LaunchScreen extends Component {
         });
 
         return (
-            <View>
+            <View style={{backgroundColor: 'transparent'}}>
                 <StatusBar translucent={true} backgroundColor='transparent' barStyle='light-content'/>
                 <Image style={styles.wallpaper} source={{uri: 'https://wallpapercave.com/wp/dxaDz8c.jpg'}} resizeMode='cover'/>
                 <Animated.View style={[styles.circle, {transform: [{scale: changeScale}]}]}/>
@@ -118,7 +118,7 @@ export default class LaunchScreen extends Component {
                     <View style={{marginTop: 150}}/>
                     <View style={styles.inputWrapper}>
                         <Icons name='ios-person'
-                               style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40}}
+                               style={{fontSize: 25, color: 'white', position: 'absolute', marginLeft: 40, backgroundColor: 'transparent'}}
                         />
                         <TextInput style={styles.input}
                                    placeholder='Email'
@@ -166,13 +166,14 @@ const styles = StyleSheet.create({
     wallpaper: {
         position: 'absolute',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height
+        height: Dimensions.get('window').height,
     },
     logo: {
         alignSelf: 'center',
         marginTop: 70,
         width: 80,
-        height: 80
+        height: 80,
+        backgroundColor: 'transparent',
     },
     btnEye: {
         position: 'absolute',
@@ -232,7 +233,8 @@ const styles = StyleSheet.create({
     inputWrapper: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'transparent',
     },
     inlineImg: {
         position: 'absolute',
