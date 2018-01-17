@@ -165,7 +165,6 @@ export default class ListSameFilm extends Component {
                 <TouchableOpacity
                     style={{ height: 50, width: 50, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
-                        console.log('pressed!');
                         this.setState({
                             page: this.state.page + 1,
                             isLoading: true

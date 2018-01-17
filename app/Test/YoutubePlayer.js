@@ -39,7 +39,7 @@ export default class VideoPlayer extends Component {
       controls:2,
       rel:true,
     }
-    console.log('VideoPlayer render opts',opts);
+
 
     return (
       <ScrollView style={styles.container}>
@@ -70,10 +70,10 @@ export default class VideoPlayer extends Component {
  
   } // render
   videoError(e){
-    console.log('PlayVideo ****************ERROR',e)
+
   }
   videoState(e){
-    console.log('PlayVideo state change',e)
+
     if (e.state=='playing'){
       // hack to get video to play in portrait; must init both to true in constructor
       if (this.state.fullscreen){
@@ -82,6 +82,6 @@ export default class VideoPlayer extends Component {
     }
   }
   videoProgress(e){
-    console.log('PlayVideo videoProgress event,videoPosition',e);
+
   }
 }

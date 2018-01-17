@@ -76,7 +76,7 @@ export default class SearchFilm extends Component {
         //     results: e.value,
         // });
         this.state.results = e.value;
-        console.log(this.state.results[0]);
+
         this.setState({
             textSearch: this.state.results[0]
         })
@@ -179,6 +179,7 @@ export default class SearchFilm extends Component {
                             key: i,
                             media_type: media_type,
                             id: element.id,
+                            uri: api.url_get_poster(element.poster_path),
                             name: '' //depend on media type
                         }
                         //chekc media type to set field: name
@@ -212,7 +213,7 @@ export default class SearchFilm extends Component {
     }
 
     onClickRecog() {
-        console.log('Recoging!')
+
     }
 
     renderClearButton() {
@@ -259,7 +260,7 @@ export default class SearchFilm extends Component {
     }
 
     renderItemResult(item) {
-
+        
         //Set icon_name to render depends on media_type
         //default for type movie
         let icon_name = 'movie';
@@ -267,22 +268,24 @@ export default class SearchFilm extends Component {
 
         if (item.media_type == 'tv') {
             icon_name = 'television-classic';
-            icon_color = 'FireBrick'
+            icon_color = 'firebrick'
         }
         if (item.media_type == 'person') {
             icon_name = 'account';
             icon_color = 'chocolate'
         }
         let media_type = jsUcfirst(item.media_type)
-
+        item.id_movie = item.id;
+        item.title = item.name;
         return (
             <View>
                 <TouchableOpacity
                     key={item.key}
                     style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
                     onPress={() => {
-                        store.dispatch(actionCreators.send_id_movie(item.id));
-                        this.props.navigation.navigate('DetailFilm');
+
+                        //store.dispatch(actionCreators.send_id_movie(item.id));
+                        this.props.navigation.navigate('DetailFilm', {objDetail: item});
                     }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Icon

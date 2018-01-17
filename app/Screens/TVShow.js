@@ -76,7 +76,7 @@ export default class TVShow extends Component {
     }
 
     getListFilmFromUrl(url) {
-        console.log(url);
+
         return fetch(url)
             .then(response => response.json())
             .then(responseJson => {
@@ -88,7 +88,7 @@ export default class TVShow extends Component {
                     if (!element)
                         continue;
                     let title_image = '';
-                    console.log(element);
+
                     if (element.title != undefined)
                         title_image = element.title;
                     else
@@ -174,7 +174,6 @@ export default class TVShow extends Component {
                 <TouchableOpacity
                     style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
-                        console.log('pressed!');
                         this.setState({
                             page: this.state.page + 1,
                             isLoading: true

@@ -16,7 +16,7 @@ export default class ItemFilm extends PureComponent {
     }
 
     clickToSeeDetail() {
-        console.log("Clicked!")
+
     }
 
     renderEpisodeOrIMDb() {

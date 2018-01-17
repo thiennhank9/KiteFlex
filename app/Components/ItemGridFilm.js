@@ -49,6 +49,18 @@ export default class ItemGridFilm extends PureComponent {
     // }
 
     renderImageOrNull(poster) {
+        
+        if (poster == undefined) 
+        return (
+            <View style={[{ justifyContent: 'center', alignItems: 'center' }, styles.cardImage]}>
+                    <Text style={{ textAlign: 'center', color: 'grey', fontSize: 17 }}> Sorry! We haven't updated this image! </Text>
+                    <Icon
+                        name='emoticon-sad'
+                        color='grey'
+                        size={25}
+                    />
+                </View>
+        )    
         let four_last_characters = poster.toString().substr(poster.length - 4);
         //check four last character whether is null or not to render announcement or image
         if (four_last_characters != 'null')
@@ -82,17 +94,17 @@ export default class ItemGridFilm extends PureComponent {
                 onPress={() => {
                     store.dispatch(actionCreators.send_id_movie(id_movie));
                     const root_navigation = store.getState().root_navigation;
-                    console.log(item.media_type);
+
                     if (item.media_type == "movie") {
                         root_navigation.navigate('DetailFilm', { objDetail: item })
                     }
                     else {
                         if (item.media_type == "tv") {
-                            console.log(item);
+
                             root_navigation.navigate('DetailFilm', { objDetail: item })
                         }
                         else {
-                            console.log(item);
+
                             root_navigation.navigate('DetailPerson', { id_person: id_movie, objDetail: item })
                         }
                     }

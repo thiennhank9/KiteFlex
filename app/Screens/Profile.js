@@ -21,15 +21,15 @@ import firebaseApp from '../Firebase/Config.js';
 const objSystem =
     [
         {
-            title: 'Hệ thống',
+            title: 'Thông tin nhóm NPC',
             data: [{
-                name: 'Cài đặt',
+                name: 'Nguyễn Thiện Nhân - 14520626',
                 icon: 'settings'
             }, {
-                name: 'Thông tin ứng dụng',
+                name: 'Nguyễn Lê Gia Phụng - 14520705',
                 icon: 'help-circle'
             }, {
-                name: 'Phản hồi',
+                name: 'Trần Minh Công - 14520100',
                 icon: 'alert-octagram'
             }]
         }
@@ -99,14 +99,14 @@ export default class Profile extends Component {
                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
                     <Button
                         onPress={() => {
-                            console.log('Signed out')
+
                             firebaseApp.auth().signOut();
                             store.dispatch(actionCreators.clear_current_user());
                             this.setState({
                                 isLoggedIn: false
                             })
                             //test
-                            console.log(store.getState().user);
+
                         }}
                         buttonStyle={{ width: 120 }}
                         rounded
@@ -151,7 +151,7 @@ export default class Profile extends Component {
         )
     }
     clickToSetSetting(){
-        console.log('clicked to set setting')
+
     }
     
     renderItemSetting(item) {

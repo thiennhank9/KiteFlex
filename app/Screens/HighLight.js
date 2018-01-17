@@ -169,7 +169,6 @@ export default class HighLight extends Component {
                 <TouchableOpacity
                     style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
-                        console.log('pressed!');
                         this.setState({
                             page: this.state.page + 1,
                             isLoading: true

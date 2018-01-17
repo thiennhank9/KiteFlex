@@ -26,6 +26,7 @@ export default class Loading extends Component {
                 this.getListWatched(user);
                 this.getListFavorites(user);
                 this.getListWatchLater(user);
+                this.getListDownloads(user);
             }
             else {
 
@@ -47,6 +48,7 @@ export default class Loading extends Component {
                         //get field from json, can add/edit fields that is needeed here, example json can see in https://developers.themoviedb.org/3/discover/movie-discover
                         key: index,
                         uri: api.url_get_image(element.backdrop_path),
+                        uri_poster: api.url_get_poster(element.poster_path),
                         title: element.title,
                         vote_average: element.vote_average,
                         overview: element.overview,
@@ -144,6 +146,27 @@ export default class Loading extends Component {
                 if (snapshot.child(path_to_uid.toString()).exists()) {
                     let list_watched = snapshot.child(path_to_uid.toString()).val();
                     store.dispatch(actionCreators.send_list_watch_later(list_watched))
+                }
+                else {
+                }
+            }.bind(this))
+
+        }
+        catch (error) {
+            
+        }
+    }
+
+    getListDownloads(user) {
+        const uid = user.uid;
+        const path_to_uid = `list_downloads/${uid}`;
+        try {
+            const root_path = firebaseApp.database().ref();
+            root_path.once('value')
+            .then(function(snapshot){
+                if (snapshot.child(path_to_uid.toString()).exists()) {
+                    let list_watched = snapshot.child(path_to_uid.toString()).val();
+                    store.dispatch(actionCreators.send_list_downloads(list_watched))
                 }
                 else {
                 }

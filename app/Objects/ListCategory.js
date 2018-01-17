@@ -15,22 +15,22 @@ export default lsCategory = [
         key: 3,
         category: 'Popular movies'
     },
-    {
-        key: 4,
-        category: 'Popular TV shows'
-    }, 
-    {
-        key: 5,
-        category: 'Top rated TV shows'
-    },
-    {
-        key: 6,
-        category: 'On the air TV shows'
-    }, 
-    {
-        key: 7,
-        category: 'Airing today TV shows'
-    },
+    // {
+    //     key: 4,
+    //     category: 'Popular TV shows'
+    // }, 
+    // {
+    //     key: 5,
+    //     category: 'Top rated TV shows'
+    // },
+    // {
+    //     key: 6,
+    //     category: 'On the air TV shows'
+    // }, 
+    // {
+    //     key: 7,
+    //     category: 'Airing today TV shows'
+    // },
     {
         key: 8,
         category: 'Popular people'

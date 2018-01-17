@@ -18,7 +18,7 @@ export default class TestAsyncStorage extends Component {
     //     try {
     //         await AsyncStorage.setItem(key, 'Set item 1')
     //     } catch (error) {
-    //         console.log(error.toString())
+
     //     }
     // }
 
@@ -33,7 +33,7 @@ export default class TestAsyncStorage extends Component {
                 item: item
             })
         } catch (error) {
-            console.log(error.toString())
+
         }
     }
     render() {

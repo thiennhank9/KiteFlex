@@ -16,7 +16,7 @@ export default class TestFirebase extends Component {
         rootRef.once('value')
         .then(function(snapshot) {
             let comments = snapshot.child('testfirebase/temp').val();
-            console.log(comments.length);
+
             // comments.push({
             //     uid: 4,
             //     comment: 'asdasd4'
@@ -40,8 +40,7 @@ export default class TestFirebase extends Component {
         // })
         // rootRef.once('value')
         // .then(function(snapshot) {
-        //     let path = snapshot.child('testfirebase')
-        //     console.log(child)
+
         // })
         // rootRef.child('testfirebase').update({
         //     temp: [

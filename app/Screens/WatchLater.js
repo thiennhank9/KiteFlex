@@ -76,7 +76,7 @@ class WatchLater extends Component {
     }
 
     getListWatched() {
-        console.log('getting list favorite')
+
         const uid = store.getState().user.uid;
         const path_to_uid = `list_watch_later/${uid}`;
         try {
@@ -88,10 +88,9 @@ class WatchLater extends Component {
                     this.setState({
                         data: list_watched
                     })
-                    console.log('getted and set state')
                 }
                 else {
-                    console.log('nothing')
+
                 }
             }.bind(this))
 
@@ -161,7 +160,6 @@ class WatchLater extends Component {
                 <TouchableOpacity
                     style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
-                        console.log('pressed!');
                         this.setState({
                             page: this.state.page + 1,
                             isLoading: true

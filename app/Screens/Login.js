@@ -72,13 +72,13 @@ export default class LaunchScreen extends Component {
     }
 
     onSignin () {
-        console.log('onSignin', this.state.email + '/' + this.state.password)
+
         firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(() => {
                 firebaseApp.auth().onAuthStateChanged((user) => {
                     if (user) {
                         store.dispatch(actionCreators.send_uuid(user.uid))
-                        console.log(store.getState().uuid)
+
                         this.props.navigation.dispatch(resetAction)
                     }
                 })
@@ -90,11 +90,11 @@ export default class LaunchScreen extends Component {
                     'Something went wrong!',
                     errorMessage,
                     [
-                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        {text: 'OK', onPress: () => {}},
                     ],
                     { cancelable: false }
                 )
-            console.log(error.message)
+
         })
     }
 
