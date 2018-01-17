@@ -21,15 +21,15 @@ import firebaseApp from '../Firebase/Config.js';
 const objSystem =
     [
         {
-            title: 'Hệ thống',
+            title: 'Thông tin nhóm NPC',
             data: [{
-                name: 'Cài đặt',
+                name: 'Nguyễn Thiện Nhân - 14520626',
                 icon: 'settings'
             }, {
-                name: 'Thông tin ứng dụng',
+                name: 'Nguyễn Lê Gia Phụng - 14520705',
                 icon: 'help-circle'
             }, {
-                name: 'Phản hồi',
+                name: 'Trần Minh Công - 14520100',
                 icon: 'alert-octagram'
             }]
         }

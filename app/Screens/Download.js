@@ -186,10 +186,6 @@ class Download extends Component {
                 </TouchableOpacity>
             </View>
         )
-        // return (
-        //     <View style={{ width: windows.width, height: 30, backgroundColor: 'pink' }}>
-        //     </View>
-        // )
     }
 }
 export default connect(mapStateToProps) (Download)
